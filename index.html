@@ -353,6 +353,7 @@
       <a class="brand" href="./index.html">Speakur</a>
       <nav aria-label="Primary">
         <a href="#search">Search</a>
+        <a href="./words/">Words</a>
         <a href="./guides.html">Guides</a>
         <a href="./about.html">About</a>
         <a href="./contact.html">Contact</a>
@@ -363,8 +364,8 @@
       <p class="eyebrow">Pronunciation search</p>
       <h1>How do you say it?</h1>
       <p class="lede">
-        Search any English word. Hear free US and UK audio, read the IPA, and see syllable cues —
-        instantly. No account. No paid AI required.
+        Search jumps to a real page like <code>/medical/appendectomy/</code> — not a popup on the
+        homepage. Free US/UK audio, IPA, and definitions on each URL.
       </p>
 
       <div class="search-wrap" id="search">
@@ -434,8 +435,9 @@
         <div>
           <h3>Product</h3>
           <ul>
-            <li><a href="#search">Pronunciation search</a></li>
+            <li><a href="./words/">Word directories</a></li>
             <li><a href="./guides.html">Editorial guides</a></li>
+            <li><a href="./medical/appendectomy/">Example: /medical/appendectomy/</a></li>
           </ul>
         </div>
         <div>
@@ -453,10 +455,17 @@
   </div>
 
   <script src="./assets/guides-data.js"></script>
+  <script src="./assets/word-index.js"></script>
   <script>
     const POPULAR = [
-      "epitome", "worcestershire", "quinoa", "anemone",
-      "mischievous", "hyperbole", "albeit", "espresso",
+      { word: "appendectomy", path: "./medical/appendectomy/" },
+      { word: "worcestershire", path: "./food/worcestershire/" },
+      { word: "quinoa", path: "./food/quinoa/" },
+      { word: "epitome", path: "./everyday/epitome/" },
+      { word: "anemone", path: "./science/anemone/" },
+      { word: "entrepreneur", path: "./business/entrepreneur/" },
+      { word: "hyperbole", path: "./everyday/hyperbole/" },
+      { word: "espresso", path: "./food/espresso/" },
     ];
 
     const state = {
@@ -475,14 +484,21 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const popular = $("#popular");
-    POPULAR.forEach((word) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "chip";
-      btn.textContent = word;
-      btn.addEventListener("click", () => lookup(word));
-      popular.appendChild(btn);
+    POPULAR.forEach((item) => {
+      const a = document.createElement("a");
+      a.className = "chip";
+      a.href = item.path;
+      a.textContent = item.word;
+      popular.appendChild(a);
     });
+
+    function pathForWord(word) {
+      const q = word.toLowerCase().trim();
+      const aliases = { apendectomy: "appendectomy" };
+      const key = aliases[q] || q;
+      const hit = (window.SPEAKUR_WORD_INDEX || []).find((row) => row.word === key);
+      return hit ? `.${hit.path}` : null;
+    }
 
     function setStatus(msg) {
       statusEl.textContent = msg || "";
@@ -609,33 +625,16 @@
       if (!word) return;
       $("#q").value = word;
       suggestionsEl.style.display = "none";
-      setStatus("Looking up…");
-      resultEl.classList.remove("visible");
 
-      try {
-        const [dictRes, sylRes] = await Promise.all([
-          fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`),
-          fetch(`https://api.datamuse.com/words?sp=${encodeURIComponent(word)}&qe=sp&md=s&max=1`),
-        ]);
-
-        if (dictRes.status === 404) {
-          setStatus(`No entry found for “${word}”. Try another spelling.`);
-          return;
-        }
-        if (!dictRes.ok) throw new Error("Dictionary lookup failed");
-
-        const entries = await dictRes.json();
-        let syllables = null;
-        if (sylRes.ok) {
-          const sylData = await sylRes.json();
-          syllables = sylData[0]?.numSyllables ?? null;
-        }
-        setStatus("");
-        renderResult(entries[0], syllables);
-      } catch (err) {
-        console.error(err);
-        setStatus("Lookup failed. Check your connection and try again.");
+      // Prefer real category pages: /medical/appendectomy/
+      const dedicated = pathForWord(word);
+      if (dedicated) {
+        location.href = dedicated;
+        return;
       }
+
+      setStatus(`No dedicated page yet for “${word}”. Browse directories or try another spelling.`);
+      resultEl.classList.remove("visible");
     }
 
     let suggestTimer = null;

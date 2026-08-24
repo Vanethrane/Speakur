@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "node node_modules/next/dist/bin/next dev --turbopack",
     "build": "node node_modules/next/dist/bin/next build",
-    "start": "node node_modules/next/dist/bin/next start"
+    "start": "node node_modules/next/dist/bin/next start",
+    "generate:words": "node scripts/generate-word-pages.mjs",
+    "refill:words": "node scripts/refill-word-pages.mjs",
+    "sitemap": "node scripts/build-sitemap.mjs"
   },
   "dependencies": {
     "next": "^15.5.2",
