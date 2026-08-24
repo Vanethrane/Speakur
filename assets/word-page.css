@@ -8,6 +8,22 @@
   color: var(--ink-muted);
 }
 .crumbs a { color: var(--voice-dark); text-decoration: underline; text-underline-offset: 3px; }
+.crumb-home,
+.nav-home {
+  font-weight: 600;
+  color: var(--voice-dark) !important;
+}
+header .nav-home {
+  text-decoration: none;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--paper-line);
+  border-radius: 999px;
+  background: var(--paper-raised);
+}
+header .nav-home:hover {
+  border-color: var(--voice);
+  background: var(--voice-glow);
+}
 
 .word-card {
   margin-top: 0.5rem;

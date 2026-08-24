@@ -77,7 +77,7 @@ function chrome({ title, description, depth, active }) {
     <header>
       <a class="brand" href="${home}index.html">Speakur</a>
       <nav aria-label="Primary">
-        <a href="${home}index.html">Search</a>
+        <a class="nav-home" href="${home}index.html">Home</a>
         <a href="${home}words/index.html"${active === "words" ? ' aria-current="page"' : ""}>Words</a>
         <a href="${home}guides.html">Guides</a>
         <a href="${home}about.html">About</a>
@@ -94,7 +94,7 @@ function chrome({ title, description, depth, active }) {
         <div>
           <h3>Product</h3>
           <ul>
-            <li><a href="${home}index.html">Pronunciation search</a></li>
+            <li><a href="${home}index.html">Home</a></li>
             <li><a href="${home}words/index.html">Word directories</a></li>
             <li><a href="${home}guides.html">Editorial guides</a></li>
           </ul>
@@ -109,7 +109,7 @@ function chrome({ title, description, depth, active }) {
           </ul>
         </div>
       </div>
-      <p class="legal">© <span data-year></span> Speakur.</p>
+      <p class="legal">© <span data-year></span> Speakur. <a href="${home}index.html">Home</a></p>
     </footer>
   </div>
   <script src="${asset}site.js"></script>
@@ -182,6 +182,8 @@ function renderWordPage({ category, word, entry, syllables, siblings }) {
   return `${head}
     <main>
       <nav class="crumbs" aria-label="Breadcrumb">
+        <a class="crumb-home" href="../../index.html">Home</a>
+        <span>/</span>
         <a href="../../words/">Words</a>
         <span>/</span>
         <a href="../">${escapeHtml(category.title)}</a>
@@ -252,6 +254,8 @@ function renderCategoryPage(category, words) {
   return `${head}
     <main>
       <nav class="crumbs" aria-label="Breadcrumb">
+        <a class="crumb-home" href="../index.html">Home</a>
+        <span>/</span>
         <a href="../words/">Words</a>
         <span>/</span>
         <span>${escapeHtml(category.title)}</span>

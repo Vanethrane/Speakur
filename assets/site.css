@@ -48,8 +48,19 @@ header {
   letter-spacing: -0.02em;
 }
 nav { display: flex; gap: 1rem; flex-wrap: wrap; }
-nav a { color: var(--ink-muted); font-size: 0.95rem; }
-nav a:hover { color: var(--voice-dark); }
+header .nav-home {
+  text-decoration: none;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--paper-line);
+  border-radius: 999px;
+  background: var(--paper-raised);
+  font-weight: 600;
+  color: var(--voice-dark);
+}
+header .nav-home:hover {
+  border-color: var(--voice);
+  background: var(--voice-glow);
+}
 
 main { flex: 1; padding: 2.5rem 0 2rem; }
 

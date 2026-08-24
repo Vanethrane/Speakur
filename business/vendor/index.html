@@ -17,7 +17,7 @@
     <header>
       <a class="brand" href="../../index.html">Speakur</a>
       <nav aria-label="Primary">
-        <a href="../../index.html">Search</a>
+        <a class="nav-home" href="../../index.html">Home</a>
         <a href="../../words/index.html">Words</a>
         <a href="../../guides.html">Guides</a>
         <a href="../../about.html">About</a>
@@ -26,6 +26,8 @@
     </header>
     <main>
       <nav class="crumbs" aria-label="Breadcrumb">
+        <a class="crumb-home" href="../../index.html">Home</a>
+        <span>/</span>
         <a href="../../words/">Words</a>
         <span>/</span>
         <a href="../">Business</a>
@@ -38,9 +40,9 @@
         <div class="word-head">
           <div>
             <h1>vendor</h1>
-            <p class="ipa">Phonetic spelling unavailable</p>
+            <p class="ipa">/ˈvɛn.də/</p>
           </div>
-          <button type="button" class="play btn-voice" data-play data-audio="" data-lang="en-US">
+          <button type="button" class="play btn-voice" data-play data-audio="https://api.dictionaryapi.dev/media/pronunciations/en/vendor-us.mp3" data-lang="en-US">
             <span class="icon">▶</span> Play
           </button>
         </div>
@@ -48,16 +50,36 @@
         <dl class="meta">
           <div><dt>Syllables</dt><dd>2</dd></div>
           
+          <div><dt>IPA</dt><dd>/ˈvɛn.də/ · /ˈvɛn.dɚ/</dd></div>
           <div><dt>Path</dt><dd>/business/vendor/</dd></div>
         </dl>
 
         <div class="plays">
-          <button type="button" class="play btn-voice" data-play data-audio="" data-lang="en-US"><span class="icon">▶</span> US (free)</button>
+          <button type="button" class="play btn-voice" data-play data-audio="https://api.dictionaryapi.dev/media/pronunciations/en/vendor-us.mp3" data-lang="en-US"><span class="icon">▶</span> US (free)</button>
           <button type="button" class="play btn-voice" data-play data-audio="" data-lang="en-GB"><span class="icon">▶</span> UK (free)</button>
-          <button type="button" class="play btn-voice" data-play data-audio="" data-lang="en-US" data-rate="0.72"><span class="icon">▶</span> Slow</button>
+          <button type="button" class="play btn-voice" data-play data-audio="https://api.dictionaryapi.dev/media/pronunciations/en/vendor-us.mp3" data-lang="en-US" data-rate="0.72"><span class="icon">▶</span> Slow</button>
         </div>
         <p class="note">This is a dedicated page at <strong>/business/vendor/</strong>. Audio uses free dictionary clips when available, otherwise browser speech after you click Play.</p>
-        <section class="meanings"><p class="note">Definition lookup was unavailable at generation time. Audio still works via browser speech.</p></section>
+        <section class="meanings">
+        <h2>Meaning</h2>
+        <div class="sense">
+            <p class="pos">noun</p>
+            <p class="def">A person or a company that vends or sells.</p>
+            
+          </div><div class="sense">
+            <p class="pos">noun</p>
+            <p class="def">A vending machine.</p>
+            
+          </div><div class="sense">
+            <p class="pos">verb</p>
+            <p class="def">To bundle third-party dependencies with the source code for one's own program.</p>
+            <p class="ex">“I distributed my application with a vendored copy of Perl so that it wouldn't use the system copies of Perl where it is installed.”</p>
+          </div><div class="sense">
+            <p class="pos">verb</p>
+            <p class="def">As the software vendor, to bundle one's own, possibly modified version of dependencies with a standard program.</p>
+            <p class="ex">“Strawberry Perl contains vendored copies of some CPAN modules, designed to allow them to run on Windows.”</p>
+          </div>
+      </section>
       </article>
 
       <section class="related">
@@ -77,7 +99,7 @@
         <div>
           <h3>Product</h3>
           <ul>
-            <li><a href="../../index.html">Pronunciation search</a></li>
+            <li><a href="../../index.html">Home</a></li>
             <li><a href="../../words/index.html">Word directories</a></li>
             <li><a href="../../guides.html">Editorial guides</a></li>
           </ul>
@@ -92,7 +114,7 @@
           </ul>
         </div>
       </div>
-      <p class="legal">© <span data-year></span> Speakur.</p>
+      <p class="legal">© <span data-year></span> Speakur. <a href="../../index.html">Home</a></p>
     </footer>
   </div>
   <script src="../../assets/site.js"></script>
