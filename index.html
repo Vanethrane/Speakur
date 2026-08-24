@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Speakur — Hear how any word is pronounced</title>
+  <meta
+    name="description"
+    content="Search a word, hear free US and UK audio, and read IPA phonetic spelling instantly."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --ink: #1c1712;
+      --ink-muted: #5c5348;
+      --paper: #f6f1e8;
+      --paper-raised: #fffaf3;
+      --paper-line: #e4d9c8;
+      --voice: #0d6e66;
+      --voice-dark: #0a524c;
+      --voice-glow: #e8f4f2;
+      --shadow: 0 18px 40px -28px rgba(28, 23, 18, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Outfit, system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #e8f4f2 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #efe6d6 0%, transparent 50%),
+        var(--paper);
+    }
+    ::selection { background: var(--voice); color: var(--paper-raised); }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    .shell {
+      width: min(720px, calc(100% - 2rem));
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 0 3rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.65rem;
+      letter-spacing: -0.02em;
+    }
+    nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+    nav a {
+      color: var(--ink-muted);
+      font-size: 0.95rem;
+    }
+    nav a:hover { color: var(--voice-dark); }
+
+    main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 3.5rem 0 2rem; }
+
+    .eyebrow {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--voice);
+    }
+    h1 {
+      margin: 1rem 0 0;
+      max-width: 14ch;
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(2.8rem, 8vw, 3.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
+    .lede {
+      margin: 1.25rem 0 0;
+      max-width: 36rem;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--ink-muted);
+    }
+
+    .search-wrap { position: relative; margin-top: 2.5rem; }
+    .search-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: stretch;
+      background: var(--paper-raised);
+      border: 1px solid var(--paper-line);
+      border-radius: 1rem;
+      box-shadow: var(--shadow);
+      padding: 0.4rem;
+    }
+    #q {
+      flex: 1;
+      border: 0;
+      background: transparent;
+      padding: 0.85rem 1rem;
+      font-size: 1.1rem;
+      color: var(--ink);
+      outline: none;
+    }
+    #q::placeholder { color: color-mix(in srgb, var(--ink-muted) 70%, transparent); }
+    #go {
+      border: 0;
+      border-radius: 0.75rem;
+      background: var(--ink);
+      color: var(--paper-raised);
+      padding: 0 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #go:hover { background: var(--voice-dark); }
+
+    #suggestions {
+      list-style: none;
+      margin: 0.5rem 0 0;
+      padding: 0;
+      position: absolute;
+      z-index: 20;
+      width: 100%;
+      background: var(--paper-raised);
+      border: 1px solid var(--paper-line);
+      border-radius: 1rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: none;
+    }
+    #suggestions li button {
+      width: 100%;
+      text-align: left;
+      border: 0;
+      background: transparent;
+      padding: 0.85rem 1.25rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--ink);
+    }
+    #suggestions li button:hover,
+    #suggestions li button.active {
+      background: var(--voice-glow);
+      color: var(--voice-dark);
+    }
+    #suggestions .hint {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .chips { margin-top: 2.5rem; }
+    .chips p {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .chip {
+      border: 1px solid var(--paper-line);
+      background: var(--paper-raised);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--ink);
+    }
+    .chip:hover { border-color: var(--voice); color: var(--voice-dark); }
+
+    #result {
+      display: none;
+      margin-top: 2rem;
+      background: var(--paper-raised);
+      border: 1px solid var(--paper-line);
+      border-radius: 1.75rem;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+    #result.visible { display: block; }
+    #result .label {
+      margin: 0;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--voice);
+    }
+    #result .head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    #word-title {
+      margin: 0;
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(2.4rem, 7vw, 3.5rem);
+      letter-spacing: -0.03em;
+    }
+    #ipa {
+      margin: 0.75rem 0 0;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.4rem;
+      color: var(--ink-muted);
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+      color: var(--ink-muted);
+      font-size: 0.85rem;
+    }
+    .meta dt {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0;
+    }
+    .meta dd {
+      margin: 0.25rem 0 0;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+    .plays {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+    }
+    .play {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--voice);
+      color: var(--paper-raised);
+      padding: 0.55rem 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .play:hover { background: var(--voice-dark); }
+    .play .icon {
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      display: grid;
+      place-items: center;
+      font-size: 0.7rem;
+    }
+    .note {
+      margin: 1rem 0 0;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+    #meanings { margin-top: 2rem; padding-top: 1.75rem; border-top: 1px solid var(--paper-line); }
+    #meanings h2 {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .sense { margin-top: 1.1rem; }
+    .pos {
+      margin: 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--voice);
+    }
+    .def { margin: 0.35rem 0 0; font-size: 1.05rem; line-height: 1.55; }
+    .ex { margin: 0.4rem 0 0; color: var(--ink-muted); }
+
+    #status {
+      margin-top: 1rem;
+      color: var(--ink-muted);
+      min-height: 1.25rem;
+    }
+
+    footer {
+      margin-top: auto;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--paper-line);
+    }
+    .footer-grid {
+      display: grid;
+      gap: 1.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    .footer-brand {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.25rem;
+    }
+    .footer-copy {
+      margin: 0.5rem 0 0;
+      max-width: 18rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--ink-muted);
+    }
+    footer h3 {
+      margin: 0;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    footer ul { list-style: none; margin: 0.75rem 0 0; padding: 0; }
+    footer li { margin: 0.4rem 0; }
+    footer li a { font-size: 0.95rem; }
+    footer li a:hover { color: var(--voice-dark); }
+    .legal {
+      margin: 2rem 0 0;
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="./index.html">Speakur</a>
+      <nav aria-label="Primary">
+        <a href="#search">Search</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="eyebrow">Pronunciation search</p>
+      <h1>How do you say it?</h1>
+      <p class="lede">
+        Search any English word. Hear free US and UK audio, read the IPA, and see syllable cues —
+        instantly. No account. No paid AI required.
+      </p>
+
+      <div class="search-wrap" id="search">
+        <form class="search-row" id="search-form" autocomplete="off">
+          <label class="sr-only" for="q" style="position:absolute;left:-9999px">Search a word</label>
+          <input id="q" name="q" placeholder="Type a word — epitome, Worcestershire, GIF…" spellcheck="false" autofocus />
+          <button type="submit" id="go">Hear it</button>
+        </form>
+        <ul id="suggestions" role="listbox" aria-label="Suggestions"></ul>
+      </div>
+
+      <p id="status" role="status" aria-live="polite"></p>
+
+      <section id="result" aria-live="polite">
+        <p class="label">Pronunciation</p>
+        <div class="head">
+          <div>
+            <h2 id="word-title"></h2>
+            <p id="ipa"></p>
+          </div>
+          <button type="button" class="play" id="play-main"><span class="icon">▶</span> Play</button>
+        </div>
+        <dl class="meta">
+          <div id="syllables-wrap" hidden>
+            <dt>Syllables</dt>
+            <dd id="syllables"></dd>
+          </div>
+          <div id="ipa-meta-wrap" hidden>
+            <dt>IPA</dt>
+            <dd id="ipa-meta"></dd>
+          </div>
+        </dl>
+        <div class="plays">
+          <button type="button" class="play" data-accent="us"><span class="icon">▶</span> US (free)</button>
+          <button type="button" class="play" data-accent="uk"><span class="icon">▶</span> UK (free)</button>
+          <button type="button" class="play" id="play-slow"><span class="icon">▶</span> Slow</button>
+        </div>
+        <p class="note">
+          Uses free dictionary clips when available; otherwise browser speech or free TTS on click.
+        </p>
+        <div id="meanings"></div>
+      </section>
+
+      <div class="chips">
+        <p>People look up</p>
+        <div class="chip-row" id="popular"></div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div id="about">
+          <div class="footer-brand">Speakur</div>
+          <p class="footer-copy">
+            Pronunciation search for learners, creators, and marketers — powered by free dictionary
+            audio and on-demand speech.
+          </p>
+        </div>
+        <div>
+          <h3>Product</h3>
+          <ul>
+            <li><a href="#search">Pronunciation search</a></li>
+            <li><a href="#search">Hard words</a></li>
+          </ul>
+        </div>
+        <div id="contact">
+          <h3>Trust &amp; legal</h3>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="mailto:hello@speakur.com">Contact</a></li>
+            <li><a href="./privacy.html">Privacy Policy</a></li>
+            <li><a href="./terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="legal">© <span id="year"></span> Speakur. Free APIs · click-gated audio.</p>
+    </footer>
+  </div>
+
+  <script>
+    const POPULAR = [
+      "epitome", "worcestershire", "quinoa", "anemone",
+      "mischievous", "hyperbole", "albeit", "espresso",
+    ];
+
+    const state = {
+      word: "",
+      phonetic: "",
+      phonetics: [],
+      active: 0,
+      suggestions: [],
+    };
+
+    const $ = (sel) => document.querySelector(sel);
+    const statusEl = $("#status");
+    const suggestionsEl = $("#suggestions");
+    const resultEl = $("#result");
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const popular = $("#popular");
+    POPULAR.forEach((word) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "chip";
+      btn.textContent = word;
+      btn.addEventListener("click", () => lookup(word));
+      popular.appendChild(btn);
+    });
+
+    function setStatus(msg) {
+      statusEl.textContent = msg || "";
+    }
+
+    function accentFromAudio(audio) {
+      const lower = (audio || "").toLowerCase();
+      if (lower.includes("-us") || lower.includes("_us") || lower.includes("/us/")) return "us";
+      if (lower.includes("-uk") || lower.includes("_uk") || lower.includes("/uk/")) return "uk";
+      return "other";
+    }
+
+    function speak(word, lang = "en-US", rate = 1) {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(word);
+      u.lang = lang;
+      u.rate = rate;
+      const voices = window.speechSynthesis.getVoices();
+      const match = voices.find((v) => v.lang.toLowerCase().startsWith(lang.toLowerCase().slice(0, 2)));
+      if (match) u.voice = match;
+      window.speechSynthesis.speak(u);
+    }
+
+    async function playAudio(url, word, lang, rate = 1) {
+      if (url) {
+        try {
+          const audio = new Audio(url);
+          audio.playbackRate = rate;
+          await audio.play();
+          return;
+        } catch (_) { /* fall through */ }
+      }
+      speak(word, lang, rate);
+    }
+
+    function phoneticFor(accent) {
+      return state.phonetics.find((p) => p.accent === accent && p.audio)
+        || state.phonetics.find((p) => p.audio)
+        || null;
+    }
+
+    function bindPlays() {
+      $("#play-main").onclick = () => {
+        const p = phoneticFor("us") || phoneticFor("uk") || phoneticFor("other");
+        playAudio(p?.audio, state.word, p?.accent === "uk" ? "en-GB" : "en-US");
+      };
+      $("#play-slow").onclick = () => {
+        const p = phoneticFor("us") || phoneticFor("uk") || phoneticFor("other");
+        playAudio(p?.audio, state.word, p?.accent === "uk" ? "en-GB" : "en-US", 0.72);
+      };
+      document.querySelectorAll(".play[data-accent]").forEach((btn) => {
+        btn.onclick = () => {
+          const accent = btn.getAttribute("data-accent");
+          const p = phoneticFor(accent);
+          playAudio(p?.audio, state.word, accent === "uk" ? "en-GB" : "en-US");
+        };
+      });
+    }
+
+    function renderResult(entry, syllables) {
+      state.word = entry.word;
+      state.phonetic = entry.phonetic
+        || (entry.phonetics || []).find((p) => p.text)?.text
+        || "";
+      state.phonetics = (entry.phonetics || [])
+        .map((p) => ({
+          accent: p.audio ? accentFromAudio(p.audio) : "other",
+          text: p.text || null,
+          audio: p.audio || null,
+        }))
+        .filter((p) => p.text || p.audio);
+
+      $("#word-title").textContent = entry.word;
+      $("#ipa").textContent = state.phonetic || "Phonetic spelling unavailable";
+
+      const sylWrap = $("#syllables-wrap");
+      if (syllables) {
+        sylWrap.hidden = false;
+        $("#syllables").textContent = syllables;
+      } else {
+        sylWrap.hidden = true;
+      }
+
+      const ipas = [...new Set(state.phonetics.map((p) => p.text).filter(Boolean))];
+      const ipaMetaWrap = $("#ipa-meta-wrap");
+      if (ipas.length) {
+        ipaMetaWrap.hidden = false;
+        $("#ipa-meta").textContent = ipas.join("  ·  ");
+      } else {
+        ipaMetaWrap.hidden = true;
+      }
+
+      const meanings = $("#meanings");
+      meanings.innerHTML = "";
+      const senses = [];
+      for (const meaning of entry.meanings || []) {
+        for (const def of meaning.definitions || []) {
+          if (!def.definition) continue;
+          senses.push({ pos: meaning.partOfSpeech || "unknown", def: def.definition, ex: def.example || null });
+          if (senses.length >= 5) break;
+        }
+        if (senses.length >= 5) break;
+      }
+      if (senses.length) {
+        const h2 = document.createElement("h2");
+        h2.textContent = "Meaning";
+        meanings.appendChild(h2);
+        senses.forEach((s) => {
+          const div = document.createElement("div");
+          div.className = "sense";
+          div.innerHTML = `<p class="pos">${s.pos}</p><p class="def">${s.def}</p>${s.ex ? `<p class="ex">“${s.ex}”</p>` : ""}`;
+          meanings.appendChild(div);
+        });
+      }
+
+      bindPlays();
+      resultEl.classList.add("visible");
+      resultEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    async function lookup(raw) {
+      const word = (raw || "").trim().toLowerCase();
+      if (!word) return;
+      $("#q").value = word;
+      suggestionsEl.style.display = "none";
+      setStatus("Looking up…");
+      resultEl.classList.remove("visible");
+
+      try {
+        const [dictRes, sylRes] = await Promise.all([
+          fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`),
+          fetch(`https://api.datamuse.com/words?sp=${encodeURIComponent(word)}&qe=sp&md=s&max=1`),
+        ]);
+
+        if (dictRes.status === 404) {
+          setStatus(`No entry found for “${word}”. Try another spelling.`);
+          return;
+        }
+        if (!dictRes.ok) throw new Error("Dictionary lookup failed");
+
+        const entries = await dictRes.json();
+        let syllables = null;
+        if (sylRes.ok) {
+          const sylData = await sylRes.json();
+          syllables = sylData[0]?.numSyllables ?? null;
+        }
+        setStatus("");
+        renderResult(entries[0], syllables);
+      } catch (err) {
+        console.error(err);
+        setStatus("Lookup failed. Check your connection and try again.");
+      }
+    }
+
+    let suggestTimer = null;
+    $("#q").addEventListener("input", (e) => {
+      const q = e.target.value.trim();
+      clearTimeout(suggestTimer);
+      if (q.length < 2) {
+        suggestionsEl.style.display = "none";
+        state.suggestions = [];
+        return;
+      }
+      suggestTimer = setTimeout(async () => {
+        try {
+          const res = await fetch(`https://api.datamuse.com/sug?s=${encodeURIComponent(q)}&max=8`);
+          if (!res.ok) return;
+          const data = await res.json();
+          state.suggestions = data.filter((d) => /^[a-z][a-z'-]*$/i.test(d.word));
+          state.active = 0;
+          if (!state.suggestions.length) {
+            suggestionsEl.style.display = "none";
+            return;
+          }
+          suggestionsEl.innerHTML = state.suggestions
+            .map((s, i) => `<li><button type="button" role="option" class="${i === 0 ? "active" : ""}" data-i="${i}"><span>${s.word}</span><span class="hint">pronounce</span></button></li>`)
+            .join("");
+          suggestionsEl.style.display = "block";
+          suggestionsEl.querySelectorAll("button").forEach((btn) => {
+            btn.addEventListener("click", () => lookup(state.suggestions[Number(btn.dataset.i)].word));
+          });
+        } catch (_) { /* ignore */ }
+      }, 160);
+    });
+
+    $("#q").addEventListener("keydown", (e) => {
+      if (!state.suggestions.length || suggestionsEl.style.display === "none") return;
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        state.active = (state.active + 1) % state.suggestions.length;
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        state.active = (state.active - 1 + state.suggestions.length) % state.suggestions.length;
+      } else {
+        return;
+      }
+      [...suggestionsEl.querySelectorAll("button")].forEach((btn, i) => {
+        btn.classList.toggle("active", i === state.active);
+      });
+    });
+
+    $("#search-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const chosen = state.suggestions[state.active]?.word || $("#q").value;
+      lookup(chosen);
+    });
+
+    document.addEventListener("mousedown", (e) => {
+      if (!e.target.closest(".search-wrap")) suggestionsEl.style.display = "none";
+    });
+
+    // Deep link: index.html?q=epitome
+    const params = new URLSearchParams(location.search);
+    const initial = params.get("q");
+    if (initial) lookup(initial);
+  </script>
+</body>
+</html>
