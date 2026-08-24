@@ -74,6 +74,21 @@ function hyphenate(word: string, count: number | null): string | null {
   return parts.filter(Boolean).join("·");
 }
 
+async function relatedWords(word: string): Promise<string[]> {
+  const url = `https://api.datamuse.com/words?ml=${encodeURIComponent(word)}&max=8`;
+  try {
+    const response = await fetch(url, { next: { revalidate: 86400 } });
+    if (!response.ok) return [];
+    const data = (await response.json()) as Array<{ word?: string }>;
+    return data
+      .map((item) => item.word?.toLowerCase())
+      .filter((w): w is string => Boolean(w) && w !== word.toLowerCase() && /^[a-z][a-z'-]*$/i.test(w))
+      .slice(0, 8);
+  } catch {
+    return [];
+  }
+}
+
 export async function lookupPronunciation(query: string): Promise<PronounceResult | null> {
   const word = query.trim().toLowerCase();
   if (!word) return null;
@@ -114,7 +129,10 @@ export async function lookupPronunciation(query: string): Promise<PronounceResul
     if (meanings.length >= 6) break;
   }
 
-  const syllables = await syllableCount(entry.word);
+  const [syllables, related] = await Promise.all([
+    syllableCount(entry.word),
+    relatedWords(entry.word),
+  ]);
   const phonetic =
     entry.phonetic ?? phonetics.find((item) => item.text)?.text ?? null;
 
@@ -125,6 +143,7 @@ export async function lookupPronunciation(query: string): Promise<PronounceResul
     syllables,
     hyphenation: hyphenate(entry.word, syllables),
     meanings,
+    related,
   };
 }
 

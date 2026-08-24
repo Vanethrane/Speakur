@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guides · Speakur</title>
+  <meta name="description" content="Long-form Speakur guides on pronunciation, speech synthesis, accents, and localization." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/site.css" />
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="./index.html">Speakur</a>
+      <nav aria-label="Primary">
+        <a href="./index.html">Search</a>
+        <a href="./guides.html">Guides</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <p class="eyebrow">Editorial</p>
+      <h1>Guides</h1>
+      <p class="lede">Long-form articles on speech, accents, localization, teaching, and cost-efficient audio — written for learners and builders.</p>
+      <div id="list"></div>
+    </main>
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Speakur</div>
+          <p class="footer-copy">Pronunciation search and editorial guides — free APIs first.</p>
+        </div>
+        <div>
+          <h3>Product</h3>
+          <ul>
+            <li><a href="./index.html">Pronunciation search</a></li>
+            <li><a href="./guides.html">Editorial guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Trust &amp; legal</h3>
+          <ul>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./privacy.html">Privacy Policy</a></li>
+            <li><a href="./terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="legal">© <span data-year></span> Speakur.</p>
+    </footer>
+  </div>
+  <script src="./assets/guides-data.js"></script>
+  <script src="./assets/site.js"></script>
+  <script>
+    const list = document.getElementById("list");
+    const guides = (window.SPEAKUR_GUIDES || []).slice().sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+    list.innerHTML = guides.map((g) => `
+      <a class="card" href="./guide.html?slug=${encodeURIComponent(g.slug)}">
+        <div class="meta">${g.publishedAt} · ${g.readingMinutes} min</div>
+        <h2>${g.title}</h2>
+        <p>${g.description}</p>
+      </a>
+    `).join("");
+  </script>
+</body>
+</html>

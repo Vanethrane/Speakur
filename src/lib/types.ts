@@ -18,6 +18,7 @@ export type PronounceResult = {
   syllables: number | null;
   hyphenation: string | null;
   meanings: Sense[];
+  related: string[];
 };
 
 export type Suggestion = {
