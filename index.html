@@ -454,18 +454,24 @@
     </footer>
   </div>
 
+  <script src="./assets/site.js"></script>
   <script src="./assets/guides-data.js"></script>
   <script src="./assets/word-index.js"></script>
+  <script src="./assets/on-demand-word.js"></script>
   <script>
     const POPULAR = [
-      { word: "appendectomy", path: "./medical/appendectomy/" },
+      { word: "croissant", path: "./food/croissant/" },
+      { word: "acai", path: "./food/acai/" },
       { word: "worcestershire", path: "./food/worcestershire/" },
-      { word: "quinoa", path: "./food/quinoa/" },
-      { word: "epitome", path: "./everyday/epitome/" },
-      { word: "anemone", path: "./science/anemone/" },
+      { word: "gyro", path: "./food/gyro/" },
+      { word: "qatar", path: "./places/qatar/" },
+      { word: "porsche", path: "./brands/porsche/" },
+      { word: "aoife", path: "./names/aoife/" },
+      { word: "dachshund", path: "./animals/dachshund/" },
+      { word: "schedule", path: "./everyday/schedule/" },
+      { word: "niche", path: "./everyday/niche/" },
       { word: "entrepreneur", path: "./business/entrepreneur/" },
-      { word: "hyperbole", path: "./everyday/hyperbole/" },
-      { word: "espresso", path: "./food/espresso/" },
+      { word: "charcuterie", path: "./food/charcuterie/" },
     ];
 
     const state = {
@@ -625,6 +631,7 @@
       if (!word) return;
       $("#q").value = word;
       suggestionsEl.style.display = "none";
+      resultEl.classList.remove("visible");
 
       // Prefer real category pages: /medical/appendectomy/
       const dedicated = pathForWord(word);
@@ -633,8 +640,11 @@
         return;
       }
 
-      setStatus(`No dedicated page yet for “${word}”. Browse directories or try another spelling.`);
-      resultEl.classList.remove("visible");
+      // Missing from the directory: open (and create) /{category}/{word}/
+      const category =
+        (window.SpeakurOnDemand && SpeakurOnDemand.guessCategory(word)) || "everyday";
+      setStatus(`Building a page for “${word}”…`);
+      location.href = `./${category}/${encodeURIComponent(word)}/`;
     }
 
     let suggestTimer = null;

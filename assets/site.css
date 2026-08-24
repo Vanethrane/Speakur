@@ -214,3 +214,28 @@ footer li a:hover { color: var(--voice-dark); }
   font-size: 0.75rem;
   color: var(--ink-muted);
 }
+
+.ad-slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1.25rem 0;
+  min-height: 60px;
+  overflow: hidden;
+}
+.ad-slot-top {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--paper-line);
+}
+.ad-slot-bottom {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--paper-line);
+}
+.ad-slot iframe {
+  max-width: 100%;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Build pronunciation page · Speakur</title>
+  <meta name="description" content="Look up a word and open or create its Speakur pronunciation page." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+  <link rel="stylesheet" href="../assets/word-page.css" />
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="../index.html">Speakur</a>
+      <nav aria-label="Primary">
+        <a class="nav-home" href="../index.html">Home</a>
+        <a href="../words/">Words</a>
+        <a href="../guides.html">Guides</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <p class="eyebrow">On-demand page</p>
+      <h1 id="heading">Building your answer</h1>
+      <p class="lede" id="status">Looking up pronunciation…</p>
+      <div id="mount"></div>
+    </main>
+    <footer>
+      <p class="legal">© <span data-year></span> Speakur. <a href="../index.html">Home</a></p>
+    </footer>
+  </div>
+  <script src="../assets/site.js"></script>
+  <script src="../assets/word-index.js"></script>
+  <script src="../assets/on-demand-word.js"></script>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(location.search);
+      const word = params.get("q") || "";
+      const category = params.get("category") || undefined;
+      const statusEl = document.getElementById("status");
+      const heading = document.getElementById("heading");
+      const mount = document.getElementById("mount");
+
+      if (!word.trim()) {
+        heading.textContent = "Missing word";
+        statusEl.textContent = "Add a word with ?q=yourword or search from the home page.";
+        return;
+      }
+
+      heading.textContent = word.toLowerCase().trim();
+      const result = await SpeakurOnDemand.resolveAndShow({
+        rawWord: word,
+        preferredCategory: category,
+        mount,
+        statusEl,
+        depth: 1,
+      });
+
+      if (result.ok && result.preview) {
+        heading.textContent = result.word;
+        document.title = `How to pronounce ${result.word} · Speakur`;
+      } else if (!result.ok && !result.redirected) {
+        heading.textContent = "Not available";
+      }
+    })();
+  </script>
+</body>
+</html>

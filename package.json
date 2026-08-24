@@ -6,7 +6,11 @@
     "dev": "node node_modules/next/dist/bin/next dev --turbopack",
     "build": "node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
+    "catalog:build": "node scripts/build-large-catalog.mjs",
     "generate:words": "node scripts/generate-word-pages.mjs",
+    "generate:words:fast": "node scripts/generate-word-pages.mjs --fast",
+    "add-word": "node scripts/add-word.mjs",
+    "serve": "node scripts/serve.mjs",
     "refill:words": "node scripts/refill-word-pages.mjs",
     "sitemap": "node scripts/build-sitemap.mjs"
   },

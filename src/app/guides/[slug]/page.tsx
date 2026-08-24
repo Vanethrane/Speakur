@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { HeadMetadata } from "@/components/HeadMetadata";
 import { SiteShell, Prose } from "@/components/SiteChrome";
+import { ToolRecommendationBox } from "@/components/ToolRecommendationBox";
 import { ALL_GUIDES, getGuide, guideWordCount } from "@/content/guides";
+import { getPageLanguageMeta } from "@/lib/dataset";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -37,9 +40,17 @@ export default async function GuidePage({ params }: PageProps) {
   if (!guide) notFound();
 
   const words = guideWordCount(guide);
+  const pageMeta = getPageLanguageMeta(slug);
 
   return (
     <SiteShell>
+      <HeadMetadata
+        slug={slug}
+        name={pageMeta?.name || guide.title}
+        description={guide.description}
+        path={`/guides/${guide.slug}`}
+        pageType="guide"
+      />
       <article className="py-12">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-voice">Guide</p>
         <h1 className="mt-3 font-display text-4xl leading-tight tracking-tight text-ink sm:text-5xl">
@@ -48,6 +59,15 @@ export default async function GuidePage({ params }: PageProps) {
         <p className="mt-4 text-lg text-ink-muted">{guide.description}</p>
         <p className="mt-3 text-sm text-ink-muted">
           Published {guide.publishedAt} · {guide.readingMinutes} min read · {words} words
+          {pageMeta ? (
+            <>
+              {" · "}
+              <span className="text-ink">
+                {pageMeta.language}
+                {pageMeta.accent ? ` · ${pageMeta.accent}` : ""}
+              </span>
+            </>
+          ) : null}
         </p>
 
         <Prose>
@@ -60,6 +80,10 @@ export default async function GuidePage({ params }: PageProps) {
             </section>
           ))}
         </Prose>
+
+        {pageMeta ? (
+          <ToolRecommendationBox language={pageMeta.language} accent={pageMeta.accent} />
+        ) : null}
 
         <p className="mt-12 text-sm text-ink-muted">
           <Link href="/guides" className="underline underline-offset-4 hover:text-voice-dark">

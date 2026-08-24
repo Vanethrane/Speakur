@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { uniqueSeedWords } from "@/lib/words";
+import { AdSlot } from "@/components/ads";
 
 export const HARD_WORDS = uniqueSeedWords().slice(0, 8);
 
@@ -87,7 +88,13 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-6 py-8">
       <SiteHeader />
+      <div className="mt-4 border-b border-paper-line pb-4">
+        <AdSlot slotType="banner" minTrafficRequired={0} />
+      </div>
       <div className="flex-1">{children}</div>
+      <div className="mt-8 border-t border-paper-line pt-4">
+        <AdSlot slotType="inline" minTrafficRequired={0} />
+      </div>
       <SiteFooter />
     </div>
   );

@@ -1,0 +1,29 @@
+---
+/**
+ * Astro companion for AdSlot.
+ * Requires @astrojs/react (or copy the resolve logic into a pure Astro island).
+ *
+ * Usage:
+ *   ---
+ *   import AdSlot from '../components/ads/AdSlot.astro';
+ *   ---
+ *   <AdSlot slotType="banner" minTrafficRequired={1000} />
+ */
+import { AdSlot as AdSlotReact } from './AdSlot';
+import type { AdSlotType } from '../../site.config';
+
+interface Props {
+  slotType: AdSlotType;
+  minTrafficRequired?: number;
+  className?: string;
+}
+
+const { slotType, minTrafficRequired = 0, className = '' } = Astro.props;
+---
+
+<AdSlotReact
+  client:load
+  slotType={slotType}
+  minTrafficRequired={minTrafficRequired}
+  className={className}
+/>

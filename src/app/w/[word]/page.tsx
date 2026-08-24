@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { HeadMetadata } from "@/components/HeadMetadata";
 import { PopularWords, SiteShell } from "@/components/SiteChrome";
 import { SearchBox } from "@/components/SearchBox";
 import { WordResult } from "@/components/WordResult";
@@ -44,8 +45,18 @@ export default async function WordPage({ params }: PageProps) {
     notFound();
   }
 
+  const description = `Hear how to say “${result.word}”${
+    result.phonetic ? ` ${result.phonetic}` : ""
+  }. IPA phonetic spelling, syllable count, and on-demand audio.`;
+
   return (
     <SiteShell>
+      <HeadMetadata
+        name={result.word}
+        description={description}
+        path={`/w/${encodeURIComponent(result.word.toLowerCase())}`}
+        pageType="word"
+      />
       <div className="mt-10">
         <SearchBox initialQuery={result.word} autoFocus={false} />
       </div>

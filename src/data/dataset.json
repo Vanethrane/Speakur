@@ -1,0 +1,242 @@
+{
+  "version": 1,
+  "schema": {
+    "softwareApplication": {
+      "applicationCategory": "MultimediaApplication",
+      "applicationSubCategory": "Pronunciation",
+      "operatingSystem": "Web Browser",
+      "softwareVersion": "1.0",
+      "offers": {
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "name": "Speakur",
+        "url": "https://www.speakur.com"
+      },
+      "featureList": [
+        "IPA phonetic spelling",
+        "Click-to-play pronunciation audio",
+        "US and UK accent labels",
+        "Syllable guidance"
+      ]
+    },
+    "howTo": {
+      "totalTime": "PT2M",
+      "estimatedCost": {
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": "Speakur pronunciation search",
+      "stepTemplates": [
+        {
+          "name": "Open the pronunciation page",
+          "text": "Open the Speakur page for “{{name}}” on {{url}}."
+        },
+        {
+          "name": "Read the phonetic spelling",
+          "text": "Read the IPA / phonetic spelling shown for “{{name}}” so you know which sounds to aim for."
+        },
+        {
+          "name": "Play the audio",
+          "text": "Click Play to hear free reference audio for “{{name}}” in the labeled accent."
+        },
+        {
+          "name": "Repeat and practice",
+          "text": "Say “{{name}}” aloud, matching stress and vowels. Replay Slow if available until it feels natural."
+        }
+      ]
+    },
+    "defaults": {
+      "language": "English Voiceover",
+      "accent": "neutral",
+      "inLanguage": "en"
+    }
+  },
+  "pages": {
+    "how-ai-speech-synthesis-works": {
+      "language": "English Voiceover",
+      "accent": "neutral",
+      "name": "How AI Speech Synthesis Works",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "linguistic-accents-in-global-marketing": {
+      "language": "English Voiceover",
+      "accent": "multi",
+      "name": "Linguistic Accents in Global Marketing",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "guide-to-audio-localization": {
+      "language": "Japanese",
+      "accent": "standard",
+      "name": "Guide to Audio Localization",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "how-to-read-ipa-phonetic-symbols": {
+      "language": "English Voiceover",
+      "accent": "ipa",
+      "name": "How to Read IPA Phonetic Symbols",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "us-vs-uk-pronunciation-differences": {
+      "language": "English Voiceover",
+      "accent": "us-uk",
+      "name": "US vs UK Pronunciation Differences",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "why-pronunciation-matters-for-learners": {
+      "language": "English Voiceover",
+      "accent": "learner",
+      "name": "Why Pronunciation Matters for Learners",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "building-a-pronunciation-practice-routine": {
+      "language": "English Voiceover",
+      "accent": "practice",
+      "name": "Building a Pronunciation Practice Routine",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "speech-to-text-vs-text-to-speech": {
+      "language": "English Voiceover",
+      "accent": "neutral",
+      "name": "Speech-to-Text vs Text-to-Speech",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "caching-audio-for-cost-efficient-tts": {
+      "language": "English Voiceover",
+      "accent": "neutral",
+      "name": "Caching Audio for Cost-Efficient TTS",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "choosing-voices-for-brand-consistency": {
+      "language": "English Voiceover",
+      "accent": "brand",
+      "name": "Choosing Voices for Brand Consistency",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "subtitles-captions-and-dubbing-compared": {
+      "language": "Japanese",
+      "accent": "dubbing",
+      "name": "Subtitles, Captions, and Dubbing Compared",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "teaching-pronunciation-in-the-classroom": {
+      "language": "English Voiceover",
+      "accent": "classroom",
+      "name": "Teaching Pronunciation in the Classroom",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "commonly-mispronounced-english-words": {
+      "language": "English Voiceover",
+      "accent": "us",
+      "name": "Commonly Mispronounced English Words",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "science-of-syllables-and-stress": {
+      "language": "English Voiceover",
+      "accent": "linguistic",
+      "name": "Science of Syllables and Stress",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "accessibility-audio-for-dyslexia-and-esl": {
+      "language": "English Voiceover",
+      "accent": "accessible",
+      "name": "Accessibility Audio for Dyslexia and ESL",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "on-demand-tts-and-click-gating": {
+      "language": "English Voiceover",
+      "accent": "neutral",
+      "name": "On-Demand TTS and Click Gating",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "programmatic-seo-for-dictionary-sites": {
+      "language": "English Voiceover",
+      "accent": "seo",
+      "name": "Programmatic SEO for Dictionary Sites",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    },
+    "privacy-cookies-and-responsible-ad-tech": {
+      "language": "English Voiceover",
+      "accent": "policy",
+      "name": "Privacy, Cookies, and Responsible Ad Tech",
+      "applicationCategory": "MultimediaApplication",
+      "inLanguage": "en"
+    }
+  },
+  "toolAffiliates": {
+    "Japanese": {
+      "id": "jp-voice-toolkit",
+      "label": "Japanese voice toolkit",
+      "title": "Practice Japanese pronunciation with a free trial toolkit",
+      "description": "Matched to this page’s Japanese target language — drills, pitch accent cues, and native reference clips.",
+      "href": "https://www.speakur.com/go/japanese-voice-toolkit?ref=speakur-guide",
+      "cta": "Open Japanese toolkit"
+    },
+    "English Voiceover": {
+      "id": "en-voiceover-studio",
+      "label": "English voiceover studio",
+      "title": "English voiceover tools for clear US & UK reads",
+      "description": "Matched to this page’s English Voiceover target — studio voices, accent labels, and click-gated TTS caching patterns.",
+      "href": "https://www.speakur.com/go/english-voiceover-studio?ref=speakur-guide",
+      "cta": "Try English studio"
+    },
+    "Spanish": {
+      "id": "es-pronunciation-lab",
+      "label": "Spanish pronunciation lab",
+      "title": "Spanish pronunciation lab for learners and localizers",
+      "description": "Target-language match for Spanish pages — stress drills and regional accent notes.",
+      "href": "https://www.speakur.com/go/spanish-pronunciation-lab?ref=speakur-guide",
+      "cta": "Open Spanish lab"
+    },
+    "Korean": {
+      "id": "ko-speech-coach",
+      "label": "Korean speech coach",
+      "title": "Korean speech coach with sound-batch practice",
+      "description": "Mapped for Korean target language pages — hangul sound batches and listening loops.",
+      "href": "https://www.speakur.com/go/korean-speech-coach?ref=speakur-guide",
+      "cta": "Start Korean coach"
+    },
+    "Mandarin": {
+      "id": "zh-tone-trainer",
+      "label": "Mandarin tone trainer",
+      "title": "Mandarin tone trainer for clearer speech",
+      "description": "For Mandarin target pages — tone pairs, pinyin anchors, and listen-repeat loops.",
+      "href": "https://www.speakur.com/go/mandarin-tone-trainer?ref=speakur-guide",
+      "cta": "Open tone trainer"
+    },
+    "French": {
+      "id": "fr-liaison-lab",
+      "label": "French liaison lab",
+      "title": "French liaison & pronunciation lab",
+      "description": "For French target language pages — liaison patterns and café-to-boardroom registers.",
+      "href": "https://www.speakur.com/go/french-liaison-lab?ref=speakur-guide",
+      "cta": "Open French lab"
+    },
+    "default": {
+      "id": "speakur-tools-default",
+      "label": "Speakur tools",
+      "title": "Pronunciation tools for this language",
+      "description": "No dedicated affiliate is mapped for this language yet — explore Speakur guides and word directories instead.",
+      "href": "https://www.speakur.com/guides",
+      "cta": "Browse guides"
+    }
+  }
+}

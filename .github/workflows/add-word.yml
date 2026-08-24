@@ -1,0 +1,38 @@
+name: Add word page
+
+on:
+  workflow_dispatch:
+    inputs:
+      word:
+        description: Word to add
+        required: true
+        type: string
+      category:
+        description: Category slug (medical, food, everyday, science, business)
+        required: false
+        default: everyday
+        type: string
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Generate word page
+        run: node scripts/add-word.mjs "${{ inputs.word }}" "${{ inputs.category }}"
+      - name: Commit if changed
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add pronunciation page for ${{ inputs.word }}"
+          git push
