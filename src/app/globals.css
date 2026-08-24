@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: #f6f1e8;
+  color: #1c1712;
+}
+
+::selection {
+  background: #0d6e66;
+  color: #fffaf3;
+}

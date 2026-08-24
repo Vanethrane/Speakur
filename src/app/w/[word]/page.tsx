@@ -1,0 +1,75 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { PopularWords, SiteShell } from "@/components/SiteChrome";
+import { SearchBox } from "@/components/SearchBox";
+import { WordResult } from "@/components/WordResult";
+import { lookupPronunciation } from "@/lib/pronounce";
+import { uniqueSeedWords } from "@/lib/words";
+
+type PageProps = {
+  params: Promise<{ word: string }>;
+};
+
+/** Cache forever at the CDN after first render — no paid TTS on crawl/render. */
+export const revalidate = false;
+
+export function generateStaticParams() {
+  return uniqueSeedWords()
+    .slice(0, 200)
+    .map((word) => ({ word }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { word } = await params;
+  const decoded = decodeURIComponent(word);
+  const result = await lookupPronunciation(decoded);
+  const phonetic = result?.phonetic ? ` ${result.phonetic}` : "";
+
+  return {
+    title: `How to pronounce ${decoded}`,
+    description: `Hear how to say “${decoded}”${phonetic}. IPA phonetic spelling, syllable count, and on-demand audio.`,
+    alternates: {
+      canonical: `/w/${encodeURIComponent(decoded.toLowerCase())}`,
+    },
+  };
+}
+
+export default async function WordPage({ params }: PageProps) {
+  const { word } = await params;
+  const decoded = decodeURIComponent(word);
+  const result = await lookupPronunciation(decoded);
+
+  if (!result) {
+    notFound();
+  }
+
+  return (
+    <SiteShell>
+      <div className="mt-10">
+        <SearchBox initialQuery={result.word} autoFocus={false} />
+      </div>
+      <div className="mt-8">
+        <WordResult result={result} />
+      </div>
+      <div className="mt-10">
+        <PopularWords />
+      </div>
+      <p className="mt-12 text-sm text-ink-muted">
+        <Link
+          href="/guides"
+          className="underline decoration-paper-line underline-offset-4 hover:text-voice-dark"
+        >
+          Read pronunciation guides
+        </Link>
+        {" · "}
+        <Link
+          href="/"
+          className="underline decoration-paper-line underline-offset-4 hover:text-voice-dark"
+        >
+          Back to search
+        </Link>
+      </p>
+    </SiteShell>
+  );
+}
