@@ -412,6 +412,14 @@
         <p>People look up</p>
         <div class="chip-row" id="popular"></div>
       </div>
+
+      <div class="chips" style="margin-top:2.5rem;">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;">
+          <p>From the guides</p>
+          <a href="./guides.html" style="font-size:0.9rem;color:var(--voice-dark);text-decoration:underline;text-underline-offset:3px;">View all</a>
+        </div>
+        <div id="home-guides" style="margin-top:0.75rem;"></div>
+      </div>
     </main>
 
     <footer>
@@ -444,6 +452,7 @@
     </footer>
   </div>
 
+  <script src="./assets/guides-data.js"></script>
   <script>
     const POPULAR = [
       "epitome", "worcestershire", "quinoa", "anemone",
@@ -690,6 +699,14 @@
     const params = new URLSearchParams(location.search);
     const initial = params.get("q");
     if (initial) lookup(initial);
+
+    const homeGuides = document.getElementById("home-guides");
+    if (homeGuides && window.SPEAKUR_GUIDES) {
+      const latest = window.SPEAKUR_GUIDES.slice().sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1)).slice(0, 3);
+      homeGuides.innerHTML = latest.map((g) =>
+        `<a class="chip" style="border-radius:0.85rem;display:block;width:100%;margin-bottom:0.5rem;text-align:left;" href="./guide.html?slug=${encodeURIComponent(g.slug)}"><strong>${g.title}</strong><br/><span style="color:var(--ink-muted);font-size:0.85rem;">${g.description}</span></a>`
+      ).join("");
+    }
   </script>
 </body>
 </html>
