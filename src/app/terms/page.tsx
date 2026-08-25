@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { dynamicTitleMetadata } from "@/components/SEOHead";
 import { SiteShell } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
+  title: dynamicTitleMetadata({
+    pageType: "site",
+    name: "Terms of Service",
+    keyword: "Speakur terms",
+  }),
   description: "Terms of Service governing use of the Speakur pronunciation search and editorial guides.",
 };
 

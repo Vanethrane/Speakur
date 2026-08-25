@@ -1,32 +1,14 @@
-import { buildProgrammaticJsonLd, type ProgrammaticSchemaInput } from "@/lib/dataset";
+import { SEOHead, type SEOHeadProps } from "@/components/SEOHead";
 
-type HeadMetadataProps = ProgrammaticSchemaInput;
+export type HeadMetadataProps = SEOHeadProps;
 
 /**
- * Head metadata component: emits valid Schema.org JSON-LD for
- * SoftwareApplication and HowTo on every programmatic page.
- * Variables (applicationCategory, name, steps, etc.) come from dataset.json.
+ * Server-rendered page head JSON-LD (no client hydration).
+ * Emits one application/ld+json script with SoftwareApplication, WebPage,
+ * BreadcrumbList, FAQPage, and HowTo (when dataset templates exist).
  */
 export function HeadMetadata(props: HeadMetadataProps) {
-  const { softwareApplication, howTo } = buildProgrammaticJsonLd(props);
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        // JSON-LD must be raw serialized objects for crawlers
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(softwareApplication),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(howTo),
-        }}
-      />
-    </>
-  );
+  return <SEOHead {...props} />;
 }
 
 export default HeadMetadata;

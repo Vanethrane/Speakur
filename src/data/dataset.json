@@ -1,10 +1,10 @@
 {
-  "version": 1,
+  "version": 2,
   "schema": {
     "softwareApplication": {
       "applicationCategory": "MultimediaApplication",
       "applicationSubCategory": "Pronunciation",
-      "operatingSystem": "Web Browser",
+      "operatingSystem": "Web",
       "softwareVersion": "1.0",
       "offers": {
         "price": "0",
@@ -19,7 +19,32 @@
         "Click-to-play pronunciation audio",
         "US and UK accent labels",
         "Syllable guidance"
-      ]
+      ],
+      "parameterDescriptions": {
+        "name": "App or word/phrase name shown on the programmatic page",
+        "operatingSystem": "Deployment surface — always Web for Speakur",
+        "applicationCategory": "Schema.org SoftwareApplication category",
+        "inLanguage": "BCP-47 language of the page content"
+      }
+    },
+    "webPage": {
+      "isPartOf": {
+        "name": "Speakur",
+        "url": "https://www.speakur.com"
+      },
+      "parameterDescriptions": {
+        "name": "WebPage name matching the guide or word title",
+        "description": "Meta description used for search snippets",
+        "breadcrumb": "BreadcrumbList id referenced from this WebPage"
+      }
+    },
+    "breadcrumb": {
+      "homeName": "Speakur",
+      "homePath": "/",
+      "guidesName": "Guides",
+      "guidesPath": "/guides",
+      "wordsName": "Words",
+      "wordsPath": "/words"
     },
     "howTo": {
       "totalTime": "PT2M",
@@ -51,6 +76,89 @@
       "language": "English Voiceover",
       "accent": "neutral",
       "inLanguage": "en"
+    },
+    "internalLinks": {
+      "relatedLimit": 6,
+      "minInbound": 3
+    },
+    "socialCard": {
+      "width": 1200,
+      "height": 630,
+      "brandName": "Speakur",
+      "tagline": "Hear how any word is pronounced",
+      "background": "#0a524c",
+      "surface": "#0d6e66",
+      "accent": "#e8f4f2",
+      "ink": "#fffaf3",
+      "muted": "#b7d4cf",
+      "twitterCard": "summary_large_image",
+      "endpointPath": "/og"
+    },
+    "titleGenerator": {
+      "maxLength": 60,
+      "brand": "Speakur",
+      "brandSeparator": " · ",
+      "actionVerbs": {
+        "word": ["Instant Audio", "Try Free", "Hear Free", "Free IPA"],
+        "guide": ["Try Free", "Free Guide", "Instant Tips"],
+        "site": ["Try Free", "Instant Search", "Free Audio"]
+      },
+      "templates": {
+        "word": [
+          "{name} · {hook} · {accents} {yearShort}",
+          "Say {name} · {hook} {yearShort}",
+          "Pronounce {name} · {hook} · {price}",
+          "{keyword} · {hook} · {spec}"
+        ],
+        "guide": [
+          "{keyword} · {hook} {yearShort}",
+          "{name} · {hook} · {readMin}min",
+          "{keyword} Guide · {hook} {yearShort}",
+          "{name} · {hook} · {price}"
+        ],
+        "site": [
+          "{name} · {hook} {yearShort}",
+          "{keyword} · {hook} · {price}"
+        ]
+      }
+    },
+    "faqPage": {
+      "minQuestions": 2,
+      "maxQuestions": 3,
+      "categoryLabels": {
+        "speech-tech": "speech technology",
+        "accents-localization": "accents and localization",
+        "learning-teaching": "language learning",
+        "publishing-ops": "publishing and SEO"
+      },
+      "word": [
+        {
+          "question": "How do you pronounce {{name}}?",
+          "answer": "Open the Speakur page for “{{name}}” at {{url}}. Read the IPA phonetic spelling{{phoneticSuffix}} and click Play for free US or UK reference audio. Dictionary clips play first when available; otherwise Speakur uses click-gated text-to-speech that caches after your first play."
+        },
+        {
+          "question": "Is {{name}} pronunciation audio free on Speakur?",
+          "answer": "Yes. Speakur provides {{priceLabel}} pronunciation lookup for “{{name}}” in {{year}}. IPA text is server-rendered in HTML, and audio generates only after you click Play—keeping pages fast while staying free for learners and creators."
+        },
+        {
+          "question": "Does Speakur show US and UK accents for {{name}}?",
+          "answer": "When clips exist, Speakur labels US and UK audio for “{{name}}”. You can replay at a slower rate to practice stress and vowels{{syllableSuffix}}. Both accents help learners and localization teams align on a consistent spoken form."
+        }
+      ],
+      "guide": [
+        {
+          "question": "What is {{primaryKeyword}}?",
+          "answer": "“{{primaryKeyword}}” is the focus of Speakur’s guide “{{name}}.” The article explains practical pronunciation, speech, and audio concepts for {{parentCategoryLabel}}—written for learners, teachers, marketers, and engineers who need clearer spoken-language standards."
+        },
+        {
+          "question": "Who should read the {{name}} guide?",
+          "answer": "This guide suits teams working on {{language}} voice content and {{parentCategoryLabel}} workflows. Expect actionable advice on accents, intelligibility, localization, or speech tech—not generic definitions—so you can improve real audio decisions."
+        },
+        {
+          "question": "How do I practice terms from this {{primaryKeyword}} guide?",
+          "answer": "Read the guide at {{url}}, note any tricky terms, then look them up in Speakur’s {{priceLabel}} pronunciation search. Each word page shows IPA, syllable cues, and click-to-play US/UK audio so you can hear terminology aloud while studying the topic."
+        }
+      ]
     }
   },
   "pages": {
@@ -59,126 +167,208 @@
       "accent": "neutral",
       "name": "How AI Speech Synthesis Works",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "speech-tech",
+      "tags": ["tts", "synthesis", "vocoder", "ai-audio", "caching"],
+      "primaryKeyword": "AI speech synthesis",
+      "path": "/guides/how-ai-speech-synthesis-works",
+      "faq": [
+        {
+          "question": "How does AI speech synthesis work in simple terms?",
+          "answer": "AI speech synthesis converts text into audible speech using models trained on recorded voice data. Modern systems predict acoustic features or waveforms, then a vocoder renders the final clip. Speakur uses synthesis only after you click Play, then caches audio so repeat listens stay fast and free."
+        },
+        {
+          "question": "Is AI-generated pronunciation audio free on Speakur?",
+          "answer": "Speakur prioritizes free dictionary clips when they exist. If no clip is available, click-gated TTS generates audio on demand and caches it—avoiding cost on every page view while keeping playback free for users in 2026."
+        }
+      ]
     },
     "linguistic-accents-in-global-marketing": {
       "language": "English Voiceover",
       "accent": "multi",
       "name": "Linguistic Accents in Global Marketing",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "accents-localization",
+      "tags": ["accents", "marketing", "localization", "brand-voice", "us-uk"],
+      "primaryKeyword": "accents in global marketing",
+      "path": "/guides/linguistic-accents-in-global-marketing"
     },
     "guide-to-audio-localization": {
       "language": "Japanese",
       "accent": "standard",
       "name": "Guide to Audio Localization",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "accents-localization",
+      "tags": ["localization", "dubbing", "voices", "multilingual", "marketing"],
+      "primaryKeyword": "audio localization guide",
+      "path": "/guides/guide-to-audio-localization"
     },
     "how-to-read-ipa-phonetic-symbols": {
       "language": "English Voiceover",
       "accent": "ipa",
       "name": "How to Read IPA Phonetic Symbols",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "learning-teaching",
+      "tags": ["ipa", "phonetics", "learners", "syllables", "practice"],
+      "primaryKeyword": "read IPA phonetic symbols",
+      "path": "/guides/how-to-read-ipa-phonetic-symbols"
     },
     "us-vs-uk-pronunciation-differences": {
       "language": "English Voiceover",
       "accent": "us-uk",
       "name": "US vs UK Pronunciation Differences",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "accents-localization",
+      "tags": ["us-uk", "accents", "pronunciation", "learners", "ipa"],
+      "primaryKeyword": "US vs UK pronunciation",
+      "path": "/guides/us-vs-uk-pronunciation-differences"
     },
     "why-pronunciation-matters-for-learners": {
       "language": "English Voiceover",
       "accent": "learner",
       "name": "Why Pronunciation Matters for Learners",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "learning-teaching",
+      "tags": ["learners", "practice", "classroom", "intelligibility", "esl"],
+      "primaryKeyword": "why pronunciation matters for learners",
+      "path": "/guides/why-pronunciation-matters-for-learners"
     },
     "building-a-pronunciation-practice-routine": {
       "language": "English Voiceover",
       "accent": "practice",
       "name": "Building a Pronunciation Practice Routine",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "learning-teaching",
+      "tags": ["practice", "learners", "routine", "syllables", "classroom"],
+      "primaryKeyword": "pronunciation practice routine",
+      "path": "/guides/building-a-pronunciation-practice-routine"
     },
     "speech-to-text-vs-text-to-speech": {
       "language": "English Voiceover",
       "accent": "neutral",
       "name": "Speech-to-Text vs Text-to-Speech",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "speech-tech",
+      "tags": ["stt", "tts", "synthesis", "ai-audio", "product"],
+      "primaryKeyword": "speech-to-text vs text-to-speech",
+      "path": "/guides/speech-to-text-vs-text-to-speech"
     },
     "caching-audio-for-cost-efficient-tts": {
       "language": "English Voiceover",
       "accent": "neutral",
       "name": "Caching Audio for Cost-Efficient TTS",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "speech-tech",
+      "tags": ["caching", "tts", "cost", "click-gating", "seo"],
+      "primaryKeyword": "caching audio for cost-efficient TTS",
+      "path": "/guides/caching-audio-for-cost-efficient-tts"
     },
     "choosing-voices-for-brand-consistency": {
       "language": "English Voiceover",
       "accent": "brand",
       "name": "Choosing Voices for Brand Consistency",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "accents-localization",
+      "tags": ["brand-voice", "voices", "marketing", "tts", "localization"],
+      "primaryKeyword": "voices for brand consistency",
+      "path": "/guides/choosing-voices-for-brand-consistency"
     },
     "subtitles-captions-and-dubbing-compared": {
       "language": "Japanese",
       "accent": "dubbing",
       "name": "Subtitles, Captions, and Dubbing Compared",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "accents-localization",
+      "tags": ["dubbing", "captions", "localization", "accessibility", "multilingual"],
+      "primaryKeyword": "subtitles captions and dubbing compared",
+      "path": "/guides/subtitles-captions-and-dubbing-compared"
     },
     "teaching-pronunciation-in-the-classroom": {
       "language": "English Voiceover",
       "accent": "classroom",
       "name": "Teaching Pronunciation in the Classroom",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "learning-teaching",
+      "tags": ["classroom", "teaching", "learners", "practice", "esl"],
+      "primaryKeyword": "teaching pronunciation in the classroom",
+      "path": "/guides/teaching-pronunciation-in-the-classroom"
     },
     "commonly-mispronounced-english-words": {
       "language": "English Voiceover",
       "accent": "us",
       "name": "Commonly Mispronounced English Words",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "learning-teaching",
+      "tags": ["mispronounced", "learners", "us-uk", "ipa", "practice"],
+      "primaryKeyword": "commonly mispronounced English words",
+      "path": "/guides/commonly-mispronounced-english-words"
     },
     "science-of-syllables-and-stress": {
       "language": "English Voiceover",
       "accent": "linguistic",
       "name": "Science of Syllables and Stress",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "learning-teaching",
+      "tags": ["syllables", "stress", "ipa", "phonetics", "learners"],
+      "primaryKeyword": "syllables and word stress",
+      "path": "/guides/science-of-syllables-and-stress"
     },
     "accessibility-audio-for-dyslexia-and-esl": {
       "language": "English Voiceover",
       "accent": "accessible",
       "name": "Accessibility Audio for Dyslexia and ESL",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "learning-teaching",
+      "tags": ["accessibility", "esl", "learners", "audio", "captions"],
+      "primaryKeyword": "accessibility audio for dyslexia and ESL",
+      "path": "/guides/accessibility-audio-for-dyslexia-and-esl"
     },
     "on-demand-tts-and-click-gating": {
       "language": "English Voiceover",
       "accent": "neutral",
       "name": "On-Demand TTS and Click Gating",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "speech-tech",
+      "tags": ["click-gating", "tts", "caching", "cost", "product"],
+      "primaryKeyword": "on-demand TTS and click gating",
+      "path": "/guides/on-demand-tts-and-click-gating"
     },
     "programmatic-seo-for-dictionary-sites": {
       "language": "English Voiceover",
       "accent": "seo",
       "name": "Programmatic SEO for Dictionary Sites",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "publishing-ops",
+      "tags": ["seo", "programmatic", "caching", "internal-links", "privacy"],
+      "primaryKeyword": "programmatic SEO for dictionary sites",
+      "path": "/guides/programmatic-seo-for-dictionary-sites"
     },
     "privacy-cookies-and-responsible-ad-tech": {
       "language": "English Voiceover",
       "accent": "policy",
       "name": "Privacy, Cookies, and Responsible Ad Tech",
       "applicationCategory": "MultimediaApplication",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "parentCategory": "publishing-ops",
+      "tags": ["privacy", "cookies", "ads", "seo", "policy"],
+      "primaryKeyword": "privacy cookies and responsible ad tech",
+      "path": "/guides/privacy-cookies-and-responsible-ad-tech"
     }
   },
   "toolAffiliates": {

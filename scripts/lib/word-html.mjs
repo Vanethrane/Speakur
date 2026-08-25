@@ -2,6 +2,7 @@ import { readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { EZOIC_HEAD_SCRIPTS } from "./ezoic-head.mjs";
+import { renderHowToStepsHtml, renderWordSeoHeadTags } from "./word-seo.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CRITICAL_CSS = readFileSync(join(__dirname, "../../assets/critical.css"), "utf8");
@@ -27,7 +28,7 @@ export function escapeHtml(s = "") {
 const FONT_HREF =
   "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap";
 
-export function chrome({ title, description, depth, active }) {
+export function chrome({ title, description, depth, active, seoExtra = "" }) {
   const asset = "../".repeat(depth) + "assets/";
   const home = "../".repeat(depth) || "./";
   return {
@@ -37,8 +38,8 @@ export function chrome({ title, description, depth, active }) {
 ${EZOIC_HEAD_SCRIPTS}  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(title)}</title>
-  <meta name="description" content="${escapeHtml(description)}" />
-  <link rel="canonical" href="" />
+${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" />
+  <link rel="canonical" href="" />`}
   <style>${CRITICAL_CSS}</style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -119,16 +120,24 @@ ${EZOIC_HEAD_SCRIPTS}  <meta charset="UTF-8" />
 }
 
 export function renderWordPage({ category, word, entry, syllables, siblings }) {
-  const { head, foot } = chrome({
-    title: `How to pronounce ${word} · ${category.title} · Speakur`,
-    description: `Hear how to pronounce “${word}” in the ${category.title} section. IPA, syllables, and free audio.`,
-    depth: 2,
-  });
-
+  const path = `/${category.slug}/${word}/`;
+  const description = `Learn how to pronounce “${word}” with free US and UK audio, IPA phonetic spelling, and clear practice steps.`;
   const phonetic =
     entry?.phonetic ||
     entry?.phonetics?.find((p) => p.text)?.text ||
     "";
+  const seoExtra = renderWordSeoHeadTags({
+    word,
+    path,
+    description,
+    phonetic,
+  });
+  const { head, foot } = chrome({
+    title: `How to pronounce ${word} · ${category.title} · Speakur`,
+    description,
+    depth: 2,
+    seoExtra,
+  });
 
   const phonetics = (entry?.phonetics || [])
     .map((p) => ({
@@ -225,6 +234,8 @@ export function renderWordPage({ category, word, entry, syllables, siblings }) {
         <p class="note">This is a dedicated page at <strong>/${escapeHtml(category.slug)}/${escapeHtml(word)}/</strong>. Audio uses free dictionary clips when available, otherwise browser speech after you click Play.</p>
         ${meaningsHtml}
       </article>
+
+      ${renderHowToStepsHtml(word)}
 
       <div id="speakur-ad-mid" class="ad-slot ad-slot-mid stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
 

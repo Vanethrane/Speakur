@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { dynamicTitleMetadata } from "@/components/SEOHead";
 import { SiteShell } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: dynamicTitleMetadata({
+    pageType: "site",
+    name: "Privacy Policy",
+    keyword: "Speakur privacy",
+  }),
   description:
     "Speakur privacy policy covering cookies, analytics, third-party ad serving, and AI text-to-speech processing.",
 };

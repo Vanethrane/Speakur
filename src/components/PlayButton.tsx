@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useHistoryOptional } from "@/components/HistoryDrawer";
+import { buildPronunciationRecord } from "@/lib/history-store";
 
 type PlayButtonProps = {
   label: string;
   word: string;
+  /** IPA or accent note stored in Recently Used */
+  historyDetail?: string;
   /** Prefer free dictionary audio when present ($0). */
   freeAudioUrl?: string | null;
   rate?: number;
@@ -43,12 +47,14 @@ function speak(word: string, lang: string, rate: number) {
 export function PlayButton({
   label,
   word,
+  historyDetail,
   freeAudioUrl = null,
   rate = 1,
   lang = "en-US",
   voice = "us",
   useStudioVoice = false,
 }: PlayButtonProps) {
+  const history = useHistoryOptional();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [loading, setLoading] = useState(false);
   const [studioUrl, setStudioUrl] = useState<string | null>(null);
@@ -72,6 +78,14 @@ export function PlayButton({
     await audioRef.current.play();
   }
 
+  function trackPlay(accentLabel: string) {
+    const detail = [historyDetail, accentLabel].filter(Boolean).join(" · ");
+    history?.recordItem(buildPronunciationRecord(word, detail || undefined));
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("speakur:interaction"));
+    }
+  }
+
   /**
    * Audio is gated behind a real user click.
    * Priority: free dictionary MP3 → cached/free TTS → browser speech ($0).
@@ -80,6 +94,7 @@ export function PlayButton({
     if (freeAudioUrl && !useStudioVoice) {
       try {
         await playFromUrl(freeAudioUrl);
+        trackPlay(label);
         return;
       } catch {
         // fall through
@@ -89,9 +104,11 @@ export function PlayButton({
     if (studioUrl) {
       try {
         await playFromUrl(studioUrl);
+        trackPlay(label);
         return;
       } catch {
         speak(word, lang, rate);
+        trackPlay(label);
         return;
       }
     }
@@ -112,12 +129,15 @@ export function PlayButton({
       if (response.ok && data.audioUrl) {
         setStudioUrl(data.audioUrl);
         await playFromUrl(data.audioUrl);
+        trackPlay(label);
         return;
       }
 
       speak(word, lang, rate);
+      trackPlay(label);
     } catch {
       speak(word, lang, rate);
+      trackPlay(label);
     } finally {
       setLoading(false);
     }
@@ -128,7 +148,8 @@ export function PlayButton({
       type="button"
       onClick={() => void play()}
       disabled={loading}
-      className="inline-flex items-center gap-2 rounded-full bg-voice px-4 py-2 text-sm font-medium text-paper-raised transition hover:bg-voice-dark disabled:opacity-60"
+      className="inline-flex min-h-[2.75rem] items-center gap-2 rounded-full bg-voice px-4 py-2 text-sm font-medium text-paper-raised transition hover:bg-voice-dark disabled:opacity-60"
+      style={{ contain: "layout" }}
     >
       <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15" aria-hidden>
         {loading ? "…" : "▶"}

@@ -27,6 +27,8 @@
       else shell.insertAdjacentElement("afterbegin", top);
     }
 
+    let mid = document.getElementById("speakur-ad-mid");
+
     let bottom = document.getElementById("speakur-ad-bottom");
     if (!bottom) {
       bottom = document.createElement("div");
@@ -37,48 +39,35 @@
       if (footer) footer.insertAdjacentElement("beforebegin", bottom);
       else shell.appendChild(bottom);
     }
-    return { top, bottom };
+    return { top, mid, bottom };
   }
 
-  function applySlotHeights(top, bottom) {
-    const mobile =
-      window.SpeakurAds && SpeakurAds.isMobileViewport
-        ? SpeakurAds.isMobileViewport()
-        : window.matchMedia("(max-width: 767px)").matches;
-    const cfg =
-      window.SpeakurAds && (mobile ? SpeakurAds.mobile : SpeakurAds.desktop);
-    if (cfg && cfg.top) {
-      top.style.minHeight = (cfg.top.minHeight || cfg.top.height || 60) + "px";
-    } else {
-      top.style.minHeight = mobile ? "50px" : "90px";
-    }
-    if (cfg && cfg.bottom) {
-      bottom.style.minHeight =
-        (cfg.bottom.minHeight || cfg.bottom.height || 90) + "px";
-    } else {
-      bottom.style.minHeight = mobile ? "600px" : "90px";
-    }
+  /**
+   * Ezoic Step 3: one showAds({}) per placement spot.
+   * Queued on ezstandalone.cmd so it runs after the header script is ready.
+   */
+  function activateEzoicSlot(el) {
+    if (!el || el.dataset.ezoicAds === "1") return;
+    el.dataset.ezoicAds = "1";
+    if (!el.style.minHeight) el.style.minHeight = "90px";
+    const s = document.createElement("script");
+    s.textContent =
+      "window.ezstandalone=window.ezstandalone||{};" +
+      "ezstandalone.cmd=ezstandalone.cmd||[];" +
+      "ezstandalone.cmd.push(function(){ezstandalone.showAds({});});";
+    el.appendChild(s);
   }
 
-  // Reserve ad geometry immediately (sync) so deferred work doesn't shift layout
-  const slots = ensureAdSlots();
-  applySlotHeights(slots.top, slots.bottom);
-
-  function loadAds() {
-    if (!window.SpeakurAds || !SpeakurAds.loadPlacements) {
-      console.warn("[Speakur] ad-config.js must load before site.js");
-      return;
-    }
-    applySlotHeights(slots.top, slots.bottom);
-    SpeakurAds.loadPlacements(slots.top, slots.bottom);
+  function loadEzoicAds() {
+    const slots = ensureAdSlots();
+    activateEzoicSlot(slots.top);
+    if (slots.mid) activateEzoicSlot(slots.mid);
+    activateEzoicSlot(slots.bottom);
   }
 
-  // Short delay after first paint — placeholders already reserve CLS space
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      setTimeout(loadAds, 120);
-    });
+    document.addEventListener("DOMContentLoaded", loadEzoicAds);
   } else {
-    setTimeout(loadAds, 120);
+    loadEzoicAds();
   }
 })();

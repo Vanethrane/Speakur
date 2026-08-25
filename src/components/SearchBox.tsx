@@ -2,15 +2,25 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useHistoryOptional } from "@/components/HistoryDrawer";
+import { buildSearchRecord } from "@/lib/history-store";
 import type { Suggestion } from "@/lib/types";
+import { StableSlot } from "@/components/StableSlot";
 
 type SearchBoxProps = {
   initialQuery?: string;
   autoFocus?: boolean;
+  /** Tighter layout for above-the-fold tool strips on mobile */
+  compact?: boolean;
 };
 
-export function SearchBox({ initialQuery = "", autoFocus = true }: SearchBoxProps) {
+export function SearchBox({
+  initialQuery = "",
+  autoFocus = true,
+  compact = false,
+}: SearchBoxProps) {
   const router = useRouter();
+  const history = useHistoryOptional();
   const [query, setQuery] = useState(initialQuery);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [open, setOpen] = useState(false);
@@ -53,13 +63,18 @@ export function SearchBox({ initialQuery = "", autoFocus = true }: SearchBoxProp
     const next = word.trim();
     if (!next) return;
     setOpen(false);
+    history?.recordItem(buildSearchRecord(next));
     router.push(`/w/${encodeURIComponent(next.toLowerCase())}`);
   }
 
+  const slotMin = compact ? "3.25rem" : "4.25rem";
+
   return (
+    <StableSlot minHeight={slotMin} className="search-slot">
     <form
       ref={boxRef}
       className="relative"
+      style={{ contain: "layout", minHeight: slotMin }}
       onSubmit={(event) => {
         event.preventDefault();
         const chosen = visible[active]?.word ?? query;
@@ -86,14 +101,22 @@ export function SearchBox({ initialQuery = "", autoFocus = true }: SearchBoxProp
             setActive((index) => (index - 1 + visible.length) % visible.length);
           }
         }}
-        placeholder="Type a word — epitome, Worcestershire, GIF…"
-        className="w-full rounded-2xl border border-paper-line bg-paper-raised px-5 py-4 text-lg text-ink shadow-card outline-none ring-voice/30 placeholder:text-ink-muted/70 focus:ring-4"
+        placeholder={
+          compact
+            ? "Search a word to hear it…"
+            : "Type a word — epitome, Worcestershire, GIF…"
+        }
+        className={`w-full rounded-2xl border border-paper-line bg-paper-raised text-ink shadow-card outline-none ring-voice/30 placeholder:text-ink-muted/70 focus:ring-4 ${
+          compact ? "px-4 py-2.5 pr-[5.5rem] text-base" : "px-5 py-4 pr-[6.5rem] text-lg"
+        }`}
         autoComplete="off"
         spellCheck={false}
       />
       <button
         type="submit"
-        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-xl bg-ink px-4 py-2 text-sm font-medium text-paper-raised"
+        className={`absolute right-2 top-1/2 -translate-y-1/2 rounded-xl bg-ink font-medium text-paper-raised ${
+          compact ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm"
+        }`}
       >
         Hear it
       </button>
@@ -117,5 +140,6 @@ export function SearchBox({ initialQuery = "", autoFocus = true }: SearchBoxProp
         </ul>
       )}
     </form>
+    </StableSlot>
   );
 }

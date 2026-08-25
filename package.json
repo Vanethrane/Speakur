@@ -23,6 +23,9 @@
     "pwa:patch": "node scripts/patch-pwa.mjs",
     "assert:seo-titles": "node scripts/assert-seo-titles.mjs",
     "ads:txt": "node scripts/fetch-ads-txt.mjs",
+    "patch:ezoic": "node scripts/patch-ezoic-head.mjs",
+    "patch:howto": "node scripts/patch-howto-seo.mjs",
+    "strip:adsterra": "node scripts/strip-adsterra.mjs",
     "assert:faq": "node scripts/assert-faq-schema.mjs"
   },
   "dependencies": {

@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+  <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+  <script async src="https://www.ezojs.com/ezoic/sa.min.js"></script>
+  <script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+  </script>
+  <script src="https://ezoicanalytics.com/analytics.js"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Page not found · Speakur</title>
+  <style>
+:root{--ink:#1c1712;--ink-muted:#5c5348;--paper:#f6f1e8;--paper-raised:#fffaf3;--paper-line:#e4d9c8;--voice:#0d6e66;--ad-banner-h:60px;--ad-inline-h:90px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper)}
+.shell{width:min(720px,calc(100% - 2rem));margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:2rem 0 3rem}
+header{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;min-height:2.5rem}
+.brand{font-family:Georgia,serif;font-size:1.65rem}
+nav{display:flex;gap:1rem;flex-wrap:wrap}nav a{color:var(--ink-muted);font-size:.95rem;text-decoration:none}
+main{flex:1;padding:2.5rem 0 2rem;min-height:12rem}
+h1{margin:1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.2rem,6vw,3.2rem);line-height:1.08}
+.ad-slot{display:flex;justify-content:center;align-items:center;width:100%;overflow:hidden;contain:layout style}
+.ad-slot-top{min-height:var(--ad-banner-h)}.ad-slot-bottom{min-height:var(--ad-inline-h)}
+.stable-slot{contain:layout;width:100%}
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" /></noscript>
+<noscript></noscript>
   <link rel="stylesheet" href="/assets/site.css" />
   <link rel="stylesheet" href="/assets/word-page.css" />
 </head>
 <body>
   <div class="shell">
-    <header>
-      <a class="brand" href="/index.html">Speakur</a>
-      <nav aria-label="Primary">
+    <header class="site-header">
+      <div class="header-row">
+        <a class="brand" href="/index.html">Speakur</a>
+        <nav aria-label="Primary">
         <a class="nav-home" href="/index.html">Home</a>
         <a href="/words/">Words</a>
         <a href="/guides.html">Guides</a>
         <a href="/about.html">About</a>
         <a href="/contact.html">Contact</a>
       </nav>
+      </div>
+      <form id="speakur-header-form" class="header-search" role="search" autocomplete="off">
+        <label class="sr-only" for="speakur-header-q">Search guides, tools, and words</label>
+        <input id="speakur-header-q" type="search" placeholder="Search guides, tools, words…" spellcheck="false" />
+        <button type="submit" aria-label="Search">Go</button>
+        <ul id="speakur-header-results" class="header-search-results" role="listbox" hidden></ul>
+      </form>
     </header>
-    <main id="main">
+    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:60px"></div>
+    <main id="main" class="stable-slot" style="min-height:12rem">
       <p class="eyebrow">404</p>
       <h1>We couldn’t find that page</h1>
       <p class="lede" id="status">Try search, browse guides, or return home.</p>
       <p style="margin-top:1.5rem;">
         <a class="btn" href="/index.html">Back to home</a>
       </p>
-      <div id="mount" hidden></div>
+      <div id="mount" class="stable-slot" hidden style="min-height:12rem"></div>
     </main>
+    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
     <footer>
       <p class="legal">© <span data-year></span> Speakur. <a href="/index.html">Home</a></p>
     </footer>
   </div>
-  <script src="/assets/site.js"></script>
-  <script src="/assets/word-index.js"></script>
-  <script src="/assets/on-demand-word.js"></script>
-  <script>
-    (async function () {
-      const path = location.pathname.replace(/\/+$/, "") || "/";
-      const m = path.match(/^\/(medical|food|everyday|science|business|places|names|brands|animals|arts|sports|tech|nature|law|mythology)\/([a-z][a-z'-]*)$/i);
-      if (!m) return;
-
-      const category = m[1].toLowerCase();
-      const word = m[2].toLowerCase();
-      const main = document.getElementById("main");
-      const status = document.getElementById("status");
-      const mount = document.getElementById("mount");
-
-      document.title = `How to pronounce ${word} · Speakur`;
-      main.innerHTML = `
-        <p class="eyebrow">Building page</p>
-        <h1>${word}</h1>
-        <p class="lede" id="status">Building a pronunciation page for “${word}”…</p>
-        <div id="mount"></div>
-      `;
-      const statusEl = document.getElementById("status");
-      const mountEl = document.getElementById("mount");
-
-      const result = await SpeakurOnDemand.resolveAndShow({
-        rawWord: word,
-        preferredCategory: category,
-        mount: mountEl,
-        statusEl,
-        depth: 2,
-      });
-
-      if (!result.ok && !result.redirected) {
-        document.title = "Not found · Speakur";
-        statusEl.insertAdjacentHTML(
-          "afterend",
-          `<p style="margin-top:1.5rem;"><a class="btn" href="/index.html">Back to home</a></p>`,
-        );
-      }
-    })();
-  </script>
+  <script defer src="/assets/search-index.js"></script>
+  <script defer src="/assets/header-search.js"></script>
+  <script defer src="/assets/site.js"></script>
+  <script defer src="/assets/word-index.js"></script>
+  <script defer src="/assets/on-demand-word.js"></script>
+  <script defer src="/assets/404-resolve.js"></script>
 </body>
 </html>

@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { dynamicTitleMetadata } from "@/components/SEOHead";
 import { SiteShell } from "@/components/SiteChrome";
 import { getAllGuides, guideWordCount } from "@/content/guides";
 
 export const metadata: Metadata = {
-  title: "Guides",
+  title: dynamicTitleMetadata({
+    pageType: "site",
+    name: "Pronunciation Guides",
+    keyword: "Speech and accent guides",
+  }),
   description:
     "Long-form Speakur editorial guides on pronunciation, speech synthesis, accents, localization, and responsible publishing.",
 };

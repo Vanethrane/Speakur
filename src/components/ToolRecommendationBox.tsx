@@ -3,6 +3,7 @@ import {
   getToolAffiliateForLanguage,
   type PageLanguageMeta,
 } from "@/lib/dataset";
+import { StableSlot } from "@/components/StableSlot";
 
 type ToolRecommendationBoxProps = {
   /** Target language from dataset.json (e.g. "Japanese", "English Voiceover") */
@@ -53,6 +54,7 @@ export function ToolRecommendationBox({
 
   if (external) {
     return (
+      <StableSlot minHeight="8rem" className="tool-reco-slot">
       <aside className={shellClass} data-tool={tool.id} data-language={language}>
         <a
           href={tool.href}
@@ -63,10 +65,12 @@ export function ToolRecommendationBox({
           {body}
         </a>
       </aside>
+      </StableSlot>
     );
   }
 
   return (
+    <StableSlot minHeight="8rem" className="tool-reco-slot">
     <aside className={shellClass} data-tool={tool.id} data-language={language}>
       <Link
         href={tool.href}
@@ -75,6 +79,7 @@ export function ToolRecommendationBox({
         {body}
       </Link>
     </aside>
+    </StableSlot>
   );
 }
 

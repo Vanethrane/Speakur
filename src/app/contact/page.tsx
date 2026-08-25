@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { dynamicTitleMetadata } from "@/components/SEOHead";
 import { SiteShell } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: dynamicTitleMetadata({
+    pageType: "site",
+    name: "Contact Speakur",
+    keyword: "Contact pronunciation support",
+  }),
   description: "Contact the Speakur team for product, privacy, partnership, or accessibility questions.",
 };
 

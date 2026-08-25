@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { dynamicTitleMetadata } from "@/components/SEOHead";
 import { SiteShell } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: dynamicTitleMetadata({
+    pageType: "site",
+    name: "About Speakur",
+    keyword: "About pronunciation search",
+  }),
   description:
     "Speakur helps people hear how words are pronounced and learn from long-form guides on speech, accents, and audio localization.",
 };

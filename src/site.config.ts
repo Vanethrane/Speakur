@@ -21,6 +21,7 @@ export type AdNetworkConfig = {
   /** Load script with async + data-cfasync="false" when true */
   async?: boolean;
   cfAsyncFalse?: boolean;
+  minHeight?: number;
 };
 
 export type AffiliateOffer = {
@@ -31,6 +32,75 @@ export type AffiliateOffer = {
   cta: string;
   eyebrow?: string;
 };
+
+const HRF = "https://www.highrevenueformat.com";
+
+/** Desktop: 468×60 banner + Profitable Rate CPM container */
+const desktopNetworks = {
+  banner: {
+    key: "a84b19562a190beed36c0b0018e410ed",
+    scriptSrc: `${HRF}/a84b19562a190beed36c0b0018e410ed/invoke.js`,
+    format: "iframe",
+    width: 468,
+    height: 60,
+    minHeight: 60,
+    params: {},
+  },
+  sidebar: {
+    key: "26ba66c47ebf20b100ccb19e5e6b1280",
+    scriptSrc:
+      "https://pl31013431.profitableratecpmnetwork.com/26ba66c47ebf20b100ccb19e5e6b1280/invoke.js",
+    format: "container",
+    containerId: "container-26ba66c47ebf20b100ccb19e5e6b1280",
+    minHeight: 90,
+    async: true,
+    cfAsyncFalse: true,
+  },
+  inline: {
+    key: "26ba66c47ebf20b100ccb19e5e6b1280",
+    scriptSrc:
+      "https://pl31013431.profitableratecpmnetwork.com/26ba66c47ebf20b100ccb19e5e6b1280/invoke.js",
+    format: "container",
+    containerId: "container-26ba66c47ebf20b100ccb19e5e6b1280",
+    minHeight: 90,
+    async: true,
+    cfAsyncFalse: true,
+  },
+} satisfies Record<AdSlotType, AdNetworkConfig>;
+
+/** Mobile: 160×300 top + 160×600 bottom (High Revenue Format iframe units) */
+const mobileNetworks = {
+  banner: {
+    key: "58bf1a4c6c80ba8cc456be12856d445f",
+    scriptSrc: `${HRF}/58bf1a4c6c80ba8cc456be12856d445f/invoke.js`,
+    format: "iframe",
+    width: 160,
+    height: 300,
+    minHeight: 300,
+    params: {},
+    cfAsyncFalse: true,
+  },
+  sidebar: {
+    key: "25a5fb022b4fd71357962f58661b8035",
+    scriptSrc: `${HRF}/25a5fb022b4fd71357962f58661b8035/invoke.js`,
+    format: "iframe",
+    width: 160,
+    height: 600,
+    minHeight: 600,
+    params: {},
+    cfAsyncFalse: true,
+  },
+  inline: {
+    key: "25a5fb022b4fd71357962f58661b8035",
+    scriptSrc: `${HRF}/25a5fb022b4fd71357962f58661b8035/invoke.js`,
+    format: "iframe",
+    width: 160,
+    height: 600,
+    minHeight: 600,
+    params: {},
+    cfAsyncFalse: true,
+  },
+} satisfies Record<AdSlotType, AdNetworkConfig>;
 
 export const siteConfig = {
   name: "Speakur",
@@ -46,45 +116,20 @@ export const siteConfig = {
   forceNetworkAds: true,
 
   ads: {
-    /**
-     * Adsterra network scripts (High Revenue Format banner + Profitable Rate CPM).
-     * Omit a slot (or leave scriptSrc empty) to fall back to NativeAffiliateCard.
-     */
-    networks: {
-      banner: {
-        key: "a84b19562a190beed36c0b0018e410ed",
-        scriptSrc:
-          "https://www.highrevenueformat.com/a84b19562a190beed36c0b0018e410ed/invoke.js",
-        format: "iframe",
-        width: 468,
-        height: 60,
-        params: {},
-      },
-      sidebar: {
-        key: "26ba66c47ebf20b100ccb19e5e6b1280",
-        scriptSrc:
-          "https://pl31013431.profitableratecpmnetwork.com/26ba66c47ebf20b100ccb19e5e6b1280/invoke.js",
-        format: "container",
-        containerId: "container-26ba66c47ebf20b100ccb19e5e6b1280",
-        async: true,
-        cfAsyncFalse: true,
-      },
-      inline: {
-        key: "26ba66c47ebf20b100ccb19e5e6b1280",
-        scriptSrc:
-          "https://pl31013431.profitableratecpmnetwork.com/26ba66c47ebf20b100ccb19e5e6b1280/invoke.js",
-        format: "container",
-        containerId: "container-26ba66c47ebf20b100ccb19e5e6b1280",
-        async: true,
-        cfAsyncFalse: true,
-      },
-    } satisfies Partial<Record<AdSlotType, AdNetworkConfig | undefined>>,
+    networks: desktopNetworks,
+    networksMobile: mobileNetworks,
 
     /** Reserved heights so fallbacks match ad unit footprints (CLS). */
     reservedHeight: {
       banner: 60,
       sidebar: 250,
       inline: 90,
+    } satisfies Record<AdSlotType, number>,
+
+    reservedHeightMobile: {
+      banner: 300,
+      sidebar: 600,
+      inline: 600,
     } satisfies Record<AdSlotType, number>,
 
     /** Default affiliate cards when a network script is missing or traffic is low */
@@ -119,8 +164,27 @@ export const siteConfig = {
 
 export type SiteConfig = typeof siteConfig;
 
+export function isMobileViewport(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
+export function getAdNetwork(slotType: AdSlotType, mobile?: boolean): AdNetworkConfig {
+  const useMobile = mobile ?? isMobileViewport();
+  return useMobile
+    ? siteConfig.ads.networksMobile[slotType]
+    : siteConfig.ads.networks[slotType];
+}
+
+export function getReservedHeight(slotType: AdSlotType, mobile?: boolean): number {
+  const useMobile = mobile ?? isMobileViewport();
+  return useMobile
+    ? siteConfig.ads.reservedHeightMobile[slotType]
+    : siteConfig.ads.reservedHeight[slotType];
+}
+
 /** True when a slot has a usable network script in site.config. */
 export function hasAdNetworkScript(slotType: AdSlotType): boolean {
-  const network = siteConfig.ads.networks[slotType];
-  return Boolean(network?.scriptSrc && network.key);
+  const network = getAdNetwork(slotType);
+  return Boolean(network?.scriptSrc && network?.key);
 }
