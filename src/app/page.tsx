@@ -16,9 +16,9 @@ export default function HomePage() {
           How do you say it?
         </h1>
         <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink-muted">
-          Search any English word. Hear free US and UK audio, read the IPA, and see the syllable
-          break — instantly. Pages are server-rendered for Google; audio only generates when you
-          click Play, then caches for free forever.
+          Speakur is free pronunciation help for English. Look up any word to hear clear US and UK
+          audio, see IPA phonetic spelling and syllables, and read plain definitions—so you can speak
+          confidently in meetings, classrooms, videos, and everyday conversations.
         </p>
         <div className="mt-10">
           <SearchBox />

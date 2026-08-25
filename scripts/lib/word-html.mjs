@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { EZOIC_HEAD_SCRIPTS } from "./ezoic-head.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CRITICAL_CSS = readFileSync(join(__dirname, "../../assets/critical.css"), "utf8");
@@ -33,7 +34,7 @@ export function chrome({ title, description, depth, active }) {
     head: `<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+${EZOIC_HEAD_SCRIPTS}  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
@@ -86,7 +87,7 @@ export function chrome({ title, description, depth, active }) {
       <div class="footer-grid">
         <div>
           <div class="footer-brand">Speakur</div>
-          <p class="footer-copy">Real pages for real words — organized by topic.</p>
+          <p class="footer-copy">Free pronunciation help for learners, creators, and professionals who need to say English words clearly and correctly.</p>
         </div>
         <div>
           <h3>Product</h3>
@@ -110,7 +111,6 @@ export function chrome({ title, description, depth, active }) {
     </footer>
   </div>
   <script defer src="${asset}global-search-modal.js"></script>
-  <script defer src="${asset}ad-config.js"></script>
   <script defer src="${asset}site.js"></script>
   <script defer src="${asset}pwa-install.js"></script>
 </body>
@@ -225,6 +225,8 @@ export function renderWordPage({ category, word, entry, syllables, siblings }) {
         <p class="note">This is a dedicated page at <strong>/${escapeHtml(category.slug)}/${escapeHtml(word)}/</strong>. Audio uses free dictionary clips when available, otherwise browser speech after you click Play.</p>
         ${meaningsHtml}
       </article>
+
+      <div id="speakur-ad-mid" class="ad-slot ad-slot-mid stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
 
       <section class="related related-grid-slot stable-slot" style="min-height:8rem">
         <h2>More in ${escapeHtml(category.title)}</h2>

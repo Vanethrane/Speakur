@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+  <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+  <script async src="https://www.ezojs.com/ezoic/sa.min.js"></script>
+  <script>
+    window.ezstandalone = window.ezstandalone || {};
+    ezstandalone.cmd = ezstandalone.cmd || [];
+  </script>
+  <script src="https://ezoicanalytics.com/analytics.js"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Speakur — Hear how any word is pronounced</title>
   <meta
     name="description"
-    content="Search a word, hear free US and UK audio, and read IPA phonetic spelling instantly."
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap"
-    rel="stylesheet"
+    content="Free English pronunciation search: hear US and UK audio, read IPA and definitions, and learn to say difficult words with confidence."
   />
   <style>
     :root {
@@ -25,6 +28,8 @@
       --voice-dark: #0a524c;
       --voice-glow: #e8f4f2;
       --shadow: 0 18px 40px -28px rgba(28, 23, 18, 0.45);
+      --ad-banner-h: 60px;
+      --ad-inline-h: 90px;
     }
 
     * { box-sizing: border-box; }
@@ -32,13 +37,24 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Outfit, system-ui, sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       color: var(--ink);
       background:
         radial-gradient(1200px 600px at 10% -10%, #e8f4f2 0%, transparent 55%),
         radial-gradient(900px 500px at 100% 0%, #efe6d6 0%, transparent 50%),
         var(--paper);
     }
+    .fonts-ready body, body.fonts-ready {
+      font-family: Outfit, system-ui, sans-serif;
+    }
+    .ad-slot { display:flex; justify-content:center; align-items:center; width:100%; overflow:hidden; contain:layout style; }
+    .ad-slot-top { min-height:var(--ad-banner-h); margin:1rem 0; padding-bottom:1rem; border-bottom:1px solid var(--paper-line); }
+    .ad-slot-bottom { min-height:var(--ad-inline-h); margin-top:2rem; padding-top:1.25rem; border-top:1px solid var(--paper-line); }
+    .stable-slot, .search-slot { contain:layout; width:100%; }
+    .search-slot { min-height:4.25rem; }
+    .interactive-slot { min-height:2.75rem; contain:layout; }
+    #home-guides { min-height:9rem; contain:layout; }
+    .play { min-height:2.75rem; }
     ::selection { background: var(--voice); color: var(--paper-raised); }
     a { color: inherit; text-decoration: none; }
     button, input { font: inherit; }
@@ -346,29 +362,45 @@
       color: var(--ink-muted);
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" /></noscript>
+  <link rel="stylesheet" href="./assets/site.css" />
 </head>
 <body>
   <div class="shell">
-    <header>
-      <a class="brand" href="./index.html">Speakur</a>
-      <nav aria-label="Primary">
-        <a class="nav-home" href="./index.html">Home</a>
-        <a href="./words/">Words</a>
-        <a href="./guides.html">Guides</a>
-        <a href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
-      </nav>
+    <header class="site-header">
+      <div class="header-row">
+        <a class="brand" href="./index.html">Speakur</a>
+        <nav aria-label="Primary">
+          <a class="nav-home" href="./index.html">Home</a>
+          <a href="./words/">Words</a>
+          <a href="./guides.html">Guides</a>
+          <a href="./about.html">About</a>
+          <a href="./contact.html">Contact</a>
+        </nav>
+      </div>
+      <form id="speakur-header-form" class="header-search" role="search" autocomplete="off">
+        <label class="sr-only" for="speakur-header-q">Search guides, tools, and words</label>
+        <input id="speakur-header-q" type="search" placeholder="Search guides, tools, words…" spellcheck="false" />
+        <button type="submit" aria-label="Search">Go</button>
+        <ul id="speakur-header-results" class="header-search-results" role="listbox" hidden></ul>
+      </form>
     </header>
+    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
 
     <main>
       <p class="eyebrow">Pronunciation search</p>
       <h1>How do you say it?</h1>
       <p class="lede">
-        Search jumps to a real page like <code>/medical/appendectomy/</code> — not a popup on the
-        homepage. Free US/UK audio, IPA, and definitions on each URL.
+        Speakur is free pronunciation help for English. Look up any word to hear clear US and UK
+        audio, see IPA phonetic spelling and syllables, and read plain definitions—so you can speak
+        confidently in meetings, classrooms, videos, and everyday conversations.
       </p>
 
-      <div class="search-wrap" id="search">
+      <div class="search-wrap search-slot stable-slot" id="search" style="min-height:4.25rem">
         <form class="search-row" id="search-form" autocomplete="off">
           <label class="sr-only" for="q" style="position:absolute;left:-9999px">Search a word</label>
           <input id="q" name="q" placeholder="Type a word — epitome, Worcestershire, GIF…" spellcheck="false" autofocus />
@@ -398,7 +430,7 @@
             <dd id="ipa-meta"></dd>
           </div>
         </dl>
-        <div class="plays">
+        <div class="plays interactive-slot" style="min-height:2.75rem">
           <button type="button" class="play" data-accent="us"><span class="icon">▶</span> US (free)</button>
           <button type="button" class="play" data-accent="uk"><span class="icon">▶</span> UK (free)</button>
           <button type="button" class="play" id="play-slow"><span class="icon">▶</span> Slow</button>
@@ -411,7 +443,20 @@
 
       <div class="chips">
         <p>People look up</p>
-        <div class="chip-row" id="popular"></div>
+        <div class="chip-row" id="popular">
+          <a class="chip" href="./food/croissant/">croissant</a>
+          <a class="chip" href="./food/acai/">acai</a>
+          <a class="chip" href="./food/worcestershire/">worcestershire</a>
+          <a class="chip" href="./food/gyro/">gyro</a>
+          <a class="chip" href="./places/qatar/">qatar</a>
+          <a class="chip" href="./brands/porsche/">porsche</a>
+          <a class="chip" href="./names/aoife/">aoife</a>
+          <a class="chip" href="./animals/dachshund/">dachshund</a>
+          <a class="chip" href="./everyday/schedule/">schedule</a>
+          <a class="chip" href="./everyday/niche/">niche</a>
+          <a class="chip" href="./business/entrepreneur/">entrepreneur</a>
+          <a class="chip" href="./food/charcuterie/">charcuterie</a>
+        </div>
       </div>
 
       <div class="chips" style="margin-top:2.5rem;">
@@ -419,17 +464,18 @@
           <p>From the guides</p>
           <a href="./guides.html" style="font-size:0.9rem;color:var(--voice-dark);text-decoration:underline;text-underline-offset:3px;">View all</a>
         </div>
-        <div id="home-guides" style="margin-top:0.75rem;"></div>
+        <div id="home-guides" class="stable-slot" style="margin-top:0.75rem;min-height:9rem;contain:layout"></div>
       </div>
     </main>
 
+    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
     <footer>
       <div class="footer-grid">
         <div>
           <div class="footer-brand">Speakur</div>
           <p class="footer-copy">
-            Pronunciation search for learners, creators, and marketers — powered by free dictionary
-            audio and on-demand speech.
+            Free pronunciation help for learners, creators, and professionals who need to say
+            English words clearly and correctly.
           </p>
         </div>
         <div>
@@ -454,268 +500,12 @@
     </footer>
   </div>
 
-  <script src="./assets/site.js"></script>
-  <script src="./assets/guides-data.js"></script>
-  <script src="./assets/word-index.js"></script>
-  <script src="./assets/on-demand-word.js"></script>
-  <script>
-    const POPULAR = [
-      { word: "croissant", path: "./food/croissant/" },
-      { word: "acai", path: "./food/acai/" },
-      { word: "worcestershire", path: "./food/worcestershire/" },
-      { word: "gyro", path: "./food/gyro/" },
-      { word: "qatar", path: "./places/qatar/" },
-      { word: "porsche", path: "./brands/porsche/" },
-      { word: "aoife", path: "./names/aoife/" },
-      { word: "dachshund", path: "./animals/dachshund/" },
-      { word: "schedule", path: "./everyday/schedule/" },
-      { word: "niche", path: "./everyday/niche/" },
-      { word: "entrepreneur", path: "./business/entrepreneur/" },
-      { word: "charcuterie", path: "./food/charcuterie/" },
-    ];
-
-    const state = {
-      word: "",
-      phonetic: "",
-      phonetics: [],
-      active: 0,
-      suggestions: [],
-    };
-
-    const $ = (sel) => document.querySelector(sel);
-    const statusEl = $("#status");
-    const suggestionsEl = $("#suggestions");
-    const resultEl = $("#result");
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const popular = $("#popular");
-    POPULAR.forEach((item) => {
-      const a = document.createElement("a");
-      a.className = "chip";
-      a.href = item.path;
-      a.textContent = item.word;
-      popular.appendChild(a);
-    });
-
-    function pathForWord(word) {
-      const q = word.toLowerCase().trim();
-      const aliases = { apendectomy: "appendectomy" };
-      const key = aliases[q] || q;
-      const hit = (window.SPEAKUR_WORD_INDEX || []).find((row) => row.word === key);
-      return hit ? `.${hit.path}` : null;
-    }
-
-    function setStatus(msg) {
-      statusEl.textContent = msg || "";
-    }
-
-    function accentFromAudio(audio) {
-      const lower = (audio || "").toLowerCase();
-      if (lower.includes("-us") || lower.includes("_us") || lower.includes("/us/")) return "us";
-      if (lower.includes("-uk") || lower.includes("_uk") || lower.includes("/uk/")) return "uk";
-      return "other";
-    }
-
-    function speak(word, lang = "en-US", rate = 1) {
-      if (!window.speechSynthesis) return;
-      window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(word);
-      u.lang = lang;
-      u.rate = rate;
-      const voices = window.speechSynthesis.getVoices();
-      const match = voices.find((v) => v.lang.toLowerCase().startsWith(lang.toLowerCase().slice(0, 2)));
-      if (match) u.voice = match;
-      window.speechSynthesis.speak(u);
-    }
-
-    async function playAudio(url, word, lang, rate = 1) {
-      if (url) {
-        try {
-          const audio = new Audio(url);
-          audio.playbackRate = rate;
-          await audio.play();
-          return;
-        } catch (_) { /* fall through */ }
-      }
-      speak(word, lang, rate);
-    }
-
-    function phoneticFor(accent) {
-      return state.phonetics.find((p) => p.accent === accent && p.audio)
-        || state.phonetics.find((p) => p.audio)
-        || null;
-    }
-
-    function bindPlays() {
-      $("#play-main").onclick = () => {
-        const p = phoneticFor("us") || phoneticFor("uk") || phoneticFor("other");
-        playAudio(p?.audio, state.word, p?.accent === "uk" ? "en-GB" : "en-US");
-      };
-      $("#play-slow").onclick = () => {
-        const p = phoneticFor("us") || phoneticFor("uk") || phoneticFor("other");
-        playAudio(p?.audio, state.word, p?.accent === "uk" ? "en-GB" : "en-US", 0.72);
-      };
-      document.querySelectorAll(".play[data-accent]").forEach((btn) => {
-        btn.onclick = () => {
-          const accent = btn.getAttribute("data-accent");
-          const p = phoneticFor(accent);
-          playAudio(p?.audio, state.word, accent === "uk" ? "en-GB" : "en-US");
-        };
-      });
-    }
-
-    function renderResult(entry, syllables) {
-      state.word = entry.word;
-      state.phonetic = entry.phonetic
-        || (entry.phonetics || []).find((p) => p.text)?.text
-        || "";
-      state.phonetics = (entry.phonetics || [])
-        .map((p) => ({
-          accent: p.audio ? accentFromAudio(p.audio) : "other",
-          text: p.text || null,
-          audio: p.audio || null,
-        }))
-        .filter((p) => p.text || p.audio);
-
-      $("#word-title").textContent = entry.word;
-      $("#ipa").textContent = state.phonetic || "Phonetic spelling unavailable";
-
-      const sylWrap = $("#syllables-wrap");
-      if (syllables) {
-        sylWrap.hidden = false;
-        $("#syllables").textContent = syllables;
-      } else {
-        sylWrap.hidden = true;
-      }
-
-      const ipas = [...new Set(state.phonetics.map((p) => p.text).filter(Boolean))];
-      const ipaMetaWrap = $("#ipa-meta-wrap");
-      if (ipas.length) {
-        ipaMetaWrap.hidden = false;
-        $("#ipa-meta").textContent = ipas.join("  ·  ");
-      } else {
-        ipaMetaWrap.hidden = true;
-      }
-
-      const meanings = $("#meanings");
-      meanings.innerHTML = "";
-      const senses = [];
-      for (const meaning of entry.meanings || []) {
-        for (const def of meaning.definitions || []) {
-          if (!def.definition) continue;
-          senses.push({ pos: meaning.partOfSpeech || "unknown", def: def.definition, ex: def.example || null });
-          if (senses.length >= 5) break;
-        }
-        if (senses.length >= 5) break;
-      }
-      if (senses.length) {
-        const h2 = document.createElement("h2");
-        h2.textContent = "Meaning";
-        meanings.appendChild(h2);
-        senses.forEach((s) => {
-          const div = document.createElement("div");
-          div.className = "sense";
-          div.innerHTML = `<p class="pos">${s.pos}</p><p class="def">${s.def}</p>${s.ex ? `<p class="ex">“${s.ex}”</p>` : ""}`;
-          meanings.appendChild(div);
-        });
-      }
-
-      bindPlays();
-      resultEl.classList.add("visible");
-      resultEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-
-    async function lookup(raw) {
-      const word = (raw || "").trim().toLowerCase();
-      if (!word) return;
-      $("#q").value = word;
-      suggestionsEl.style.display = "none";
-      resultEl.classList.remove("visible");
-
-      // Prefer real category pages: /medical/appendectomy/
-      const dedicated = pathForWord(word);
-      if (dedicated) {
-        location.href = dedicated;
-        return;
-      }
-
-      // Missing from the directory: open (and create) /{category}/{word}/
-      const category =
-        (window.SpeakurOnDemand && SpeakurOnDemand.guessCategory(word)) || "everyday";
-      setStatus(`Building a page for “${word}”…`);
-      location.href = `./${category}/${encodeURIComponent(word)}/`;
-    }
-
-    let suggestTimer = null;
-    $("#q").addEventListener("input", (e) => {
-      const q = e.target.value.trim();
-      clearTimeout(suggestTimer);
-      if (q.length < 2) {
-        suggestionsEl.style.display = "none";
-        state.suggestions = [];
-        return;
-      }
-      suggestTimer = setTimeout(async () => {
-        try {
-          const res = await fetch(`https://api.datamuse.com/sug?s=${encodeURIComponent(q)}&max=8`);
-          if (!res.ok) return;
-          const data = await res.json();
-          state.suggestions = data.filter((d) => /^[a-z][a-z'-]*$/i.test(d.word));
-          state.active = 0;
-          if (!state.suggestions.length) {
-            suggestionsEl.style.display = "none";
-            return;
-          }
-          suggestionsEl.innerHTML = state.suggestions
-            .map((s, i) => `<li><button type="button" role="option" class="${i === 0 ? "active" : ""}" data-i="${i}"><span>${s.word}</span><span class="hint">pronounce</span></button></li>`)
-            .join("");
-          suggestionsEl.style.display = "block";
-          suggestionsEl.querySelectorAll("button").forEach((btn) => {
-            btn.addEventListener("click", () => lookup(state.suggestions[Number(btn.dataset.i)].word));
-          });
-        } catch (_) { /* ignore */ }
-      }, 160);
-    });
-
-    $("#q").addEventListener("keydown", (e) => {
-      if (!state.suggestions.length || suggestionsEl.style.display === "none") return;
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        state.active = (state.active + 1) % state.suggestions.length;
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        state.active = (state.active - 1 + state.suggestions.length) % state.suggestions.length;
-      } else {
-        return;
-      }
-      [...suggestionsEl.querySelectorAll("button")].forEach((btn, i) => {
-        btn.classList.toggle("active", i === state.active);
-      });
-    });
-
-    $("#search-form").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const chosen = state.suggestions[state.active]?.word || $("#q").value;
-      lookup(chosen);
-    });
-
-    document.addEventListener("mousedown", (e) => {
-      if (!e.target.closest(".search-wrap")) suggestionsEl.style.display = "none";
-    });
-
-    // Deep link: index.html?q=epitome
-    const params = new URLSearchParams(location.search);
-    const initial = params.get("q");
-    if (initial) lookup(initial);
-
-    const homeGuides = document.getElementById("home-guides");
-    if (homeGuides && window.SPEAKUR_GUIDES) {
-      const latest = window.SPEAKUR_GUIDES.slice().sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1)).slice(0, 3);
-      homeGuides.innerHTML = latest.map((g) =>
-        `<a class="chip" style="border-radius:0.85rem;display:block;width:100%;margin-bottom:0.5rem;text-align:left;" href="./guide.html?slug=${encodeURIComponent(g.slug)}"><strong>${g.title}</strong><br/><span style="color:var(--ink-muted);font-size:0.85rem;">${g.description}</span></a>`
-      ).join("");
-    }
-  </script>
+  <script defer src="./assets/search-index.js"></script>
+  <script defer src="./assets/header-search.js"></script>
+  <script defer src="./assets/site.js"></script>
+  <script defer src="./assets/guides-data.js"></script>
+  <script defer src="./assets/word-index.js"></script>
+  <script defer src="./assets/on-demand-word.js"></script>
+  <script defer src="./assets/home.js"></script>
 </body>
 </html>
