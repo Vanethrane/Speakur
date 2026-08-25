@@ -22,6 +22,7 @@
     "pwa:build": "node scripts/build-pwa.mjs",
     "pwa:patch": "node scripts/patch-pwa.mjs",
     "assert:seo-titles": "node scripts/assert-seo-titles.mjs",
+    "ads:txt": "node scripts/fetch-ads-txt.mjs",
     "assert:faq": "node scripts/assert-faq-schema.mjs"
   },
   "dependencies": {
