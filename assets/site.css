@@ -595,3 +595,8 @@ body.gs-modal-open { overflow: hidden; }
   font-family: "Fraunces";
   font-display: swap;
 }
+
+/* Global search popup removed */
+#speakur-global-search, #speakur-global-search-trigger, .gs-trigger { display: none !important; }
+html.gs-open, body.gs-open { overflow: auto !important; }
+

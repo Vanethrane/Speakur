@@ -69,17 +69,6 @@ ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" /
           <a href="${home}contact.html">Contact</a>
         </nav>
       </div>
-      <button
-        type="button"
-        id="speakur-global-search-trigger"
-        class="gs-trigger"
-        data-index-url="${asset}global-search-index.json"
-        aria-label="Open search (Command K)"
-      >
-        <span aria-hidden="true">⌕</span>
-        <span>Search words, guides, tools…</span>
-        <kbd>⌘K</kbd>
-      </button>
     </header>
     <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:90px"></div>`,
     foot: `
@@ -111,7 +100,6 @@ ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" /
       <p class="legal">© <span data-year></span> Speakur. <a href="${home}index.html">Home</a></p>
     </footer>
   </div>
-  <script defer src="${asset}global-search-modal.js"></script>
   <script defer src="${asset}site.js"></script>
   <script defer src="${asset}pwa-install.js"></script>
 </body>

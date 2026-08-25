@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { uniqueSeedWords } from "@/lib/words";
 import { AdSlot } from "@/components/ads";
-import { GlobalSearchProvider } from "@/components/GlobalSearchProvider";
-import { GlobalSearchTrigger } from "@/components/GlobalSearchModal";
 import { HistoryProvider } from "@/components/HistoryDrawer";
 import { StableSlot } from "@/components/StableSlot";
 
@@ -42,7 +40,6 @@ export function SiteHeader() {
           ))}
         </nav>
       </div>
-      <GlobalSearchTrigger className="w-full max-w-xl" />
     </header>
   );
 }
@@ -93,31 +90,29 @@ export function SiteFooter() {
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
-    <GlobalSearchProvider>
     <HistoryProvider>
-    <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-6 py-8">
-      <SiteHeader />
-      <StableSlot
-        minHeight="90px"
-        className="ad-slot-top mt-4 border-b border-paper-line pb-4"
-        aria-label="Advertisement"
-      >
-        <AdSlot slotType="banner" />
-      </StableSlot>
-      <div className="flex-1" style={{ minHeight: "20rem", contain: "layout" }}>
-        {children}
+      <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-6 py-8">
+        <SiteHeader />
+        <StableSlot
+          minHeight="90px"
+          className="ad-slot-top mt-4 border-b border-paper-line pb-4"
+          aria-label="Advertisement"
+        >
+          <AdSlot slotType="banner" />
+        </StableSlot>
+        <div className="flex-1" style={{ minHeight: "20rem", contain: "layout" }}>
+          {children}
+        </div>
+        <StableSlot
+          minHeight="90px"
+          className="ad-slot-bottom mt-8 border-t border-paper-line pt-4"
+          aria-label="Advertisement"
+        >
+          <AdSlot slotType="inline" />
+        </StableSlot>
+        <SiteFooter />
       </div>
-      <StableSlot
-        minHeight="90px"
-        className="ad-slot-bottom mt-8 border-t border-paper-line pt-4"
-        aria-label="Advertisement"
-      >
-        <AdSlot slotType="inline" />
-      </StableSlot>
-      <SiteFooter />
-    </div>
     </HistoryProvider>
-    </GlobalSearchProvider>
   );
 }
 
