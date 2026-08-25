@@ -1,32 +1,71 @@
 /**
- * Build a ~10,000-word catalog prioritized by high Google "how to pronounce" demand,
- * then expand with frequency English + category fillers.
+ * Build a large word catalog prioritized by Google search frequency
+ * ("how to pronounce" demand + Trillion Word Corpus lists), then category fillers.
  *
- * Usage: node scripts/build-large-catalog.mjs
+ * Usage:
+ *   node scripts/build-large-catalog.mjs
+ *   node scripts/build-large-catalog.mjs --target=60000
  */
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, renameSync, unlinkSync } from "fs";
 import { join } from "path";
 import { PRIORITY_SEEDS } from "../data/seeds/priority-seeds.mjs";
 
 const ROOT = process.cwd();
-const TARGET = 10000;
+const targetArg = process.argv.find((a) => a.startsWith("--target="));
+const TARGET = targetArg ? Number(targetArg.split("=")[1]) : 70000;
+const SCALE = TARGET / 10000;
+
+function sleepSync(ms) {
+  const end = Date.now() + ms;
+  while (Date.now() < end) {
+    /* busy wait for sync retry */
+  }
+}
+
+function writeJsonAtomic(path, value) {
+  const body = JSON.stringify(value, null, 2) + "\n";
+  const tmp = `${path}.tmp`;
+  for (let i = 1; i <= 10; i++) {
+    try {
+      writeFileSync(tmp, body);
+      if (existsSync(path)) {
+        try {
+          unlinkSync(path);
+        } catch {
+          /* locked — try rename over it */
+        }
+      }
+      try {
+        renameSync(tmp, path);
+      } catch {
+        writeFileSync(path, body);
+        if (existsSync(tmp)) unlinkSync(tmp);
+      }
+      return;
+    } catch (err) {
+      if (i === 10) throw err;
+      console.warn(`Retry ${i}/10 writing ${path}: ${err.code || err.message}`);
+      sleepSync(1000 * i);
+    }
+  }
+}
 
 const CATEGORY_META = [
-  { slug: "food", title: "Food & drink", description: "Menu, spice, and dish pronunciations people search most.", target: 1200 },
-  { slug: "places", title: "Places", description: "Cities, countries, and regions that trip people up.", target: 1100 },
-  { slug: "names", title: "Names", description: "Given names, surnames, and public figures often looked up.", target: 900 },
-  { slug: "brands", title: "Brands", description: "Fashion, cars, tech, and consumer brands.", target: 700 },
-  { slug: "medical", title: "Medical", description: "Clinical and health terms with clear audio pages.", target: 1100 },
-  { slug: "animals", title: "Animals", description: "Breeds and species that are easy to mispronounce.", target: 600 },
-  { slug: "science", title: "Science", description: "Science and nature vocabulary.", target: 800 },
-  { slug: "business", title: "Business", description: "Workplace, finance, and marketing terms.", target: 500 },
-  { slug: "everyday", title: "Everyday English", description: "Common words people second-guess out loud.", target: 1800 },
-  { slug: "arts", title: "Arts & culture", description: "Music, dance, literature, and art terms.", target: 450 },
-  { slug: "sports", title: "Sports", description: "Sports, fitness, and competition vocabulary.", target: 400 },
-  { slug: "tech", title: "Tech", description: "Software, internet, and computing words.", target: 500 },
-  { slug: "nature", title: "Nature", description: "Weather, geography, and outdoors terms.", target: 400 },
-  { slug: "law", title: "Law", description: "Legal and courtroom vocabulary.", target: 300 },
-  { slug: "mythology", title: "Mythology", description: "Gods, legends, and mythic creatures.", target: 250 },
+  { slug: "food", title: "Food & drink", description: "Menu, spice, and dish pronunciations people search most.", target: Math.round(1200 * SCALE) },
+  { slug: "places", title: "Places", description: "Cities, countries, and regions that trip people up.", target: Math.round(1100 * SCALE) },
+  { slug: "names", title: "Names", description: "Given names, surnames, and public figures often looked up.", target: Math.round(900 * SCALE) },
+  { slug: "brands", title: "Brands", description: "Fashion, cars, tech, and consumer brands.", target: Math.round(700 * SCALE) },
+  { slug: "medical", title: "Medical", description: "Clinical and health terms with clear audio pages.", target: Math.round(1100 * SCALE) },
+  { slug: "animals", title: "Animals", description: "Breeds and species that are easy to mispronounce.", target: Math.round(600 * SCALE) },
+  { slug: "science", title: "Science", description: "Science and nature vocabulary.", target: Math.round(800 * SCALE) },
+  { slug: "business", title: "Business", description: "Workplace, finance, and marketing terms.", target: Math.round(500 * SCALE) },
+  { slug: "everyday", title: "Everyday English", description: "Common words people second-guess out loud.", target: Math.round(1800 * SCALE) },
+  { slug: "arts", title: "Arts & culture", description: "Music, dance, literature, and art terms.", target: Math.round(450 * SCALE) },
+  { slug: "sports", title: "Sports", description: "Sports, fitness, and competition vocabulary.", target: Math.round(400 * SCALE) },
+  { slug: "tech", title: "Tech", description: "Software, internet, and computing words.", target: Math.round(500 * SCALE) },
+  { slug: "nature", title: "Nature", description: "Weather, geography, and outdoors terms.", target: Math.round(400 * SCALE) },
+  { slug: "law", title: "Law", description: "Legal and courtroom vocabulary.", target: Math.round(300 * SCALE) },
+  { slug: "mythology", title: "Mythology", description: "Gods, legends, and mythic creatures.", target: Math.round(250 * SCALE) },
 ];
 
 const BLOCK = new Set([
@@ -146,11 +185,16 @@ function main() {
   console.log(`After seeds: ${used.size} unique words`);
 
   const freq = [
-    ...loadLines(join(ROOT, "data/seeds/google-10000.txt")),
     ...loadLines(join(ROOT, "data/seeds/google-20k.txt")),
+    ...loadLines(join(ROOT, "data/seeds/google-10000.txt")),
+    ...loadLines(join(ROOT, "data/seeds/google-50k.txt")),
+    ...loadLines(join(ROOT, "data/seeds/google-100k.txt")),
+    ...loadLines(join(ROOT, "data/seeds/google-500k.txt")),
   ];
   const alpha = loadLines(join(ROOT, "data/seeds/words-alpha-sample.txt"))
     .filter((w) => w.length >= 4 && w.length <= 16);
+
+  console.log(`Target catalog size: ${TARGET}`);
 
   // Pass A: fill topical categories toward targets only
   for (const pool of [freq, alpha]) {
@@ -209,7 +253,7 @@ function main() {
 
   const catalog = { categories };
   const count = categories.reduce((n, c) => n + c.words.length, 0);
-  writeFileSync(join(ROOT, "data/catalog.json"), JSON.stringify(catalog, null, 2) + "\n");
+  writeJsonAtomic(join(ROOT, "data/catalog.json"), catalog);
 
   console.log("\nCatalog written:");
   for (const c of categories) {

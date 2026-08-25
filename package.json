@@ -4,15 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "node node_modules/next/dist/bin/next dev --turbopack",
-    "build": "node node_modules/next/dist/bin/next build",
+    "sitemap": "node scripts/build-sitemap.mjs",
+    "build:static": "node scripts/generate-word-pages.mjs --fast && node scripts/build-global-search-index.mjs && node scripts/build-pwa.mjs && node scripts/patch-cwv.mjs && node scripts/patch-pwa.mjs && node scripts/build-sitemap.mjs",
+    "build": "node scripts/build-sitemap.mjs && node scripts/build-global-search-index.mjs && node scripts/build-pwa.mjs && node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
-    "catalog:build": "node scripts/build-large-catalog.mjs",
+    "assert:inbound": "node scripts/assert-inbound-links.mjs",
+    "catalog:build": "node scripts/fetch-google-seeds.mjs && node scripts/build-large-catalog.mjs --target=70000",
+    "catalog:expand": "node scripts/fetch-google-seeds.mjs && node scripts/build-large-catalog.mjs --target=70000 && node scripts/generate-word-pages.mjs --fast --incremental && node scripts/finish-word-index.mjs && node scripts/build-global-search-index.mjs && node scripts/build-sitemap.mjs",
     "generate:words": "node scripts/generate-word-pages.mjs",
     "generate:words:fast": "node scripts/generate-word-pages.mjs --fast",
     "add-word": "node scripts/add-word.mjs",
     "serve": "node scripts/serve.mjs",
     "refill:words": "node scripts/refill-word-pages.mjs",
-    "sitemap": "node scripts/build-sitemap.mjs"
+    "patch:cwv": "node scripts/patch-cwv.mjs",
+    "search:index": "node scripts/build-search-index.mjs && node scripts/build-global-search-index.mjs",
+    "global-search:index": "node scripts/build-global-search-index.mjs",
+    "pwa:build": "node scripts/build-pwa.mjs",
+    "pwa:patch": "node scripts/patch-pwa.mjs",
+    "assert:seo-titles": "node scripts/assert-seo-titles.mjs",
+    "assert:faq": "node scripts/assert-faq-schema.mjs"
   },
   "dependencies": {
     "next": "^15.5.2",

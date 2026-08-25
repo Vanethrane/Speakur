@@ -9,6 +9,12 @@ const ROOT = process.cwd();
 const catalog = JSON.parse(readFileSync(join(ROOT, "data/catalog.json"), "utf8"));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/** Delay between successful/failed word lookups (ms). */
+const DELAY_BETWEEN_WORDS_MS = 2000;
+/** Base backoff between retries on the same word; grows per attempt. */
+const RETRY_BASE_MS = 3000;
+const RETRY_ATTEMPTS = 5;
+
 function accentFromAudio(audio = "") {
   const lower = audio.toLowerCase();
   if (lower.includes("-us") || lower.includes("_us") || lower.includes("/us/")) return "us";
@@ -24,7 +30,7 @@ function escapeHtml(s = "") {
     .replace(/"/g, "&quot;");
 }
 
-async function lookupWord(word, tries = 4) {
+async function lookupWord(word, tries = RETRY_ATTEMPTS) {
   for (let i = 0; i < tries; i++) {
     try {
       const res = await fetch(
@@ -35,11 +41,12 @@ async function lookupWord(word, tries = 4) {
       const entries = await res.json();
       return entries[0] || null;
     } catch (err) {
-      await sleep(400 * (i + 1));
+      const wait = RETRY_BASE_MS * (i + 1);
       if (i === tries - 1) {
         console.warn(`  still failing ${word}: ${err.message}`);
         return null;
       }
+      await sleep(wait);
     }
   }
   return null;
@@ -147,7 +154,7 @@ async function main() {
       } else {
         console.log(entry ? "skip" : "no data");
       }
-      await sleep(250);
+      await sleep(DELAY_BETWEEN_WORDS_MS);
     }
   }
   console.log(`Refilled ${updated} pages`);

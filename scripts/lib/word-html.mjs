@@ -1,3 +1,10 @@
+import { readFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const CRITICAL_CSS = readFileSync(join(__dirname, "../../assets/critical.css"), "utf8");
+
 /**
  * Shared HTML rendering for static word / category / hub pages.
  */
@@ -16,6 +23,9 @@ export function escapeHtml(s = "") {
     .replace(/"/g, "&quot;");
 }
 
+const FONT_HREF =
+  "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap";
+
 export function chrome({ title, description, depth, active }) {
   const asset = "../".repeat(depth) + "assets/";
   const home = "../".repeat(depth) || "./";
@@ -28,25 +38,50 @@ export function chrome({ title, description, depth, active }) {
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
   <link rel="canonical" href="" />
+  <style>${CRITICAL_CSS}</style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="${FONT_HREF}" />
+  <link rel="stylesheet" href="${FONT_HREF}" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="${FONT_HREF}" /></noscript>
   <link rel="stylesheet" href="${asset}site.css" />
   <link rel="stylesheet" href="${asset}word-page.css" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#0d6e66" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Speakur" />
 </head>
-<body>
+<body data-static-site="1">
   <div class="shell">
-    <header>
-      <a class="brand" href="${home}index.html">Speakur</a>
-      <nav aria-label="Primary">
-        <a class="nav-home" href="${home}index.html">Home</a>
-        <a href="${home}words/index.html"${active === "words" ? ' aria-current="page"' : ""}>Words</a>
-        <a href="${home}guides.html">Guides</a>
-        <a href="${home}about.html">About</a>
-        <a href="${home}contact.html">Contact</a>
-      </nav>
-    </header>`,
+    <header class="site-header">
+      <div class="header-row">
+        <a class="brand" href="${home}index.html">Speakur</a>
+        <nav aria-label="Primary">
+          <a class="nav-home" href="${home}index.html">Home</a>
+          <a href="${home}words/index.html"${active === "words" ? ' aria-current="page"' : ""}>Words</a>
+          <a href="${home}guides.html">Guides</a>
+          <a href="${home}about.html">About</a>
+          <a href="${home}contact.html">Contact</a>
+        </nav>
+      </div>
+      <button
+        type="button"
+        id="speakur-global-search-trigger"
+        class="gs-trigger"
+        data-index-url="${asset}global-search-index.json"
+        aria-label="Open search (Command K)"
+      >
+        <span aria-hidden="true">⌕</span>
+        <span>Search words, guides, tools…</span>
+        <kbd>⌘K</kbd>
+      </button>
+    </header>
+    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:90px"></div>`,
     foot: `
+    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
     <footer>
       <div class="footer-grid">
         <div>
@@ -74,7 +109,10 @@ export function chrome({ title, description, depth, active }) {
       <p class="legal">© <span data-year></span> Speakur. <a href="${home}index.html">Home</a></p>
     </footer>
   </div>
-  <script src="${asset}site.js"></script>
+  <script defer src="${asset}global-search-modal.js"></script>
+  <script defer src="${asset}ad-config.js"></script>
+  <script defer src="${asset}site.js"></script>
+  <script defer src="${asset}pwa-install.js"></script>
 </body>
 </html>`,
   };
@@ -154,13 +192,13 @@ export function renderWordPage({ category, word, entry, syllables, siblings }) {
       </nav>
 
       <p class="eyebrow">${escapeHtml(category.title)} pronunciation</p>
-      <article class="word-card" data-word="${escapeHtml(word)}">
+      <article class="word-card word-result-slot stable-slot" data-word="${escapeHtml(word)}" style="min-height:18rem">
         <div class="word-head">
           <div>
             <h1>${escapeHtml(word)}</h1>
             <p class="ipa">${escapeHtml(phonetic || "Phonetic spelling unavailable")}</p>
           </div>
-          <button type="button" class="play btn-voice" data-play data-audio="${escapeHtml(anyAudio)}" data-lang="en-US">
+          <button type="button" class="play btn-voice" data-play data-audio="${escapeHtml(anyAudio)}" data-lang="en-US" style="min-height:2.75rem">
             <span class="icon">▶</span> Play
           </button>
         </div>
@@ -179,22 +217,22 @@ export function renderWordPage({ category, word, entry, syllables, siblings }) {
           <div><dt>Path</dt><dd>/${escapeHtml(category.slug)}/${escapeHtml(word)}/</dd></div>
         </dl>
 
-        <div class="plays">
-          <button type="button" class="play btn-voice" data-play data-audio="${escapeHtml(usAudio)}" data-lang="en-US"><span class="icon">▶</span> US (free)</button>
-          <button type="button" class="play btn-voice" data-play data-audio="${escapeHtml(ukAudio)}" data-lang="en-GB"><span class="icon">▶</span> UK (free)</button>
-          <button type="button" class="play btn-voice" data-play data-audio="${escapeHtml(anyAudio)}" data-lang="en-US" data-rate="0.72"><span class="icon">▶</span> Slow</button>
+        <div class="plays interactive-slot" style="min-height:2.75rem">
+          <button type="button" class="play btn-voice" data-play data-audio="${escapeHtml(usAudio)}" data-lang="en-US" style="min-height:2.75rem"><span class="icon">▶</span> US (free)</button>
+          <button type="button" class="play btn-voice" data-play data-audio="${escapeHtml(ukAudio)}" data-lang="en-GB" style="min-height:2.75rem"><span class="icon">▶</span> UK (free)</button>
+          <button type="button" class="play btn-voice" data-play data-audio="${escapeHtml(anyAudio)}" data-lang="en-US" data-rate="0.72" style="min-height:2.75rem"><span class="icon">▶</span> Slow</button>
         </div>
         <p class="note">This is a dedicated page at <strong>/${escapeHtml(category.slug)}/${escapeHtml(word)}/</strong>. Audio uses free dictionary clips when available, otherwise browser speech after you click Play.</p>
         ${meaningsHtml}
       </article>
 
-      <section class="related">
+      <section class="related related-grid-slot stable-slot" style="min-height:8rem">
         <h2>More in ${escapeHtml(category.title)}</h2>
         <div class="chip-row">${siblingHtml}</div>
         <p class="note"><a href="../">All ${escapeHtml(category.title)} words</a> · <a href="../../words/">All directories</a></p>
       </section>
     </main>
-    <script src="../../assets/word-play.js"></script>
+    <script defer src="../../assets/word-play.js"></script>
 ${foot}`;
 }
 
@@ -254,7 +292,7 @@ export function renderWordsHub(categories) {
     <main>
       <p class="eyebrow">Directories</p>
       <h1>Words by topic</h1>
-      <p class="lede">Every entry is a real page with its own path — for example <code>/medical/appendectomy/</code> — not a single-page app route.</p>
+      <p class="lede">Browse thousands of pronunciation pages organized by topic—medical terms, food, places, tech, and everyday English. Each word includes IPA, syllable cues, and free click-to-play US and UK audio.</p>
       <div class="card-stack">${cards}</div>
     </main>
 ${foot}`;
