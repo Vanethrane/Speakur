@@ -1,4 +1,19 @@
+# Speakur - https://www.speakur.com
+# Allow all crawlers. Sitemaps list every public URL.
+
 User-agent: *
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Primary index (split into sitemap-1.xml ... when over 10000 URLs)
+Sitemap: https://www.speakur.com/sitemap-index.xml
+# Same index under the classic name
 Sitemap: https://www.speakur.com/sitemap.xml
