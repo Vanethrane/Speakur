@@ -334,4 +334,4 @@ writeHomophones();
 writeDangerList();
 writeStubs();
 updateHub();
-patchNav();
+patchNav();

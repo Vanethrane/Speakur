@@ -101,7 +101,7 @@ function ensureAdSlots(html) {
     next = next.replace(
       /<\/header>\s*/i,
       `</header>
-    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:60px"></div>
+    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" role="region" aria-label="Advertisement" style="min-height:60px"></div>
 `,
     );
   } else {
@@ -116,7 +116,7 @@ function ensureAdSlots(html) {
   if (!next.includes('id="speakur-ad-bottom"')) {
     next = next.replace(
       /<footer\b/i,
-      `<div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
+      `<div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>
     <footer`,
     );
   }
@@ -165,6 +165,16 @@ function linkSiteCss(html, prefix) {
   );
 }
 
+function fixAdAria(html) {
+  return html.replace(
+    /(<div id="speakur-ad-(?:top|mid|bottom)"[^>]*?)(\s*aria-label="Advertisement")/gi,
+    (match, before, aria) => {
+      if (/\brole\s*=/i.test(before)) return match;
+      return `${before} role="region"${aria}`;
+    },
+  );
+}
+
 function patchFile(filePath) {
   const original = readFileSync(filePath, "utf8");
   let html = original;
@@ -173,6 +183,7 @@ function patchFile(filePath) {
   html = inlineCritical(html);
   html = asyncFonts(html);
   html = ensureAdSlots(html);
+  html = fixAdAria(html);
   html = deferScripts(html);
   html = stableInteractive(html);
   html = linkSiteCss(html, prefix);

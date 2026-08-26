@@ -140,11 +140,11 @@ ${EZOIC_HEAD_SCRIPTS}  <meta charset="UTF-8" />
         <ul id="speakur-header-results" class="header-search-results" role="listbox" hidden></ul>
       </form>
     </header>
-    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:60px"></div>
+    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" role="region" aria-label="Advertisement" style="min-height:60px"></div>
     <main>
 ${body}
     </main>
-    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
+    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>
     <footer>
       <div class="footer-grid">
         <div>

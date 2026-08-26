@@ -220,9 +220,9 @@ ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" /
         </nav>
       </div>
     </header>
-    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:90px"></div>`,
+    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>`,
     foot: `
-    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
+    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>
     <footer>
       <div class="footer-grid">
         <div>
@@ -625,7 +625,7 @@ export function renderWordPage({
         ${sourcesHtml}
       </article>
 
-      <div id="speakur-ad-mid" class="ad-slot ad-slot-mid stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
+      <div id="speakur-ad-mid" class="ad-slot ad-slot-mid stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>
 
       <section class="related related-grid-slot stable-slot" style="min-height:4rem">
         <h2>More in ${escapeHtml(category.title)}</h2>

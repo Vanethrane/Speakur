@@ -40,4 +40,5 @@ writeFileSync(join(ROOT, "public/assets/word-paths.json"), json);
 writeFileSync(join(ROOT, "public/assets/word-paths.json.gz"), gz);
 
 console.log(
-  `Wrote assets/word-paths.json (${rows.length} words, ${(json.length / 1024 / 1024).toFixed(2)} MB, gzip ${(gz.length / 1024 / 1024)
+  `Wrote assets/word-paths.json (${rows.length} words, ${(json.length / 1024 / 1024).toFixed(2)} MB, gzip ${(gz.length / 1024 / 1024).toFixed(2)} MB)`,
+);

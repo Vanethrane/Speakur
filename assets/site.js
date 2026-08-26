@@ -21,6 +21,7 @@
       top = document.createElement("div");
       top.id = "speakur-ad-top";
       top.className = "ad-slot ad-slot-top stable-slot";
+      top.setAttribute("role", "region");
       top.setAttribute("aria-label", "Advertisement");
       const header = shell.querySelector("header");
       if (header) header.insertAdjacentElement("afterend", top);
@@ -34,6 +35,7 @@
       bottom = document.createElement("div");
       bottom.id = "speakur-ad-bottom";
       bottom.className = "ad-slot ad-slot-bottom stable-slot";
+      bottom.setAttribute("role", "region");
       bottom.setAttribute("aria-label", "Advertisement");
       const footer = shell.querySelector("footer");
       if (footer) footer.insertAdjacentElement("beforebegin", bottom);
@@ -59,7 +61,19 @@
   }
 
   function loadEzoicAds() {
+    const cfg = window.SPEAKUR_AD_CONFIG || {};
     const slots = ensureAdSlots();
+    if (cfg.enabled === false) {
+      [slots.top, slots.mid, slots.bottom].forEach((el) => {
+        if (!el) return;
+        el.hidden = true;
+        el.style.minHeight = "0";
+        el.style.margin = "0";
+        el.style.padding = "0";
+        el.style.border = "0";
+      });
+      return;
+    }
     activateEzoicSlot(slots.top);
     if (slots.mid) activateEzoicSlot(slots.mid);
     activateEzoicSlot(slots.bottom);

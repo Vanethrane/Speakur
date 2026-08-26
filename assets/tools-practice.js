@@ -118,4 +118,4 @@
       status.textContent = "Lookup failed. Check your connection and try again.";
     }
   });
-}
+})();

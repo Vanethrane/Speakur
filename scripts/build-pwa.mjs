@@ -31,24 +31,33 @@ const SITE = {
   categories: ["education", "utilities"],
 };
 
-/** Core offline tooling — JS + CSS + search/word indexes */
+/** Core offline tooling — exclude large build artifacts from SW precache */
 const REQUIRED_ASSETS = [
   "site.js",
   "pwa-install.js",
-  "global-search-index.json",
   "search-index.js",
-  "search-index.js",
+  "header-search.js",
+  "word-lookup.js",
   "on-demand-word.js",
   "word-play.js",
   "home.js",
   "guide-page.js",
   "guides-list.js",
-  "guides-data.js",
   "404-resolve.js",
   "site.css",
   "word-page.css",
   "icon.svg",
 ];
+
+/** Never precache — too large or build-only */
+const PRECACHE_SKIP = new Set([
+  "word-index.js",
+  "word-paths.json",
+  "word-paths.json.gz",
+  "global-search-index.json",
+  "guides-data.js",
+  "speakur-favicon-source.png",
+]);
 
 function listAssetFiles() {
   const found = new Set(REQUIRED_ASSETS);
@@ -68,6 +77,7 @@ function buildPrecacheUrls(files) {
   const urls = ["/manifest.json", "/assets/icon.svg"];
   for (const file of files) {
     if (file === "icon.svg") continue;
+    if (PRECACHE_SKIP.has(file)) continue;
     if (/^ad-config\.js$/i.test(file)) continue;
     urls.push(`/assets/${file}`);
   }

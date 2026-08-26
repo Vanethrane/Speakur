@@ -1,12 +1,12 @@
 /**
- * Inject Ezoic privacy + header scripts at the top of <head> on all HTML pages.
- * Privacy scripts load before the header script (Ezoic Step 2).
+ * Inject gated Ezoic head (disabled until SPEAKUR_AD_CONFIG.enabled) on static HTML.
+ * Upgrades legacy always-on Gatekeeper/Ezoic heads when present.
  *
  * Usage: node scripts/patch-ezoic-head.mjs
  */
 import { readFileSync, writeFileSync, readdirSync, statSync } from "fs";
 import { join, extname } from "path";
-import { EZOIC_HEAD_SCRIPTS, EZOIC_MARKER } from "./lib/ezoic-head.mjs";
+import { EZOIC_HEAD_SCRIPTS } from "./lib/ezoic-head.mjs";
 
 const ROOT = process.cwd();
 const SKIP = new Set(["node_modules", ".git", ".next", "out", "public"]);
@@ -28,10 +28,27 @@ function walk(dir, out = []) {
   return out;
 }
 
+function stripLegacyEzoic(html) {
+  let out = html;
+  const patterns = [
+    /\s*<script data-cfasync="false" src="https:\/\/cmp\.gatekeeperconsent\.com\/min\.js"><\/script>\s*/gi,
+    /\s*<script data-cfasync="false" src="https:\/\/the\.gatekeeperconsent\.com\/cmp\.min\.js"><\/script>\s*/gi,
+    /\s*<script async src="https:\/\/www\.ezojs\.com\/ezoic\/sa\.min\.js"><\/script>\s*/gi,
+    /\s*<script src="https:\/\/ezoicanalytics\.com\/analytics\.js"><\/script>\s*/gi,
+    /\s*<script>\s*window\.ezstandalone = window\.ezstandalone[\s\S]*?ezstandalone\.cmd = ezstandalone\.cmd[\s\S]*?<\/script>\s*/gi,
+    /\s*<script>\s*\(function \(\) \{\s*function loadAnalytics\(\)[\s\S]*?loadAnalytics[\s\S]*?\}\)\(\);\s*<\/script>\s*/gi,
+  ];
+  for (const re of patterns) {
+    out = out.replace(re, "\n");
+  }
+  return out;
+}
+
 function patch(html) {
-  if (html.includes(EZOIC_MARKER)) return null;
+  if (html.includes("SPEAKUR_AD_CONFIG")) return null;
   if (!/<head[^>]*>/i.test(html)) return null;
-  return html.replace(/<head([^>]*)>/i, `<head$1>\n${EZOIC_HEAD_SCRIPTS}`);
+  let next = html.includes("gatekeeperconsent.com") ? stripLegacyEzoic(html) : html;
+  return next.replace(/<head([^>]*)>/i, `<head$1>\n${EZOIC_HEAD_SCRIPTS}`);
 }
 
 function main() {
