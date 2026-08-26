@@ -77,15 +77,15 @@ function navHtml(home, { toolsOpen = false } = {}) {
   return `<a class="nav-home" href="${home}index.html">Home</a>
           <a href="${home}words/">Words</a>
           <a href="${home}guides.html">Guides</a>
-          <details class="nav-dropdown"${toolsOpen ? " open" : ""}>
+          <a href="${home}about.html">About</a>
+          <a href="${home}contact.html">Contact</a>
+          <details class="nav-dropdown nav-dropdown-tools"${toolsOpen ? " open" : ""}>
             <summary class="nav-pill"${toolsOpen ? ' aria-current="page"' : ""}>Tools</summary>
             <ul class="nav-dropdown-menu" role="list">
               <li><a href="${home}tools/"><strong>All tools</strong></a></li>
               ${items}
             </ul>
-          </details>
-          <a href="${home}about.html">About</a>
-          <a href="${home}contact.html">Contact</a>`;
+          </details>`;
 }
 
 function pageShell({

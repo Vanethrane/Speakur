@@ -48,6 +48,18 @@ header {
   letter-spacing: -0.02em;
 }
 nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.header-row > nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.header-row > nav .nav-dropdown {
+  order: 99;
+  margin-left: auto;
+}
 header .nav-home {
   text-decoration: none;
   padding: 0.25rem 0.65rem;
@@ -716,7 +728,8 @@ html.gs-open, body.gs-open { overflow: auto !important; }
   position: absolute;
   z-index: 50;
   top: calc(100% + 0.4rem);
-  left: 0;
+  left: auto;
+  right: 0;
   min-width: 15.5rem;
   max-width: min(20rem, calc(100vw - 2rem));
   margin: 0;

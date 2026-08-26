@@ -200,7 +200,9 @@ ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" /
           <a class="nav-home" href="${home}index.html">Home</a>
           <a href="${home}words/"${active === "words" ? ' aria-current="page"' : ""}>Words</a>
           <a href="${home}guides.html"${active === "guides" ? ' aria-current="page"' : ""}>Guides</a>
-          <details class="nav-dropdown"${active === "tools" ? " open" : ""}>
+          <a href="${home}about.html"${active === "about" ? ' aria-current="page"' : ""}>About</a>
+          <a href="${home}contact.html"${active === "contact" ? ' aria-current="page"' : ""}>Contact</a>
+          <details class="nav-dropdown nav-dropdown-tools"${active === "tools" ? " open" : ""}>
             <summary class="nav-pill"${active === "tools" ? ' aria-current="page"' : ""}>Tools</summary>
             <ul class="nav-dropdown-menu" role="list">
               <li><a href="${home}tools/"><strong>All tools</strong></a></li>
@@ -215,8 +217,6 @@ ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" /
               <li><a href="${home}tools/generator/">Pronunciation generator</a></li>
             </ul>
           </details>
-          <a href="${home}about.html"${active === "about" ? ' aria-current="page"' : ""}>About</a>
-          <a href="${home}contact.html"${active === "contact" ? ' aria-current="page"' : ""}>Contact</a>
         </nav>
       </div>
     </header>
