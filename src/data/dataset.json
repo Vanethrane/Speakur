@@ -55,20 +55,20 @@
       "tool": "Speakur pronunciation search",
       "stepTemplates": [
         {
-          "name": "Open the pronunciation page",
-          "text": "Open the Speakur page for “{{name}}” on {{url}}."
+          "name": "See the sounds",
+          "text": "Read the IPA / phonetic spelling for “{{name}}”{{phoneticSuffix}} so you know which sounds and stress to aim for."
         },
         {
-          "name": "Read the phonetic spelling",
-          "text": "Read the IPA / phonetic spelling shown for “{{name}}” so you know which sounds to aim for."
+          "name": "Hear US and UK",
+          "text": "Click the labeled US and UK Play buttons for “{{name}}”. Compare vowels and r-sounds when both accents are available."
         },
         {
-          "name": "Play the audio",
-          "text": "Click Play to hear free reference audio for “{{name}}” in the labeled accent."
+          "name": "Slow it down",
+          "text": "Play Slow for “{{name}}”, then shadow the word aloud{{syllableSuffix}}."
         },
         {
-          "name": "Repeat and practice",
-          "text": "Say “{{name}}” aloud, matching stress and vowels. Replay Slow if available until it feels natural."
+          "name": "Check yourself",
+          "text": "Say “{{name}}” from memory, then replay at normal speed until stress and vowels feel automatic."
         }
       ]
     },

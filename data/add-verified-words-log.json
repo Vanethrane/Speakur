@@ -1,0 +1,89 @@
+{
+  "at": "2026-08-26T18:45:44.484Z",
+  "added": 16,
+  "skipped": 21,
+  "limit": 150,
+  "seed": "google-20k.txt",
+  "addedRows": [
+    {
+      "word": "the",
+      "path": "/everyday/the/",
+      "syllables": 1
+    },
+    {
+      "word": "and",
+      "path": "/everyday/and/",
+      "syllables": 1
+    },
+    {
+      "word": "that",
+      "path": "/everyday/that/",
+      "syllables": 1
+    },
+    {
+      "word": "with",
+      "path": "/everyday/with/",
+      "syllables": 1
+    },
+    {
+      "word": "you",
+      "path": "/everyday/you/",
+      "syllables": 1
+    },
+    {
+      "word": "are",
+      "path": "/everyday/are/",
+      "syllables": 1
+    },
+    {
+      "word": "from",
+      "path": "/everyday/from/",
+      "syllables": 1
+    },
+    {
+      "word": "about",
+      "path": "/everyday/about/",
+      "syllables": 2
+    },
+    {
+      "word": "but",
+      "path": "/everyday/but/",
+      "syllables": 1
+    },
+    {
+      "word": "they",
+      "path": "/everyday/they/",
+      "syllables": 1
+    },
+    {
+      "word": "his",
+      "path": "/everyday/his/",
+      "syllables": 1
+    },
+    {
+      "word": "these",
+      "path": "/everyday/these/",
+      "syllables": 1
+    },
+    {
+      "word": "into",
+      "path": "/everyday/into/",
+      "syllables": 2
+    },
+    {
+      "word": "her",
+      "path": "/everyday/her/",
+      "syllables": 1
+    },
+    {
+      "word": "she",
+      "path": "/everyday/she/",
+      "syllables": 1
+    },
+    {
+      "word": "did",
+      "path": "/everyday/did/",
+      "syllables": 1
+    }
+  ]
+}

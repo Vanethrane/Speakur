@@ -110,8 +110,8 @@ export default function TermsPage() {
           <p>
             We may update these Terms by posting a new version. Continued use after changes
             constitutes acceptance. Questions:{" "}
-            <a className="text-voice-dark underline underline-offset-4" href="mailto:hello@speakur.com">
-              hello@speakur.com
+            <a className="text-voice-dark underline underline-offset-4" href="mailto:vanethrane@gmail.com">
+              vanethrane@gmail.com
             </a>{" "}
             or{" "}
             <Link href="/contact" className="text-voice-dark underline underline-offset-4">

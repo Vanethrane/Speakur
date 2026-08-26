@@ -9,7 +9,6 @@
     ezstandalone.cmd = ezstandalone.cmd || [];
   </script>
   <script src="https://ezoicanalytics.com/analytics.js"></script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Law pronunciations · Speakur</title>
@@ -113,6 +112,7 @@ body.fonts-ready h1 {
   contain: layout;
   width: 100%;
 }
+#speakur-global-search,#speakur-global-search-trigger,.gs-trigger{display:none!important}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -136,14 +136,25 @@ body.fonts-ready h1 {
         <a class="brand" href="../index.html">Speakur</a>
         <nav aria-label="Primary">
           <a class="nav-home" href="../index.html">Home</a>
-          <a href="../words/index.html" aria-current="page">Words</a>
+          <a href="../words/" aria-current="page">Words</a>
           <a href="../guides.html">Guides</a>
+          <details class="nav-dropdown">
+            <summary>Tools</summary>
+            <ul class="nav-dropdown-menu" role="list">
+              <li><a href="../tools/"><strong>All tools</strong></a></li>
+              <li><a href="../tools/generator/">Pronunciation generator</a></li>
+              <li><a href="../tools/ipa/">IPA</a></li>
+              <li><a href="../tools/audio/">Audio</a></li>
+              <li><a href="../tools/practice/">Practice</a></li>
+              <li><a href="../research/">Research / Data</a></li>
+            </ul>
+          </details>
           <a href="../about.html">About</a>
           <a href="../contact.html">Contact</a>
         </nav>
       </div>
     </header>
-    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:60px"></div>
+    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
     <main>
       <nav class="crumbs" aria-label="Breadcrumb">
         <a class="crumb-home" href="../index.html">Home</a>
@@ -155,7 +166,8 @@ body.fonts-ready h1 {
       <p class="eyebrow">Word directory</p>
       <h1>Law</h1>
       <p class="lede">Legal and courtroom vocabulary.</p>
-      <p class="note">1617 pages in this section. Each word has its own URL.</p>
+      <p class="note">1683 pages in this section. Each word has its own URL.</p>
+      
       <ul class="word-index"><li><a href="./a'court/"><span>a'court</span><span class="hint">/law/a'court/</span></a></li>
 <li><a href="./abailard/"><span>abailard</span><span class="hint">/law/abailard/</span></a></li>
 <li><a href="./abjudge/"><span>abjudge</span><span class="hint">/law/abjudge/</span></a></li>
@@ -177,6 +189,7 @@ body.fonts-ready h1 {
 <li><a href="./affidavit/"><span>affidavit</span><span class="hint">/law/affidavit/</span></a></li>
 <li><a href="./ajcongress/"><span>ajcongress</span><span class="hint">/law/ajcongress/</span></a></li>
 <li><a href="./ajudge/"><span>ajudge</span><span class="hint">/law/ajudge/</span></a></li>
+<li><a href="./ajury/"><span>ajury</span><span class="hint">/law/ajury/</span></a></li>
 <li><a href="./amendment/"><span>amendment</span><span class="hint">/law/amendment/</span></a></li>
 <li><a href="./amendments/"><span>amendments</span><span class="hint">/law/amendments/</span></a></li>
 <li><a href="./amicus/"><span>amicus</span><span class="hint">/law/amicus/</span></a></li>
@@ -188,6 +201,7 @@ body.fonts-ready h1 {
 <li><a href="./anticonstitutional/"><span>anticonstitutional</span><span class="hint">/law/anticonstitutional/</span></a></li>
 <li><a href="./anticourt/"><span>anticourt</span><span class="hint">/law/anticourt/</span></a></li>
 <li><a href="./anticourtier/"><span>anticourtier</span><span class="hint">/law/anticourtier/</span></a></li>
+<li><a href="./anticriminal/"><span>anticriminal</span><span class="hint">/law/anticriminal/</span></a></li>
 <li><a href="./antifelony/"><span>antifelony</span><span class="hint">/law/antifelony/</span></a></li>
 <li><a href="./antilegalist/"><span>antilegalist</span><span class="hint">/law/antilegalist/</span></a></li>
 <li><a href="./antiparliament/"><span>antiparliament</span><span class="hint">/law/antiparliament/</span></a></li>
@@ -222,6 +236,7 @@ body.fonts-ready h1 {
 <li><a href="./arrestin/"><span>arrestin</span><span class="hint">/law/arrestin/</span></a></li>
 <li><a href="./arresting/"><span>arresting</span><span class="hint">/law/arresting/</span></a></li>
 <li><a href="./arrestingly/"><span>arrestingly</span><span class="hint">/law/arrestingly/</span></a></li>
+<li><a href="./arrestins/"><span>arrestins</span><span class="hint">/law/arrestins/</span></a></li>
 <li><a href="./arrestive/"><span>arrestive</span><span class="hint">/law/arrestive/</span></a></li>
 <li><a href="./arrestment/"><span>arrestment</span><span class="hint">/law/arrestment/</span></a></li>
 <li><a href="./arresto/"><span>arresto</span><span class="hint">/law/arresto/</span></a></li>
@@ -241,6 +256,7 @@ body.fonts-ready h1 {
 <li><a href="./awarrant/"><span>awarrant</span><span class="hint">/law/awarrant/</span></a></li>
 <li><a href="./backcourt/"><span>backcourt</span><span class="hint">/law/backcourt/</span></a></li>
 <li><a href="./backcourtman/"><span>backcourtman</span><span class="hint">/law/backcourtman/</span></a></li>
+<li><a href="./bacourt/"><span>bacourt</span><span class="hint">/law/bacourt/</span></a></li>
 <li><a href="./bail/"><span>bail</span><span class="hint">/law/bail/</span></a></li>
 <li><a href="./baila/"><span>baila</span><span class="hint">/law/baila/</span></a></li>
 <li><a href="./bailable/"><span>bailable</span><span class="hint">/law/bailable/</span></a></li>
@@ -249,6 +265,7 @@ body.fonts-ready h1 {
 <li><a href="./bailan/"><span>bailan</span><span class="hint">/law/bailan/</span></a></li>
 <li><a href="./bailando/"><span>bailando</span><span class="hint">/law/bailando/</span></a></li>
 <li><a href="./bailar/"><span>bailar</span><span class="hint">/law/bailar/</span></a></li>
+<li><a href="./bailard/"><span>bailard</span><span class="hint">/law/bailard/</span></a></li>
 <li><a href="./baildon/"><span>baildon</span><span class="hint">/law/baildon/</span></a></li>
 <li><a href="./baile/"><span>baile</span><span class="hint">/law/baile/</span></a></li>
 <li><a href="./bailed/"><span>bailed</span><span class="hint">/law/bailed/</span></a></li>
@@ -274,6 +291,7 @@ body.fonts-ready h1 {
 <li><a href="./bailiffs/"><span>bailiffs</span><span class="hint">/law/bailiffs/</span></a></li>
 <li><a href="./bailiffship/"><span>bailiffship</span><span class="hint">/law/bailiffship/</span></a></li>
 <li><a href="./bailiffwick/"><span>bailiffwick</span><span class="hint">/law/bailiffwick/</span></a></li>
+<li><a href="./bailii/"><span>bailii</span><span class="hint">/law/bailii/</span></a></li>
 <li><a href="./bailin/"><span>bailin</span><span class="hint">/law/bailin/</span></a></li>
 <li><a href="./bailing/"><span>bailing</span><span class="hint">/law/bailing/</span></a></li>
 <li><a href="./bailiwick/"><span>bailiwick</span><span class="hint">/law/bailiwick/</span></a></li>
@@ -285,6 +303,7 @@ body.fonts-ready h1 {
 <li><a href="./baille/"><span>baille</span><span class="hint">/law/baille/</span></a></li>
 <li><a href="./baillet/"><span>baillet</span><span class="hint">/law/baillet/</span></a></li>
 <li><a href="./bailleul/"><span>bailleul</span><span class="hint">/law/bailleul/</span></a></li>
+<li><a href="./bailley/"><span>bailley</span><span class="hint">/law/bailley/</span></a></li>
 <li><a href="./bailli/"><span>bailli</span><span class="hint">/law/bailli/</span></a></li>
 <li><a href="./bailliage/"><span>bailliage</span><span class="hint">/law/bailliage/</span></a></li>
 <li><a href="./bailliages/"><span>bailliages</span><span class="hint">/law/bailliages/</span></a></li>
@@ -312,6 +331,7 @@ body.fonts-ready h1 {
 <li><a href="./bails/"><span>bails</span><span class="hint">/law/bails/</span></a></li>
 <li><a href="./bailsman/"><span>bailsman</span><span class="hint">/law/bailsman/</span></a></li>
 <li><a href="./bailsmen/"><span>bailsmen</span><span class="hint">/law/bailsmen/</span></a></li>
+<li><a href="./bailway/"><span>bailway</span><span class="hint">/law/bailway/</span></a></li>
 <li><a href="./bailwood/"><span>bailwood</span><span class="hint">/law/bailwood/</span></a></li>
 <li><a href="./baily/"><span>baily</span><span class="hint">/law/baily/</span></a></li>
 <li><a href="./bailyn/"><span>bailyn</span><span class="hint">/law/bailyn/</span></a></li>
@@ -346,6 +366,7 @@ body.fonts-ready h1 {
 <li><a href="./boathouses/"><span>boathouses</span><span class="hint">/law/boathouses/</span></a></li>
 <li><a href="./bourjaily/"><span>bourjaily</span><span class="hint">/law/bourjaily/</span></a></li>
 <li><a href="./breach/"><span>breach</span><span class="hint">/law/breach/</span></a></li>
+<li><a href="./brecourt/"><span>brecourt</span><span class="hint">/law/brecourt/</span></a></li>
 <li><a href="./bribery/"><span>bribery</span><span class="hint">/law/bribery/</span></a></li>
 <li><a href="./bullecourt/"><span>bullecourt</span><span class="hint">/law/bullecourt/</span></a></li>
 <li><a href="./bumbailiff/"><span>bumbailiff</span><span class="hint">/law/bumbailiff/</span></a></li>
@@ -367,12 +388,14 @@ body.fonts-ready h1 {
 <li><a href="./civilest/"><span>civilest</span><span class="hint">/law/civilest/</span></a></li>
 <li><a href="./civiletti/"><span>civiletti</span><span class="hint">/law/civiletti/</span></a></li>
 <li><a href="./civili/"><span>civili</span><span class="hint">/law/civili/</span></a></li>
+<li><a href="./civili-ation/"><span>civili-ation</span><span class="hint">/law/civili-ation/</span></a></li>
 <li><a href="./civilia/"><span>civilia</span><span class="hint">/law/civilia/</span></a></li>
 <li><a href="./civilian/"><span>civilian</span><span class="hint">/law/civilian/</span></a></li>
 <li><a href="./civilianization/"><span>civilianization</span><span class="hint">/law/civilianization/</span></a></li>
 <li><a href="./civilianize/"><span>civilianize</span><span class="hint">/law/civilianize/</span></a></li>
 <li><a href="./civilianized/"><span>civilianized</span><span class="hint">/law/civilianized/</span></a></li>
 <li><a href="./civilians/"><span>civilians</span><span class="hint">/law/civilians/</span></a></li>
+<li><a href="./civilibus/"><span>civilibus</span><span class="hint">/law/civilibus/</span></a></li>
 <li><a href="./civilis/"><span>civilis</span><span class="hint">/law/civilis/</span></a></li>
 <li><a href="./civilisable/"><span>civilisable</span><span class="hint">/law/civilisable/</span></a></li>
 <li><a href="./civilisation/"><span>civilisation</span><span class="hint">/law/civilisation/</span></a></li>
@@ -396,7 +419,9 @@ body.fonts-ready h1 {
 <li><a href="./civilizable/"><span>civilizable</span><span class="hint">/law/civilizable/</span></a></li>
 <li><a href="./civilizacao/"><span>civilizacao</span><span class="hint">/law/civilizacao/</span></a></li>
 <li><a href="./civilizacion/"><span>civilizacion</span><span class="hint">/law/civilizacion/</span></a></li>
+<li><a href="./civilizaciones/"><span>civilizaciones</span><span class="hint">/law/civilizaciones/</span></a></li>
 <li><a href="./civilizade/"><span>civilizade</span><span class="hint">/law/civilizade/</span></a></li>
+<li><a href="./civilizado/"><span>civilizado</span><span class="hint">/law/civilizado/</span></a></li>
 <li><a href="./civilization/"><span>civilization</span><span class="hint">/law/civilization/</span></a></li>
 <li><a href="./civilizational/"><span>civilizational</span><span class="hint">/law/civilizational/</span></a></li>
 <li><a href="./civilizationally/"><span>civilizationally</span><span class="hint">/law/civilizationally/</span></a></li>
@@ -411,6 +436,7 @@ body.fonts-ready h1 {
 <li><a href="./civilizes/"><span>civilizes</span><span class="hint">/law/civilizes/</span></a></li>
 <li><a href="./civilizing/"><span>civilizing</span><span class="hint">/law/civilizing/</span></a></li>
 <li><a href="./civill/"><span>civill</span><span class="hint">/law/civill/</span></a></li>
+<li><a href="./civille/"><span>civille</span><span class="hint">/law/civille/</span></a></li>
 <li><a href="./civilly/"><span>civilly</span><span class="hint">/law/civilly/</span></a></li>
 <li><a href="./civilmilitary/"><span>civilmilitary</span><span class="hint">/law/civilmilitary/</span></a></li>
 <li><a href="./civilness/"><span>civilness</span><span class="hint">/law/civilness/</span></a></li>
@@ -422,6 +448,7 @@ body.fonts-ready h1 {
 <li><a href="./civilwar/"><span>civilwar</span><span class="hint">/law/civilwar/</span></a></li>
 <li><a href="./clignancourt/"><span>clignancourt</span><span class="hint">/law/clignancourt/</span></a></li>
 <li><a href="./cloath/"><span>cloath</span><span class="hint">/law/cloath/</span></a></li>
+<li><a href="./cloath'd/"><span>cloath'd</span><span class="hint">/law/cloath'd/</span></a></li>
 <li><a href="./cloathed/"><span>cloathed</span><span class="hint">/law/cloathed/</span></a></li>
 <li><a href="./cloathes/"><span>cloathes</span><span class="hint">/law/cloathes/</span></a></li>
 <li><a href="./cloathing/"><span>cloathing</span><span class="hint">/law/cloathing/</span></a></li>
@@ -440,11 +467,13 @@ body.fonts-ready h1 {
 <li><a href="./congresses/"><span>congresses</span><span class="hint">/law/congresses/</span></a></li>
 <li><a href="./congressi/"><span>congressi</span><span class="hint">/law/congressi/</span></a></li>
 <li><a href="./congressing/"><span>congressing</span><span class="hint">/law/congressing/</span></a></li>
+<li><a href="./congression/"><span>congression</span><span class="hint">/law/congression/</span></a></li>
 <li><a href="./congressionalist/"><span>congressionalist</span><span class="hint">/law/congressionalist/</span></a></li>
 <li><a href="./congressionally/"><span>congressionally</span><span class="hint">/law/congressionally/</span></a></li>
 <li><a href="./congressionist/"><span>congressionist</span><span class="hint">/law/congressionist/</span></a></li>
 <li><a href="./congressism/"><span>congressism</span><span class="hint">/law/congressism/</span></a></li>
 <li><a href="./congressist/"><span>congressist</span><span class="hint">/law/congressist/</span></a></li>
+<li><a href="./congressite/"><span>congressite</span><span class="hint">/law/congressite/</span></a></li>
 <li><a href="./congressites/"><span>congressites</span><span class="hint">/law/congressites/</span></a></li>
 <li><a href="./congressive/"><span>congressive</span><span class="hint">/law/congressive/</span></a></li>
 <li><a href="./congressman/"><span>congressman</span><span class="hint">/law/congressman/</span></a></li>
@@ -478,6 +507,7 @@ body.fonts-ready h1 {
 <li><a href="./constitutionem/"><span>constitutionem</span><span class="hint">/law/constitutionem/</span></a></li>
 <li><a href="./constitutioner/"><span>constitutioner</span><span class="hint">/law/constitutioner/</span></a></li>
 <li><a href="./constitutiones/"><span>constitutiones</span><span class="hint">/law/constitutiones/</span></a></li>
+<li><a href="./constitutionibus/"><span>constitutionibus</span><span class="hint">/law/constitutionibus/</span></a></li>
 <li><a href="./constitutionist/"><span>constitutionist</span><span class="hint">/law/constitutionist/</span></a></li>
 <li><a href="./constitutionless/"><span>constitutionless</span><span class="hint">/law/constitutionless/</span></a></li>
 <li><a href="./constitutionmaking/"><span>constitutionmaking</span><span class="hint">/law/constitutionmaking/</span></a></li>
@@ -535,8 +565,10 @@ body.fonts-ready h1 {
 <li><a href="./courtby/"><span>courtby</span><span class="hint">/law/courtby/</span></a></li>
 <li><a href="./courtcraft/"><span>courtcraft</span><span class="hint">/law/courtcraft/</span></a></li>
 <li><a href="./courte/"><span>courte</span><span class="hint">/law/courte/</span></a></li>
+<li><a href="./courteau/"><span>courteau</span><span class="hint">/law/courteau/</span></a></li>
 <li><a href="./courted/"><span>courted</span><span class="hint">/law/courted/</span></a></li>
 <li><a href="./courteen/"><span>courteen</span><span class="hint">/law/courteen/</span></a></li>
+<li><a href="./courteille/"><span>courteille</span><span class="hint">/law/courteille/</span></a></li>
 <li><a href="./courteline/"><span>courteline</span><span class="hint">/law/courteline/</span></a></li>
 <li><a href="./courtemanche/"><span>courtemanche</span><span class="hint">/law/courtemanche/</span></a></li>
 <li><a href="./courten/"><span>courten</span><span class="hint">/law/courten/</span></a></li>
@@ -564,10 +596,12 @@ body.fonts-ready h1 {
 <li><a href="./courtezanry/"><span>courtezanry</span><span class="hint">/law/courtezanry/</span></a></li>
 <li><a href="./courtezans/"><span>courtezans</span><span class="hint">/law/courtezans/</span></a></li>
 <li><a href="./courtezanship/"><span>courtezanship</span><span class="hint">/law/courtezanship/</span></a></li>
+<li><a href="./courtfield/"><span>courtfield</span><span class="hint">/law/courtfield/</span></a></li>
 <li><a href="./courthion/"><span>courthion</span><span class="hint">/law/courthion/</span></a></li>
 <li><a href="./courthope/"><span>courthope</span><span class="hint">/law/courthope/</span></a></li>
 <li><a href="./courthouse/"><span>courthouse</span><span class="hint">/law/courthouse/</span></a></li>
 <li><a href="./courthouses/"><span>courthouses</span><span class="hint">/law/courthouses/</span></a></li>
+<li><a href="./courtial/"><span>courtial</span><span class="hint">/law/courtial/</span></a></li>
 <li><a href="./courtice/"><span>courtice</span><span class="hint">/law/courtice/</span></a></li>
 <li><a href="./courtier/"><span>courtier</span><span class="hint">/law/courtier/</span></a></li>
 <li><a href="./courtierism/"><span>courtierism</span><span class="hint">/law/courtierism/</span></a></li>
@@ -587,6 +621,7 @@ body.fonts-ready h1 {
 <li><a href="./courtivron/"><span>courtivron</span><span class="hint">/law/courtivron/</span></a></li>
 <li><a href="./courtland/"><span>courtland</span><span class="hint">/law/courtland/</span></a></li>
 <li><a href="./courtlandt/"><span>courtlandt</span><span class="hint">/law/courtlandt/</span></a></li>
+<li><a href="./courtleigh/"><span>courtleigh</span><span class="hint">/law/courtleigh/</span></a></li>
 <li><a href="./courtless/"><span>courtless</span><span class="hint">/law/courtless/</span></a></li>
 <li><a href="./courtlet/"><span>courtlet</span><span class="hint">/law/courtlet/</span></a></li>
 <li><a href="./courtlier/"><span>courtlier</span><span class="hint">/law/courtlier/</span></a></li>
@@ -599,8 +634,10 @@ body.fonts-ready h1 {
 <li><a href="./courtmartial/"><span>courtmartial</span><span class="hint">/law/courtmartial/</span></a></li>
 <li><a href="./courtmartialed/"><span>courtmartialed</span><span class="hint">/law/courtmartialed/</span></a></li>
 <li><a href="./courtmartialled/"><span>courtmartialled</span><span class="hint">/law/courtmartialled/</span></a></li>
+<li><a href="./courtnay/"><span>courtnay</span><span class="hint">/law/courtnay/</span></a></li>
 <li><a href="./courtneidge/"><span>courtneidge</span><span class="hint">/law/courtneidge/</span></a></li>
 <li><a href="./courtney/"><span>courtney</span><span class="hint">/law/courtney/</span></a></li>
+<li><a href="./courtneys/"><span>courtneys</span><span class="hint">/law/courtneys/</span></a></li>
 <li><a href="./courtnoll/"><span>courtnoll</span><span class="hint">/law/courtnoll/</span></a></li>
 <li><a href="./courtois/"><span>courtois</span><span class="hint">/law/courtois/</span></a></li>
 <li><a href="./courtoise/"><span>courtoise</span><span class="hint">/law/courtoise/</span></a></li>
@@ -614,6 +651,7 @@ body.fonts-ready h1 {
 <li><a href="./courtroom/"><span>courtroom</span><span class="hint">/law/courtroom/</span></a></li>
 <li><a href="./courtrooms/"><span>courtrooms</span><span class="hint">/law/courtrooms/</span></a></li>
 <li><a href="./courts/"><span>courts</span><span class="hint">/law/courts/</span></a></li>
+<li><a href="./courtsey/"><span>courtsey</span><span class="hint">/law/courtsey/</span></a></li>
 <li><a href="./courtship/"><span>courtship</span><span class="hint">/law/courtship/</span></a></li>
 <li><a href="./courtships/"><span>courtships</span><span class="hint">/law/courtships/</span></a></li>
 <li><a href="./courtside/"><span>courtside</span><span class="hint">/law/courtside/</span></a></li>
@@ -629,6 +667,7 @@ body.fonts-ready h1 {
 <li><a href="./criminales/"><span>criminales</span><span class="hint">/law/criminales/</span></a></li>
 <li><a href="./criminalese/"><span>criminalese</span><span class="hint">/law/criminalese/</span></a></li>
 <li><a href="./criminali/"><span>criminali</span><span class="hint">/law/criminali/</span></a></li>
+<li><a href="./criminalidad/"><span>criminalidad</span><span class="hint">/law/criminalidad/</span></a></li>
 <li><a href="./criminalis/"><span>criminalis</span><span class="hint">/law/criminalis/</span></a></li>
 <li><a href="./criminalisation/"><span>criminalisation</span><span class="hint">/law/criminalisation/</span></a></li>
 <li><a href="./criminalise/"><span>criminalise</span><span class="hint">/law/criminalise/</span></a></li>
@@ -662,6 +701,7 @@ body.fonts-ready h1 {
 <li><a href="./decivilize/"><span>decivilize</span><span class="hint">/law/decivilize/</span></a></li>
 <li><a href="./decourt/"><span>decourt</span><span class="hint">/law/decourt/</span></a></li>
 <li><a href="./decriminalisation/"><span>decriminalisation</span><span class="hint">/law/decriminalisation/</span></a></li>
+<li><a href="./decriminalised/"><span>decriminalised</span><span class="hint">/law/decriminalised/</span></a></li>
 <li><a href="./decriminalization/"><span>decriminalization</span><span class="hint">/law/decriminalization/</span></a></li>
 <li><a href="./decriminalize/"><span>decriminalize</span><span class="hint">/law/decriminalize/</span></a></li>
 <li><a href="./decriminalized/"><span>decriminalized</span><span class="hint">/law/decriminalized/</span></a></li>
@@ -679,6 +719,7 @@ body.fonts-ready h1 {
 <li><a href="./defenser/"><span>defenser</span><span class="hint">/law/defenser/</span></a></li>
 <li><a href="./defenserelated/"><span>defenserelated</span><span class="hint">/law/defenserelated/</span></a></li>
 <li><a href="./defenses/"><span>defenses</span><span class="hint">/law/defenses/</span></a></li>
+<li><a href="./defenseur/"><span>defenseur</span><span class="hint">/law/defenseur/</span></a></li>
 <li><a href="./delacourt/"><span>delacourt</span><span class="hint">/law/delacourt/</span></a></li>
 <li><a href="./delacourte/"><span>delacourte</span><span class="hint">/law/delacourte/</span></a></li>
 <li><a href="./delcourt/"><span>delcourt</span><span class="hint">/law/delcourt/</span></a></li>
@@ -726,6 +767,7 @@ body.fonts-ready h1 {
 <li><a href="./distortive/"><span>distortive</span><span class="hint">/law/distortive/</span></a></li>
 <li><a href="./distorts/"><span>distorts</span><span class="hint">/law/distorts/</span></a></li>
 <li><a href="./district/"><span>district</span><span class="hint">/law/district/</span></a></li>
+<li><a href="./dolcoath/"><span>dolcoath</span><span class="hint">/law/dolcoath/</span></a></li>
 <li><a href="./dovercourt/"><span>dovercourt</span><span class="hint">/law/dovercourt/</span></a></li>
 <li><a href="./downcourt/"><span>downcourt</span><span class="hint">/law/downcourt/</span></a></li>
 <li><a href="./drelincourt/"><span>drelincourt</span><span class="hint">/law/drelincourt/</span></a></li>
@@ -743,6 +785,7 @@ body.fonts-ready h1 {
 <li><a href="./evidenced/"><span>evidenced</span><span class="hint">/law/evidenced/</span></a></li>
 <li><a href="./evidences/"><span>evidences</span><span class="hint">/law/evidences/</span></a></li>
 <li><a href="./exhaustion/"><span>exhaustion</span><span class="hint">/law/exhaustion/</span></a></li>
+<li><a href="./exprisoners/"><span>exprisoners</span><span class="hint">/law/exprisoners/</span></a></li>
 <li><a href="./extort/"><span>extort</span><span class="hint">/law/extort/</span></a></li>
 <li><a href="./extorted/"><span>extorted</span><span class="hint">/law/extorted/</span></a></li>
 <li><a href="./extorter/"><span>extorter</span><span class="hint">/law/extorter/</span></a></li>
@@ -797,9 +840,11 @@ body.fonts-ready h1 {
 <li><a href="./goatherd/"><span>goatherd</span><span class="hint">/law/goatherd/</span></a></li>
 <li><a href="./goatherdess/"><span>goatherdess</span><span class="hint">/law/goatherdess/</span></a></li>
 <li><a href="./goatherds/"><span>goatherds</span><span class="hint">/law/goatherds/</span></a></li>
+<li><a href="./goathland/"><span>goathland</span><span class="hint">/law/goathland/</span></a></li>
 <li><a href="./gommecourt/"><span>gommecourt</span><span class="hint">/law/gommecourt/</span></a></li>
 <li><a href="./grandcourt/"><span>grandcourt</span><span class="hint">/law/grandcourt/</span></a></li>
 <li><a href="./habeas-corpus/"><span>habeas-corpus</span><span class="hint">/law/habeas-corpus/</span></a></li>
+<li><a href="./halfcourt/"><span>halfcourt</span><span class="hint">/law/halfcourt/</span></a></li>
 <li><a href="./harcourt/"><span>harcourt</span><span class="hint">/law/harcourt/</span></a></li>
 <li><a href="./harcourts/"><span>harcourts</span><span class="hint">/law/harcourts/</span></a></li>
 <li><a href="./haudricourt/"><span>haudricourt</span><span class="hint">/law/haudricourt/</span></a></li>
@@ -810,6 +855,7 @@ body.fonts-ready h1 {
 <li><a href="./honnecourt/"><span>honnecourt</span><span class="hint">/law/honnecourt/</span></a></li>
 <li><a href="./hypercivilized/"><span>hypercivilized</span><span class="hint">/law/hypercivilized/</span></a></li>
 <li><a href="./ilegal/"><span>ilegal</span><span class="hint">/law/ilegal/</span></a></li>
+<li><a href="./ilegales/"><span>ilegales</span><span class="hint">/law/ilegales/</span></a></li>
 <li><a href="./illegalargumentexception/"><span>illegalargumentexception</span><span class="hint">/law/illegalargumentexception/</span></a></li>
 <li><a href="./illegale/"><span>illegale</span><span class="hint">/law/illegale/</span></a></li>
 <li><a href="./illegalisation/"><span>illegalisation</span><span class="hint">/law/illegalisation/</span></a></li>
@@ -870,6 +916,7 @@ body.fonts-ready h1 {
 <li><a href="./intorting/"><span>intorting</span><span class="hint">/law/intorting/</span></a></li>
 <li><a href="./intortion/"><span>intortion</span><span class="hint">/law/intortion/</span></a></li>
 <li><a href="./intorts/"><span>intorts</span><span class="hint">/law/intorts/</span></a></li>
+<li><a href="./intortum/"><span>intortum</span><span class="hint">/law/intortum/</span></a></li>
 <li><a href="./intortus/"><span>intortus</span><span class="hint">/law/intortus/</span></a></li>
 <li><a href="./irreliability/"><span>irreliability</span><span class="hint">/law/irreliability/</span></a></li>
 <li><a href="./jail/"><span>jail</span><span class="hint">/law/jail/</span></a></li>
@@ -903,6 +950,7 @@ body.fonts-ready h1 {
 <li><a href="./jailward/"><span>jailward</span><span class="hint">/law/jailward/</span></a></li>
 <li><a href="./jailyard/"><span>jailyard</span><span class="hint">/law/jailyard/</span></a></li>
 <li><a href="./jaucourt/"><span>jaucourt</span><span class="hint">/law/jaucourt/</span></a></li>
+<li><a href="./journalconstitution/"><span>journalconstitution</span><span class="hint">/law/journalconstitution/</span></a></li>
 <li><a href="./jubail/"><span>jubail</span><span class="hint">/law/jubail/</span></a></li>
 <li><a href="./judge/"><span>judge</span><span class="hint">/law/judge/</span></a></li>
 <li><a href="./judgeable/"><span>judgeable</span><span class="hint">/law/judgeable/</span></a></li>
@@ -950,6 +998,7 @@ body.fonts-ready h1 {
 <li><a href="./justiceship/"><span>justiceship</span><span class="hint">/law/justiceship/</span></a></li>
 <li><a href="./justiceweed/"><span>justiceweed</span><span class="hint">/law/justiceweed/</span></a></li>
 <li><a href="./kingscourt/"><span>kingscourt</span><span class="hint">/law/kingscourt/</span></a></li>
+<li><a href="./kollegal/"><span>kollegal</span><span class="hint">/law/kollegal/</span></a></li>
 <li><a href="./la-civil/"><span>la-civil</span><span class="hint">/law/la-civil/</span></a></li>
 <li><a href="./larceny/"><span>larceny</span><span class="hint">/law/larceny/</span></a></li>
 <li><a href="./lawcourt/"><span>lawcourt</span><span class="hint">/law/lawcourt/</span></a></li>
@@ -979,6 +1028,8 @@ body.fonts-ready h1 {
 <li><a href="./legales/"><span>legales</span><span class="hint">/law/legales/</span></a></li>
 <li><a href="./legalese/"><span>legalese</span><span class="hint">/law/legalese/</span></a></li>
 <li><a href="./legaleses/"><span>legaleses</span><span class="hint">/law/legaleses/</span></a></li>
+<li><a href="./legali/"><span>legali</span><span class="hint">/law/legali/</span></a></li>
+<li><a href="./legalines/"><span>legalines</span><span class="hint">/law/legalines/</span></a></li>
 <li><a href="./legalis/"><span>legalis</span><span class="hint">/law/legalis/</span></a></li>
 <li><a href="./legalisation/"><span>legalisation</span><span class="hint">/law/legalisation/</span></a></li>
 <li><a href="./legalise/"><span>legalise</span><span class="hint">/law/legalise/</span></a></li>
@@ -1000,7 +1051,9 @@ body.fonts-ready h1 {
 <li><a href="./legalizes/"><span>legalizes</span><span class="hint">/law/legalizes/</span></a></li>
 <li><a href="./legalizing/"><span>legalizing</span><span class="hint">/law/legalizing/</span></a></li>
 <li><a href="./legall/"><span>legall</span><span class="hint">/law/legall/</span></a></li>
+<li><a href="./legallienne/"><span>legallienne</span><span class="hint">/law/legallienne/</span></a></li>
 <li><a href="./legally/"><span>legally</span><span class="hint">/law/legally/</span></a></li>
+<li><a href="./legalmente/"><span>legalmente</span><span class="hint">/law/legalmente/</span></a></li>
 <li><a href="./legalness/"><span>legalness</span><span class="hint">/law/legalness/</span></a></li>
 <li><a href="./legals/"><span>legals</span><span class="hint">/law/legals/</span></a></li>
 <li><a href="./legislate/"><span>legislate</span><span class="hint">/law/legislate/</span></a></li>
@@ -1017,6 +1070,7 @@ body.fonts-ready h1 {
 <li><a href="./legislatives/"><span>legislatives</span><span class="hint">/law/legislatives/</span></a></li>
 <li><a href="./legislativo/"><span>legislativo</span><span class="hint">/law/legislativo/</span></a></li>
 <li><a href="./legislator/"><span>legislator</span><span class="hint">/law/legislator/</span></a></li>
+<li><a href="./legislatore/"><span>legislatore</span><span class="hint">/law/legislatore/</span></a></li>
 <li><a href="./legislatorial/"><span>legislatorial</span><span class="hint">/law/legislatorial/</span></a></li>
 <li><a href="./legislatorially/"><span>legislatorially</span><span class="hint">/law/legislatorially/</span></a></li>
 <li><a href="./legislators/"><span>legislators</span><span class="hint">/law/legislators/</span></a></li>
@@ -1120,6 +1174,7 @@ body.fonts-ready h1 {
 <li><a href="./nonjudgemental/"><span>nonjudgemental</span><span class="hint">/law/nonjudgemental/</span></a></li>
 <li><a href="./nonjudicial/"><span>nonjudicial</span><span class="hint">/law/nonjudicial/</span></a></li>
 <li><a href="./nonjudicially/"><span>nonjudicially</span><span class="hint">/law/nonjudicially/</span></a></li>
+<li><a href="./nonjurisdictional/"><span>nonjurisdictional</span><span class="hint">/law/nonjurisdictional/</span></a></li>
 <li><a href="./nonjury/"><span>nonjury</span><span class="hint">/law/nonjury/</span></a></li>
 <li><a href="./nonjurying/"><span>nonjurying</span><span class="hint">/law/nonjurying/</span></a></li>
 <li><a href="./nonlawyer/"><span>nonlawyer</span><span class="hint">/law/nonlawyer/</span></a></li>
@@ -1132,6 +1187,7 @@ body.fonts-ready h1 {
 <li><a href="./nonparliamentary/"><span>nonparliamentary</span><span class="hint">/law/nonparliamentary/</span></a></li>
 <li><a href="./nonperjury/"><span>nonperjury</span><span class="hint">/law/nonperjury/</span></a></li>
 <li><a href="./nonpliability/"><span>nonpliability</span><span class="hint">/law/nonpliability/</span></a></li>
+<li><a href="./nonpolice/"><span>nonpolice</span><span class="hint">/law/nonpolice/</span></a></li>
 <li><a href="./nonprejudicial/"><span>nonprejudicial</span><span class="hint">/law/nonprejudicial/</span></a></li>
 <li><a href="./nonprejudicially/"><span>nonprejudicially</span><span class="hint">/law/nonprejudicially/</span></a></li>
 <li><a href="./nonprobation/"><span>nonprobation</span><span class="hint">/law/nonprobation/</span></a></li>
@@ -1152,11 +1208,14 @@ body.fonts-ready h1 {
 <li><a href="./oathful/"><span>oathful</span><span class="hint">/law/oathful/</span></a></li>
 <li><a href="./oathing/"><span>oathing</span><span class="hint">/law/oathing/</span></a></li>
 <li><a href="./oaths/"><span>oaths</span><span class="hint">/law/oaths/</span></a></li>
+<li><a href="./oathtaking/"><span>oathtaking</span><span class="hint">/law/oathtaking/</span></a></li>
 <li><a href="./oathworthy/"><span>oathworthy</span><span class="hint">/law/oathworthy/</span></a></li>
 <li><a href="./ofattorney/"><span>ofattorney</span><span class="hint">/law/ofattorney/</span></a></li>
 <li><a href="./ofcourt/"><span>ofcourt</span><span class="hint">/law/ofcourt/</span></a></li>
 <li><a href="./offer/"><span>offer</span><span class="hint">/law/offer/</span></a></li>
+<li><a href="./ofjudicial/"><span>ofjudicial</span><span class="hint">/law/ofjudicial/</span></a></li>
 <li><a href="./ofjustice/"><span>ofjustice</span><span class="hint">/law/ofjustice/</span></a></li>
+<li><a href="./oflegal/"><span>oflegal</span><span class="hint">/law/oflegal/</span></a></li>
 <li><a href="./onesentence/"><span>onesentence</span><span class="hint">/law/onesentence/</span></a></li>
 <li><a href="./ordinance/"><span>ordinance</span><span class="hint">/law/ordinance/</span></a></li>
 <li><a href="./outcourt/"><span>outcourt</span><span class="hint">/law/outcourt/</span></a></li>
@@ -1197,7 +1256,9 @@ body.fonts-ready h1 {
 <li><a href="./parliamenteer/"><span>parliamenteer</span><span class="hint">/law/parliamenteer/</span></a></li>
 <li><a href="./parliamenteering/"><span>parliamenteering</span><span class="hint">/law/parliamenteering/</span></a></li>
 <li><a href="./parliamenter/"><span>parliamenter</span><span class="hint">/law/parliamenter/</span></a></li>
+<li><a href="./parliamenti/"><span>parliamenti</span><span class="hint">/law/parliamenti/</span></a></li>
 <li><a href="./parliamento/"><span>parliamento</span><span class="hint">/law/parliamento/</span></a></li>
+<li><a href="./parliamentry/"><span>parliamentry</span><span class="hint">/law/parliamentry/</span></a></li>
 <li><a href="./parliaments/"><span>parliaments</span><span class="hint">/law/parliaments/</span></a></li>
 <li><a href="./parliamentum/"><span>parliamentum</span><span class="hint">/law/parliamentum/</span></a></li>
 <li><a href="./parole/"><span>parole</span><span class="hint">/law/parole/</span></a></li>
@@ -1218,6 +1279,7 @@ body.fonts-ready h1 {
 <li><a href="./plea/"><span>plea</span><span class="hint">/law/plea/</span></a></li>
 <li><a href="./pliability/"><span>pliability</span><span class="hint">/law/pliability/</span></a></li>
 <li><a href="./plicatocontorted/"><span>plicatocontorted</span><span class="hint">/law/plicatocontorted/</span></a></li>
+<li><a href="./policecommunity/"><span>policecommunity</span><span class="hint">/law/policecommunity/</span></a></li>
 <li><a href="./policed/"><span>policed</span><span class="hint">/law/policed/</span></a></li>
 <li><a href="./policedom/"><span>policedom</span><span class="hint">/law/policedom/</span></a></li>
 <li><a href="./policeless/"><span>policeless</span><span class="hint">/law/policeless/</span></a></li>
@@ -1229,6 +1291,7 @@ body.fonts-ready h1 {
 <li><a href="./policemen/"><span>policemen</span><span class="hint">/law/policemen/</span></a></li>
 <li><a href="./policer/"><span>policer</span><span class="hint">/law/policer/</span></a></li>
 <li><a href="./polices/"><span>polices</span><span class="hint">/law/polices/</span></a></li>
+<li><a href="./policestation/"><span>policestation</span><span class="hint">/law/policestation/</span></a></li>
 <li><a href="./policewoman/"><span>policewoman</span><span class="hint">/law/policewoman/</span></a></li>
 <li><a href="./policewomen/"><span>policewomen</span><span class="hint">/law/policewomen/</span></a></li>
 <li><a href="./policework/"><span>policework</span><span class="hint">/law/policework/</span></a></li>
@@ -1246,6 +1309,7 @@ body.fonts-ready h1 {
 <li><a href="./precivilization/"><span>precivilization</span><span class="hint">/law/precivilization/</span></a></li>
 <li><a href="./precivilized/"><span>precivilized</span><span class="hint">/law/precivilized/</span></a></li>
 <li><a href="./precongressional/"><span>precongressional</span><span class="hint">/law/precongressional/</span></a></li>
+<li><a href="./preconstitutional/"><span>preconstitutional</span><span class="hint">/law/preconstitutional/</span></a></li>
 <li><a href="./predefense/"><span>predefense</span><span class="hint">/law/predefense/</span></a></li>
 <li><a href="./predistortion/"><span>predistortion</span><span class="hint">/law/predistortion/</span></a></li>
 <li><a href="./preevidence/"><span>preevidence</span><span class="hint">/law/preevidence/</span></a></li>
@@ -1286,6 +1350,7 @@ body.fonts-ready h1 {
 <li><a href="./prisoner/"><span>prisoner</span><span class="hint">/law/prisoner/</span></a></li>
 <li><a href="./prisonerof/"><span>prisonerof</span><span class="hint">/law/prisonerof/</span></a></li>
 <li><a href="./prisoners/"><span>prisoners</span><span class="hint">/law/prisoners/</span></a></li>
+<li><a href="./prisonersof/"><span>prisonersof</span><span class="hint">/law/prisonersof/</span></a></li>
 <li><a href="./prisonful/"><span>prisonful</span><span class="hint">/law/prisonful/</span></a></li>
 <li><a href="./prisonhouse/"><span>prisonhouse</span><span class="hint">/law/prisonhouse/</span></a></li>
 <li><a href="./prisoning/"><span>prisoning</span><span class="hint">/law/prisoning/</span></a></li>
@@ -1305,6 +1370,7 @@ body.fonts-ready h1 {
 <li><a href="./probational/"><span>probational</span><span class="hint">/law/probational/</span></a></li>
 <li><a href="./probationally/"><span>probationally</span><span class="hint">/law/probationally/</span></a></li>
 <li><a href="./probationary/"><span>probationary</span><span class="hint">/law/probationary/</span></a></li>
+<li><a href="./probationem/"><span>probationem</span><span class="hint">/law/probationem/</span></a></li>
 <li><a href="./probationer/"><span>probationer</span><span class="hint">/law/probationer/</span></a></li>
 <li><a href="./probationerhood/"><span>probationerhood</span><span class="hint">/law/probationerhood/</span></a></li>
 <li><a href="./probationers/"><span>probationers</span><span class="hint">/law/probationers/</span></a></li>
@@ -1349,6 +1415,7 @@ body.fonts-ready h1 {
 <li><a href="./reconciliability/"><span>reconciliability</span><span class="hint">/law/reconciliability/</span></a></li>
 <li><a href="./reconstitution/"><span>reconstitution</span><span class="hint">/law/reconstitution/</span></a></li>
 <li><a href="./reconstitutions/"><span>reconstitutions</span><span class="hint">/law/reconstitutions/</span></a></li>
+<li><a href="./recourt/"><span>recourt</span><span class="hint">/law/recourt/</span></a></li>
 <li><a href="./reevidence/"><span>reevidence</span><span class="hint">/law/reevidence/</span></a></li>
 <li><a href="./reevidenced/"><span>reevidenced</span><span class="hint">/law/reevidenced/</span></a></li>
 <li><a href="./regulation/"><span>regulation</span><span class="hint">/law/regulation/</span></a></li>
@@ -1406,6 +1473,7 @@ body.fonts-ready h1 {
 <li><a href="./semilegal/"><span>semilegal</span><span class="hint">/law/semilegal/</span></a></li>
 <li><a href="./semilegislative/"><span>semilegislative</span><span class="hint">/law/semilegislative/</span></a></li>
 <li><a href="./senates/"><span>senates</span><span class="hint">/law/senates/</span></a></li>
+<li><a href="./senateur/"><span>senateur</span><span class="hint">/law/senateur/</span></a></li>
 <li><a href="./sencourt/"><span>sencourt</span><span class="hint">/law/sencourt/</span></a></li>
 <li><a href="./sentence/"><span>sentence</span><span class="hint">/law/sentence/</span></a></li>
 <li><a href="./sentenced/"><span>sentenced</span><span class="hint">/law/sentenced/</span></a></li>
@@ -1436,10 +1504,13 @@ body.fonts-ready h1 {
 <li><a href="./statuten/"><span>statuten</span><span class="hint">/law/statuten/</span></a></li>
 <li><a href="./statutes/"><span>statutes</span><span class="hint">/law/statutes/</span></a></li>
 <li><a href="./stort/"><span>stort</span><span class="hint">/law/stort/</span></a></li>
+<li><a href="./storta/"><span>storta</span><span class="hint">/law/storta/</span></a></li>
 <li><a href="./stortford/"><span>stortford</span><span class="hint">/law/stortford/</span></a></li>
 <li><a href="./storthing/"><span>storthing</span><span class="hint">/law/storthing/</span></a></li>
 <li><a href="./storti/"><span>storti</span><span class="hint">/law/storti/</span></a></li>
 <li><a href="./storting/"><span>storting</span><span class="hint">/law/storting/</span></a></li>
+<li><a href="./stortinget/"><span>stortinget</span><span class="hint">/law/stortinget/</span></a></li>
+<li><a href="./stortz/"><span>stortz</span><span class="hint">/law/stortz/</span></a></li>
 <li><a href="./subapprobation/"><span>subapprobation</span><span class="hint">/law/subapprobation/</span></a></li>
 <li><a href="./subattorney/"><span>subattorney</span><span class="hint">/law/subattorney/</span></a></li>
 <li><a href="./subattorneys/"><span>subattorneys</span><span class="hint">/law/subattorneys/</span></a></li>
@@ -1491,6 +1562,7 @@ body.fonts-ready h1 {
 <li><a href="./thejury/"><span>thejury</span><span class="hint">/law/thejury/</span></a></li>
 <li><a href="./thioarsenate/"><span>thioarsenate</span><span class="hint">/law/thioarsenate/</span></a></li>
 <li><a href="./threejudge/"><span>threejudge</span><span class="hint">/law/threejudge/</span></a></li>
+<li><a href="./tojudge/"><span>tojudge</span><span class="hint">/law/tojudge/</span></a></li>
 <li><a href="./tort/"><span>tort</span><span class="hint">/law/tort/</span></a></li>
 <li><a href="./torta/"><span>torta</span><span class="hint">/law/torta/</span></a></li>
 <li><a href="./tortas/"><span>tortas</span><span class="hint">/law/tortas/</span></a></li>
@@ -1504,7 +1576,9 @@ body.fonts-ready h1 {
 <li><a href="./tortella/"><span>tortella</span><span class="hint">/law/tortella/</span></a></li>
 <li><a href="./tortelli/"><span>tortelli</span><span class="hint">/law/tortelli/</span></a></li>
 <li><a href="./torten/"><span>torten</span><span class="hint">/law/torten/</span></a></li>
+<li><a href="./tortenelmi/"><span>tortenelmi</span><span class="hint">/law/tortenelmi/</span></a></li>
 <li><a href="./tortenete/"><span>tortenete</span><span class="hint">/law/tortenete/</span></a></li>
+<li><a href="./torteneti/"><span>torteneti</span><span class="hint">/law/torteneti/</span></a></li>
 <li><a href="./tortes/"><span>tortes</span><span class="hint">/law/tortes/</span></a></li>
 <li><a href="./tortfeasor/"><span>tortfeasor</span><span class="hint">/law/tortfeasor/</span></a></li>
 <li><a href="./tortfeasors/"><span>tortfeasors</span><span class="hint">/law/tortfeasors/</span></a></li>
@@ -1555,6 +1629,7 @@ body.fonts-ready h1 {
 <li><a href="./tortrixes/"><span>tortrixes</span><span class="hint">/law/tortrixes/</span></a></li>
 <li><a href="./torts/"><span>torts</span><span class="hint">/law/torts/</span></a></li>
 <li><a href="./tortsov/"><span>tortsov</span><span class="hint">/law/tortsov/</span></a></li>
+<li><a href="./tortu/"><span>tortu</span><span class="hint">/law/tortu/</span></a></li>
 <li><a href="./tortue/"><span>tortue</span><span class="hint">/law/tortue/</span></a></li>
 <li><a href="./tortuga/"><span>tortuga</span><span class="hint">/law/tortuga/</span></a></li>
 <li><a href="./tortugas/"><span>tortugas</span><span class="hint">/law/tortugas/</span></a></li>
@@ -1570,6 +1645,7 @@ body.fonts-ready h1 {
 <li><a href="./tortuous/"><span>tortuous</span><span class="hint">/law/tortuous/</span></a></li>
 <li><a href="./tortuously/"><span>tortuously</span><span class="hint">/law/tortuously/</span></a></li>
 <li><a href="./tortuousness/"><span>tortuousness</span><span class="hint">/law/tortuousness/</span></a></li>
+<li><a href="./tortur'd/"><span>tortur'd</span><span class="hint">/law/tortur'd/</span></a></li>
 <li><a href="./tortura/"><span>tortura</span><span class="hint">/law/tortura/</span></a></li>
 <li><a href="./torturable/"><span>torturable</span><span class="hint">/law/torturable/</span></a></li>
 <li><a href="./torturableness/"><span>torturableness</span><span class="hint">/law/torturableness/</span></a></li>
@@ -1735,6 +1811,7 @@ body.fonts-ready h1 {
 <li><a href="./valancourt/"><span>valancourt</span><span class="hint">/law/valancourt/</span></a></li>
 <li><a href="./valcourt/"><span>valcourt</span><span class="hint">/law/valcourt/</span></a></li>
 <li><a href="./venue/"><span>venue</span><span class="hint">/law/venue/</span></a></li>
+<li><a href="./verdcourt/"><span>verdcourt</span><span class="hint">/law/verdcourt/</span></a></li>
 <li><a href="./verdict/"><span>verdict</span><span class="hint">/law/verdict/</span></a></li>
 <li><a href="./verdicts/"><span>verdicts</span><span class="hint">/law/verdicts/</span></a></li>
 <li><a href="./versenate/"><span>versenate</span><span class="hint">/law/versenate/</span></a></li>
@@ -1771,8 +1848,39 @@ body.fonts-ready h1 {
 <li><a href="./witnesseth/"><span>witnesseth</span><span class="hint">/law/witnesseth/</span></a></li>
 <li><a href="./witnessing/"><span>witnessing</span><span class="hint">/law/witnessing/</span></a></li>
 <li><a href="./woodcourt/"><span>woodcourt</span><span class="hint">/law/woodcourt/</span></a></li>
+<li><a href="./www-harcourtbooks-com/"><span>www-harcourtbooks-com</span><span class="hint">/law/www-harcourtbooks-com/</span></a></li>
 <li><a href="./www-harcourtschool-com/"><span>www-harcourtschool-com</span><span class="hint">/law/www-harcourtschool-com/</span></a></li>
 <li><a href="./zerstort/"><span>zerstort</span><span class="hint">/law/zerstort/</span></a></li></ul>
+      <section class="explore-more" data-crosslinks="1">
+        <h2>Explore more on Speakur</h2>
+        <div class="explore-grid">
+          <div>
+            <h3>Tools</h3>
+            <ul>
+              <li><a href="../tools/">Practice tools hub</a></li>
+              <li><a href="../tools/ipa/">IPA cheat sheet</a></li>
+              <li><a href="../tools/minimal-pairs/">Minimal-pair trainer</a></li>
+              <li><a href="../index.html">Pronunciation search</a></li>
+              <li><a href="../words/">Word directories</a></li>
+              <li><a href="../guides.html">All guides</a></li>
+            </ul>
+          </div>
+          <div><h3>Related guides</h3><ul><li><a href="../guide.html?slug=commonly-mispronounced-english-words">Commonly mispronounced words</a></li><li><a href="../guide.html?slug=how-to-read-ipa-phonetic-symbols">How to read IPA</a></li></ul></div>
+          <div>
+            <h3>Trust</h3>
+            <ul>
+              <li><a href="../methodology.html">Methodology &amp; sources</a></li>
+              <li><a href="../editorial-policy.html">Editorial policy</a></li>
+              <li><a href="../correction-policy.html">Correction policy</a></li>
+              <li><a href="../authors/speakur-editorial.html">Authors</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Other directories</h3>
+            <ul><li><a href="../food/">food</a></li><li><a href="../places/">places</a></li><li><a href="../names/">names</a></li><li><a href="../brands/">brands</a></li><li><a href="../medical/">medical</a></li><li><a href="../animals/">animals</a></li></ul>
+          </div>
+        </div>
+      </section>
     </main>
 
     <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
@@ -1780,30 +1888,36 @@ body.fonts-ready h1 {
       <div class="footer-grid">
         <div>
           <div class="footer-brand">Speakur</div>
-          <p class="footer-copy">Real pages for real words — organized by topic.</p>
+          <p class="footer-copy">Free pronunciation help for learners, creators, and professionals who need to say English words clearly and correctly.</p>
         </div>
         <div>
           <h3>Product</h3>
           <ul>
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html">Pronunciation search</a></li>
             <li><a href="../words/index.html">Word directories</a></li>
+            <li><a href="../tools/">Tools</a></li>
             <li><a href="../guides.html">Editorial guides</a></li>
+            <li><a href="../research/">Research / Data</a></li>
+            <li><a href="../donate.html">Donate</a></li>
           </ul>
         </div>
         <div>
           <h3>Trust &amp; legal</h3>
           <ul>
             <li><a href="../about.html">About Us</a></li>
+            <li><a href="../methodology.html">Methodology &amp; sources</a></li>
+            <li><a href="../editorial-policy.html">Editorial policy</a></li>
+            <li><a href="../correction-policy.html">Correction policy</a></li>
+            <li><a href="../authors/speakur-editorial.html">Authors</a></li>
             <li><a href="../contact.html">Contact</a></li>
             <li><a href="../privacy.html">Privacy Policy</a></li>
             <li><a href="../terms.html">Terms of Service</a></li>
           </ul>
         </div>
       </div>
-      <p class="legal">© <span data-year></span> Speakur. <a href="../index.html">Home</a></p>
+      <p class="legal">© <span data-year></span> Speakur. <a href="../index.html">Home</a> · <a href="../tools/">Tools</a> · <a href="../words/">Words</a> · <a href="../guides.html">Guides</a></p>
     </footer>
   </div>
-  <script defer src="../assets/global-search-modal.js"></script>
   <script defer src="../assets/site.js"></script>
   <script defer src="../assets/pwa-install.js"></script>
 </body>

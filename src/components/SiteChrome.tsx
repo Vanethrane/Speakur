@@ -3,13 +3,18 @@ import { uniqueSeedWords } from "@/lib/words";
 import { AdSlot } from "@/components/ads";
 import { HistoryProvider } from "@/components/HistoryDrawer";
 import { StableSlot } from "@/components/StableSlot";
+import { ToolsNavDropdown } from "@/components/ToolsNavDropdown";
 
 export const HARD_WORDS = uniqueSeedWords().slice(0, 8);
 
-const NAV = [
-  { href: "/guides", label: "Guides" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+const FOOTER_PRODUCT = [
+  { href: "/", label: "Pronunciation search" },
+  { href: "/tools", label: "Practice tools" },
+  { href: "/words", label: "Word directories" },
+  { href: "/guides", label: "Editorial guides" },
+  { href: "/donate", label: "Donate" },
+  { href: "/guides/how-to-read-ipa-phonetic-symbols", label: "IPA guide" },
+  { href: "/guides/commonly-mispronounced-english-words", label: "Tricky words" },
 ] as const;
 
 const FOOTER_TRUST = [
@@ -19,10 +24,11 @@ const FOOTER_TRUST = [
   { href: "/terms", label: "Terms of Service" },
 ] as const;
 
-const FOOTER_PRODUCT = [
-  { href: "/", label: "Pronunciation search" },
-  { href: "/guides", label: "Editorial guides" },
-  { href: "/w/epitome", label: "Example: epitome" },
+const NAV = [
+  { href: "/words", label: "Words" },
+  { href: "/guides", label: "Guides" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
@@ -33,7 +39,13 @@ export function SiteHeader() {
           Speakur
         </Link>
         <nav aria-label="Primary" className="flex flex-wrap items-center gap-4 text-sm text-ink-muted">
-          {NAV.map((item) => (
+          {NAV.slice(0, 2).map((item) => (
+            <Link key={item.href} href={item.href} className="hover:text-voice-dark">
+              {item.label}
+            </Link>
+          ))}
+          <ToolsNavDropdown />
+          {NAV.slice(2).map((item) => (
             <Link key={item.href} href={item.href} className="hover:text-voice-dark">
               {item.label}
             </Link>

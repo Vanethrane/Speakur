@@ -12,7 +12,16 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Page not found · Speakur</title>
+    <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0d6e66" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Speakur" />
+<title>Page not found · Speakur</title>
   <style>
 :root{--ink:#1c1712;--ink-muted:#5c5348;--paper:#f6f1e8;--paper-raised:#fffaf3;--paper-line:#e4d9c8;--voice:#0d6e66;--ad-banner-h:60px;--ad-inline-h:90px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -42,12 +51,26 @@ h1{margin:1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.2rem,6vw,3.2rem);
       <div class="header-row">
         <a class="brand" href="/index.html">Speakur</a>
         <nav aria-label="Primary">
-        <a class="nav-home" href="/index.html">Home</a>
-        <a href="/words/">Words</a>
-        <a href="/guides.html">Guides</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-      </nav>
+          <a class="nav-home" href="/index.html">Home</a>
+          <a href="/words/">Words</a>
+          <a href="/guides.html">Guides</a>
+          <details class="nav-dropdown">
+            <summary class="nav-pill">Tools</summary>
+            <ul class="nav-dropdown-menu" role="list">
+              <li><a href="/tools/"><strong>All tools</strong></a></li>
+              <li><a href="/tools/ipa/">IPA cheat sheet</a></li>
+              <li><a href="/tools/minimal-pairs/">Minimal-pair trainer</a></li>
+              <li><a href="/tools/homophones/">Homophone check</a></li>
+              <li><a href="/tools/danger-list/">Danger-list deck</a></li>
+              <li><a href="/tools/us-uk/">US ↔ UK switcher</a></li>
+              <li><a href="/tools/syllable-stress/">Syllable &amp; stress highlighter</a></li>
+              <li><a href="/tools/name-coach/">Name coach</a></li>
+              <li><a href="/tools/warm-up/">Speaking warm-up</a></li>
+            </ul>
+          </details>
+          <a href="/about.html">About</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
       </div>
       <form id="speakur-header-form" class="header-search" role="search" autocomplete="off">
         <label class="sr-only" for="speakur-header-q">Search guides, tools, and words</label>
@@ -72,10 +95,11 @@ h1{margin:1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.2rem,6vw,3.2rem);
     </footer>
   </div>
   <script defer src="/assets/search-index.js"></script>
+  <script defer src="/assets/word-lookup.js"></script>
   <script defer src="/assets/header-search.js"></script>
   <script defer src="/assets/site.js"></script>
-  <script defer src="/assets/word-index.js"></script>
   <script defer src="/assets/on-demand-word.js"></script>
   <script defer src="/assets/404-resolve.js"></script>
+  <script defer src="/assets/pwa-install.js"></script>
 </body>
 </html>

@@ -30,8 +30,11 @@ export const metadata: Metadata = {
     "Free English pronunciation search: hear US and UK audio, read IPA and definitions, and learn to say difficult words with confidence.",
   manifest: "/manifest.json",
   icons: {
-    icon: [{ url: "/assets/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/assets/icon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/assets/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   appleWebApp: {
     capable: true,

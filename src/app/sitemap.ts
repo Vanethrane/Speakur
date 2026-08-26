@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const chunks = sitemapChunkCount();
 
-  const staticRoutes = ["", "/guides", "/about", "/contact", "/privacy", "/terms"];
+  const staticRoutes = ["", "/guides", "/about", "/contact", "/donate", "/privacy", "/terms"];
 
   const entries: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
     url: `${base}${path || "/"}`,

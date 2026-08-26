@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { GuideParagraph } from "@/components/GuideParagraph";
 import { GuidePrimaryTool } from "@/components/GuidePrimaryTool";
 import { HeadMetadata } from "@/components/HeadMetadata";
 import { RelatedToolsConversions } from "@/components/RelatedToolsConversions";
@@ -91,16 +92,38 @@ export default async function GuideSlugPage({ params }: PageProps) {
           </p>
         </header>
 
+        {guide.synopsis?.length ? (
+          <aside className="mt-8 rounded-2xl border border-paper-line bg-paper-raised p-5">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-voice">Synopsis</p>
+            <div className="mt-3 space-y-3 text-base leading-relaxed text-ink">
+              {guide.synopsis.map((paragraph) => (
+                <GuideParagraph key={paragraph.slice(0, 40)} text={paragraph} />
+              ))}
+            </div>
+          </aside>
+        ) : null}
+
         <Prose>
           {guide.sections.map((section) => (
             <section key={section.heading}>
               <h2>{section.heading}</h2>
               {section.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                <GuideParagraph key={paragraph.slice(0, 48)} text={paragraph} />
               ))}
             </section>
           ))}
         </Prose>
+
+        {guide.tldr?.length ? (
+          <aside className="mt-10 rounded-2xl border border-voice/25 bg-voice-glow/40 p-5">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-voice-dark">TL;DR</p>
+            <div className="mt-3 space-y-3 text-base leading-relaxed text-ink">
+              {guide.tldr.map((paragraph) => (
+                <GuideParagraph key={paragraph.slice(0, 40)} text={paragraph} />
+              ))}
+            </div>
+          </aside>
+        ) : null}
 
         <RelatedToolsConversions slug={slug} />
 
@@ -111,6 +134,10 @@ export default async function GuideSlugPage({ params }: PageProps) {
           {" · "}
           <Link href="/" className="underline underline-offset-4 hover:text-voice-dark">
             Pronunciation search
+          </Link>
+          {" · "}
+          <Link href="/words/" className="underline underline-offset-4 hover:text-voice-dark">
+            Word directories
           </Link>
         </p>
       </article>

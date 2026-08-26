@@ -12,7 +12,16 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Build pronunciation page · Speakur</title>
+    <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0d6e66" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Speakur" />
+<title>Build pronunciation page · Speakur</title>
   <meta name="description" content="Look up a word and open or create its Speakur pronunciation page." />
     <style>/* Critical above-the-fold styles — inlined on programmatic pages for fast first paint */
 :root {
@@ -151,7 +160,7 @@ body.fonts-ready h1 {
   <script defer src="../assets/search-index.js"></script>
   <script defer src="../assets/header-search.js"></script>
   <script defer src="../assets/site.js"></script>
-  <script defer src="../assets/word-index.js"></script>
+  <script defer src="../assets/word-lookup.js"></script>
   <script defer src="../assets/on-demand-word.js"></script>
   <script>
     (async function () {
@@ -185,5 +194,6 @@ body.fonts-ready h1 {
       }
     })();
   </script>
+  <script defer src="../assets/pwa-install.js"></script>
 </body>
 </html>

@@ -70,4 +70,37 @@
   } else {
     loadEzoicAds();
   }
+
+  /** Tools nav: one open dropdown at a time; close on outside click / Escape. */
+  function initNavDropdowns() {
+    const dropdowns = Array.from(document.querySelectorAll("nav .nav-dropdown"));
+    if (!dropdowns.length) return;
+
+    function closeAll(except) {
+      dropdowns.forEach((d) => {
+        if (d !== except) d.open = false;
+      });
+    }
+
+    dropdowns.forEach((details) => {
+      details.addEventListener("toggle", () => {
+        if (details.open) closeAll(details);
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest || e.target.closest(".nav-dropdown")) return;
+      closeAll(null);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAll(null);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNavDropdowns);
+  } else {
+    initNavDropdowns();
+  }
 })();

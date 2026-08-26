@@ -14,7 +14,7 @@ export function ContactForm() {
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nTopic: ${topic}\n\n${message}`,
     );
-    window.location.href = `mailto:hello@speakur.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:vanethrane@gmail.com?subject=${subject}&body=${body}`;
   }
 
   return (

@@ -123,8 +123,8 @@ export default function PrivacyPage() {
           <p>
             Depending on your location, you may have rights to access, correct, delete, or restrict
             certain processing, or to opt out of targeted advertising. Email{" "}
-            <a className="text-voice-dark underline underline-offset-4" href="mailto:privacy@speakur.com">
-              privacy@speakur.com
+            <a className="text-voice-dark underline underline-offset-4" href="mailto:vanethrane@gmail.com">
+              vanethrane@gmail.com
             </a>{" "}
             or use our{" "}
             <Link href="/contact" className="text-voice-dark underline underline-offset-4">

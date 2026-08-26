@@ -9,7 +9,6 @@
     ezstandalone.cmd = ezstandalone.cmd || [];
   </script>
   <script src="https://ezoicanalytics.com/analytics.js"></script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Word directories · Speakur</title>
@@ -113,6 +112,7 @@ body.fonts-ready h1 {
   contain: layout;
   width: 100%;
 }
+#speakur-global-search,#speakur-global-search-trigger,.gs-trigger{display:none!important}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -136,35 +136,70 @@ body.fonts-ready h1 {
         <a class="brand" href="../index.html">Speakur</a>
         <nav aria-label="Primary">
           <a class="nav-home" href="../index.html">Home</a>
-          <a href="../words/index.html" aria-current="page">Words</a>
+          <a href="../words/">Words</a>
           <a href="../guides.html">Guides</a>
+          <details class="nav-dropdown">
+            <summary class="nav-pill">Tools</summary>
+            <ul class="nav-dropdown-menu" role="list">
+              <li><a href="../tools/"><strong>All tools</strong></a></li>
+              <li><a href="../tools/ipa/">IPA cheat sheet</a></li>
+              <li><a href="../tools/minimal-pairs/">Minimal-pair trainer</a></li>
+              <li><a href="../tools/homophones/">Homophone check</a></li>
+              <li><a href="../tools/danger-list/">Danger-list deck</a></li>
+              <li><a href="../tools/us-uk/">US ↔ UK switcher</a></li>
+              <li><a href="../tools/syllable-stress/">Syllable &amp; stress highlighter</a></li>
+              <li><a href="../tools/name-coach/">Name coach</a></li>
+              <li><a href="../tools/warm-up/">Speaking warm-up</a></li>
+            </ul>
+          </details>
           <a href="../about.html">About</a>
           <a href="../contact.html">Contact</a>
         </nav>
       </div>
     </header>
-    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:60px"></div>
+    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
     <main>
       <p class="eyebrow">Directories</p>
       <h1>Words by topic</h1>
       <p class="lede">Browse thousands of pronunciation pages organized by topic—medical terms, food, places, tech, and everyday English. Each word includes IPA, syllable cues, and free click-to-play US and UK audio.</p>
-      <div class="card-stack"><a class="card" href="../food/">
-        <div class="meta">6474 words</div>
+      <p class="note"><a href="../index.html">Search any word</a> · <a href="../tools/">Tools</a> · <a href="../guides.html">Editorial guides</a> · <a href="../research/">Research / Data</a> · <a href="../donate.html">Donate</a></p>
+      
+      
+      <section class="ia-subsections" data-ia-words-curated="1">
+        <h2>Words collections</h2>
+        <p class="note">Curated lists drawn from the live catalog.</p>
+        <div class="card-stack">
+          <a class="card" href="./difficult/"><h2>Difficult</h2><p>Unusual spellings and stress surprises.</p><p class="note">/words/difficult/</p></a>
+          <a class="card" href="./commonly-mispronounced/"><h2>Commonly mispronounced</h2><p>High-traffic tricky everyday words.</p><p class="note">/words/commonly-mispronounced/</p></a>
+          <a class="card" href="./academic/"><h2>Academic</h2><p>Classroom and research vocabulary.</p><p class="note">/words/academic/</p></a>
+          <a class="card" href="./technical/"><h2>Technical</h2><p>Engineering and software terms.</p><p class="note">/words/technical/</p></a>
+          <a class="card" href="../everyday/"><h2>Everyday</h2><p>Common English pronunciation pages.</p><p class="note">/everyday/</p></a>
+        </div>
+      </section>
+      <h2>Primary directories</h2>
+      <div class="card-stack"><a class="card" href="../everyday/">
+        <div class="meta">24704 words</div>
+        <h2>Everyday English</h2>
+        <p>Common words people second-guess out loud.</p>
+        <p class="note">/everyday/</p>
+      </a>
+<a class="card" href="../food/">
+        <div class="meta">6802 words</div>
         <h2>Food &amp; drink</h2>
         <p>Menu, spice, and dish pronunciations people search most.</p>
         <p class="note">/food/</p>
-      </a>
-<a class="card" href="../places/">
-        <div class="meta">4816 words</div>
-        <h2>Places</h2>
-        <p>Cities, countries, and regions that trip people up.</p>
-        <p class="note">/places/</p>
       </a>
 <a class="card" href="../names/">
         <div class="meta">329 words</div>
         <h2>Names</h2>
         <p>Given names, surnames, and public figures often looked up.</p>
         <p class="note">/names/</p>
+      </a>
+<a class="card" href="../places/">
+        <div class="meta">5172 words</div>
+        <h2>Places</h2>
+        <p>Cities, countries, and regions that trip people up.</p>
+        <p class="note">/places/</p>
       </a>
 <a class="card" href="../brands/">
         <div class="meta">261 words</div>
@@ -173,71 +208,96 @@ body.fonts-ready h1 {
         <p class="note">/brands/</p>
       </a>
 <a class="card" href="../medical/">
-        <div class="meta">6600 words</div>
+        <div class="meta">7701 words</div>
         <h2>Medical</h2>
         <p>Clinical and health terms with clear audio pages.</p>
         <p class="note">/medical/</p>
       </a>
-<a class="card" href="../animals/">
-        <div class="meta">3600 words</div>
-        <h2>Animals</h2>
-        <p>Breeds and species that are easy to mispronounce.</p>
-        <p class="note">/animals/</p>
-      </a>
 <a class="card" href="../science/">
-        <div class="meta">4800 words</div>
+        <div class="meta">5060 words</div>
         <h2>Science</h2>
         <p>Science and nature vocabulary.</p>
         <p class="note">/science/</p>
       </a>
-<a class="card" href="../business/">
-        <div class="meta">1622 words</div>
-        <h2>Business</h2>
-        <p>Workplace, finance, and marketing terms.</p>
-        <p class="note">/business/</p>
-      </a>
-<a class="card" href="../everyday/">
-        <div class="meta">18822 words</div>
-        <h2>Everyday English</h2>
-        <p>Common words people second-guess out loud.</p>
-        <p class="note">/everyday/</p>
-      </a>
-<a class="card" href="../arts/">
-        <div class="meta">2440 words</div>
-        <h2>Arts &amp; culture</h2>
-        <p>Music, dance, literature, and art terms.</p>
-        <p class="note">/arts/</p>
-      </a>
-<a class="card" href="../sports/">
-        <div class="meta">2400 words</div>
-        <h2>Sports</h2>
-        <p>Sports, fitness, and competition vocabulary.</p>
-        <p class="note">/sports/</p>
-      </a>
 <a class="card" href="../tech/">
-        <div class="meta">2319 words</div>
+        <div class="meta">2492 words</div>
         <h2>Tech</h2>
         <p>Software, internet, and computing words.</p>
         <p class="note">/tech/</p>
       </a>
+<a class="card" href="../sports/">
+        <div class="meta">2800 words</div>
+        <h2>Sports</h2>
+        <p>Sports, fitness, and competition vocabulary.</p>
+        <p class="note">/sports/</p>
+      </a></div>
+      <h2>More directories</h2>
+      <div class="card-stack"><a class="card" href="../animals/">
+        <div class="meta">4200 words</div>
+        <h2>Animals</h2>
+        <p>Breeds and species that are easy to mispronounce.</p>
+        <p class="note">/animals/</p>
+      </a>
+<a class="card" href="../business/">
+        <div class="meta">1727 words</div>
+        <h2>Business</h2>
+        <p>Workplace, finance, and marketing terms.</p>
+        <p class="note">/business/</p>
+      </a>
+<a class="card" href="../arts/">
+        <div class="meta">2575 words</div>
+        <h2>Arts &amp; culture</h2>
+        <p>Music, dance, literature, and art terms.</p>
+        <p class="note">/arts/</p>
+      </a>
 <a class="card" href="../nature/">
-        <div class="meta">2400 words</div>
+        <div class="meta">2800 words</div>
         <h2>Nature</h2>
         <p>Weather, geography, and outdoors terms.</p>
         <p class="note">/nature/</p>
       </a>
 <a class="card" href="../law/">
-        <div class="meta">1617 words</div>
+        <div class="meta">1683 words</div>
         <h2>Law</h2>
         <p>Legal and courtroom vocabulary.</p>
         <p class="note">/law/</p>
       </a>
 <a class="card" href="../mythology/">
-        <div class="meta">1500 words</div>
+        <div class="meta">1750 words</div>
         <h2>Mythology</h2>
         <p>Gods, legends, and mythic creatures.</p>
         <p class="note">/mythology/</p>
       </a></div>
+      <section class="explore-more" data-crosslinks="1">
+        <h2>Explore more on Speakur</h2>
+        <div class="explore-grid">
+          <div>
+            <h3>Tools</h3>
+            <ul>
+              <li><a href="../tools/">Practice tools hub</a></li>
+              <li><a href="../tools/ipa/">IPA cheat sheet</a></li>
+              <li><a href="../tools/minimal-pairs/">Minimal-pair trainer</a></li>
+              <li><a href="../index.html">Pronunciation search</a></li>
+              <li><a href="../words/">Word directories</a></li>
+              <li><a href="../guides.html">All guides</a></li>
+            </ul>
+          </div>
+          <div><h3>Related guides</h3><ul><li><a href="../guide.html?slug=how-to-read-ipa-phonetic-symbols">How to read IPA</a></li><li><a href="../guide.html?slug=commonly-mispronounced-english-words">Commonly mispronounced words</a></li></ul></div>
+          <div>
+            <h3>Trust</h3>
+            <ul>
+              <li><a href="../methodology.html">Methodology &amp; sources</a></li>
+              <li><a href="../editorial-policy.html">Editorial policy</a></li>
+              <li><a href="../correction-policy.html">Correction policy</a></li>
+              <li><a href="../authors/speakur-editorial.html">Authors</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Other directories</h3>
+            <ul><li><a href="../food/">food</a></li><li><a href="../places/">places</a></li><li><a href="../names/">names</a></li><li><a href="../brands/">brands</a></li><li><a href="../medical/">medical</a></li><li><a href="../animals/">animals</a></li></ul>
+          </div>
+        </div>
+      </section>
     </main>
 
     <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
@@ -245,30 +305,36 @@ body.fonts-ready h1 {
       <div class="footer-grid">
         <div>
           <div class="footer-brand">Speakur</div>
-          <p class="footer-copy">Real pages for real words — organized by topic.</p>
+          <p class="footer-copy">Free pronunciation help for learners, creators, and professionals who need to say English words clearly and correctly.</p>
         </div>
         <div>
           <h3>Product</h3>
           <ul>
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html">Pronunciation search</a></li>
             <li><a href="../words/index.html">Word directories</a></li>
+            <li><a href="../tools/">Tools</a></li>
             <li><a href="../guides.html">Editorial guides</a></li>
+            <li><a href="../research/">Research / Data</a></li>
+            <li><a href="../donate.html">Donate</a></li>
           </ul>
         </div>
         <div>
           <h3>Trust &amp; legal</h3>
           <ul>
             <li><a href="../about.html">About Us</a></li>
+            <li><a href="../methodology.html">Methodology &amp; sources</a></li>
+            <li><a href="../editorial-policy.html">Editorial policy</a></li>
+            <li><a href="../correction-policy.html">Correction policy</a></li>
+            <li><a href="../authors/speakur-editorial.html">Authors</a></li>
             <li><a href="../contact.html">Contact</a></li>
             <li><a href="../privacy.html">Privacy Policy</a></li>
             <li><a href="../terms.html">Terms of Service</a></li>
           </ul>
         </div>
       </div>
-      <p class="legal">© <span data-year></span> Speakur. <a href="../index.html">Home</a></p>
+      <p class="legal">© <span data-year></span> Speakur. <a href="../index.html">Home</a> · <a href="../tools/">Tools</a> · <a href="../words/">Words</a> · <a href="../guides.html">Guides</a></p>
     </footer>
   </div>
-  <script defer src="../assets/global-search-modal.js"></script>
   <script defer src="../assets/site.js"></script>
   <script defer src="../assets/pwa-install.js"></script>
 </body>

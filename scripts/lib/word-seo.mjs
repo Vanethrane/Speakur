@@ -122,13 +122,13 @@ export function buildWordHowToJsonLd(input) {
   };
 }
 
-export function renderWordSeoHeadTags({ word, path, description, phonetic }) {
+export function renderWordSeoHeadTags({ word, path, description, phonetic, syllables }) {
   const title = `How to pronounce ${word}`;
   const desc =
     description ||
     `Learn how to pronounce “${word}” with free US and UK audio, IPA phonetic spelling, and clear steps on Speakur.`;
   const canonical = `${BASE}${path.startsWith("/") ? path : `/${path}`}`;
-  const jsonLd = buildWordHowToJsonLd({ word, path, description: desc, phonetic });
+  const jsonLd = buildWordHowToJsonLd({ word, path, description: desc, phonetic, syllables });
 
   return `  <meta name="description" content="${escapeHtml(desc)}" />
   <link rel="canonical" href="${escapeHtml(canonical)}" />
@@ -145,20 +145,49 @@ export function renderWordSeoHeadTags({ word, path, description, phonetic }) {
 `;
 }
 
-export function renderHowToStepsHtml(word) {
-  const steps = dataset.schema?.howTo?.stepTemplates || [];
-  if (!steps.length) return "";
-  const vars = { name: word, word, url: "", phonetic: "", path: "" };
-  const items = steps
+/**
+ * Visible “How to say it” micro-steps — pronunciation teaching, not page chrome.
+ * @param {string} word
+ * @param {{ phonetic?: string, syllables?: number|null }} [opts]
+ */
+export function renderHowToStepsHtml(word, opts = {}) {
+  const phonetic = String(opts.phonetic || "").trim();
+  const syllables = opts.syllables && Number(opts.syllables) > 0 ? Number(opts.syllables) : null;
+  const ipaBit = phonetic ? ` (${phonetic})` : "";
+  const sylBit = syllables
+    ? ` Feel ${syllables} beat${syllables === 1 ? "" : "s"}${phonetic.includes("ˈ") ? " and put weight on the ˈ-marked syllable" : ""}.`
+    : " Match the stress you hear.";
+
+  const items = [
+    {
+      name: "See the sounds",
+      text: `Read the IPA for “${word}”${ipaBit} before you speak — symbols show vowels and stress more reliably than English spelling.`,
+    },
+    {
+      name: "Hear US and UK",
+      text: `Play the labeled US and UK buttons. Notice where they differ (often vowels or r-sounds). Use Compare when both clips exist.`,
+    },
+    {
+      name: "Slow it down",
+      text: `Play Slow once, then shadow the word out loud.${sylBit}`,
+    },
+    {
+      name: "Check yourself",
+      text: `Say “${word}” from memory, then replay normal speed. If it still feels shaky, open Practice tools for minimal pairs.`,
+    },
+  ];
+
+  const list = items
     .map(
-      (tpl, i) =>
-        `<li id="step-${i + 1}"><strong>${escapeHtml(interpolate(tpl.name, vars))}</strong> — ${escapeHtml(interpolate(tpl.text, vars))}</li>`,
+      (step, i) =>
+        `<li id="step-${i + 1}"><strong>${escapeHtml(step.name)}</strong> — ${escapeHtml(step.text)}</li>`,
     )
     .join("\n        ");
-  return `<section class="howto" aria-labelledby="howto-heading">
-        <h2 id="howto-heading">How to pronounce ${escapeHtml(word)}</h2>
+
+  return `<section class="howto say-it" aria-labelledby="howto-heading" data-say-it="1">
+        <h2 id="howto-heading">How to say “${escapeHtml(word)}”</h2>
         <ol>
-        ${items}
+        ${list}
         </ol>
       </section>`;
 }

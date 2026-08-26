@@ -1,0 +1,154 @@
+{
+  "worcestershire": {
+    "mistake": "Reading every letter: wor-chester-shire.",
+    "preferred": "WUSS-tər-sheer (US) / WUSS-tə-shə (UK)",
+    "note": "The first syllable carries the stress; chester collapses.",
+    "syllables": "wuss-ter-sheer",
+    "ipa": "/ˈwʊstərʃɪr/"
+  },
+  "quinoa": {
+    "mistake": "KEEN-oh-ah or kwin-OH-uh.",
+    "preferred": "KEEN-wah",
+    "note": "Two syllables in common English use."
+  },
+  "gyro": {
+    "mistake": "Always JY-roh for the food.",
+    "preferred": "YEE-roh (food, common US) or JY-roh (physics)",
+    "note": "Food vs. gyroscope senses differ."
+  },
+  "epitome": {
+    "mistake": "ep-ih-TOHM.",
+    "preferred": "ih-PIT-uh-mee",
+    "note": "Four syllables; stress on PIT."
+  },
+  "hyperbole": {
+    "mistake": "HY-per-bowl.",
+    "preferred": "hy-PER-buh-lee",
+    "note": "Ends like bolee, not bowl."
+  },
+  "colonel": {
+    "mistake": "Saying the l and o as spelled.",
+    "preferred": "KER-nuhl",
+    "note": "Spelling and sound diverged historically."
+  },
+  "bouquet": {
+    "mistake": "boo-KET with a hard t.",
+    "preferred": "boo-KAY",
+    "note": "French-derived final vowel."
+  },
+  "nuclear": {
+    "mistake": "NOO-kyuh-lur.",
+    "preferred": "NOO-klee-ər",
+    "note": "Keep the clee cluster; avoid metathesis."
+  },
+  "espresso": {
+    "mistake": "ex-PRESS-oh.",
+    "preferred": "ess-PRESS-oh",
+    "note": "No x sound at the start."
+  },
+  "salmon": {
+    "mistake": "SAL-mon with a clear l.",
+    "preferred": "SAM-uhn",
+    "note": "The l is silent in standard English."
+  },
+  "subtle": {
+    "mistake": "SUB-tul with a voiced b.",
+    "preferred": "SUT-uhl",
+    "note": "The b is silent."
+  },
+  "asterisk": {
+    "mistake": "AS-ter-iks.",
+    "preferred": "AS-tuh-risk",
+    "note": "Ends in risk, not riks."
+  },
+  "library": {
+    "mistake": "LI-berry.",
+    "preferred": "LY-brer-ee / LY-bruh-ree",
+    "note": "Keep the first r audible."
+  },
+  "february": {
+    "mistake": "FEB-yoo-air-ee (dropping the first r).",
+    "preferred": "FEB-roo-air-ee (careful speech)",
+    "note": "Many speakers reduce the first r; careful forms keep it."
+  },
+  "ask": {
+    "mistake": "aks (metathesis).",
+    "preferred": "ask",
+    "note": "Standard citation form keeps /sk/ order."
+  },
+  "specific": {
+    "mistake": "pa-SIF-ik.",
+    "preferred": "spuh-SIF-ik",
+    "note": "Start with /sp/, not /p/."
+  },
+  "prescription": {
+    "mistake": "per-SCRIPTION.",
+    "preferred": "pri-SKRIP-shuhn",
+    "note": "Pre-, not per-."
+  },
+  "comfortable": {
+    "mistake": "com-FOR-ta-bul (four clear syllables).",
+    "preferred": "KUMF-ter-bul / KUMF-tuh-bul",
+    "note": "Often three syllables in fluent speech."
+  },
+  "vegetable": {
+    "mistake": "vedge-e-TA-ble.",
+    "preferred": "VEJ-tuh-bul",
+    "note": "Middle vowel often reduces."
+  },
+  "entrepreneur": {
+    "mistake": "on-tre-pen-NOOR with English eu.",
+    "preferred": "ahn-truh-pruh-NUR",
+    "note": "French-influenced vowels; stress near the end."
+  },
+  "anemone": {
+    "mistake": "an-uh-MOAN.",
+    "preferred": "uh-NEM-uh-nee",
+    "note": "Four syllables; stress on NEM."
+  },
+  "choir": {
+    "mistake": "cho-ire as two clear vowels from spelling.",
+    "preferred": "KWIRE",
+    "note": "One syllable in modern English."
+  },
+  "phoenix": {
+    "mistake": "pho-EN-ix with a hard ph-o.",
+    "preferred": "FEE-niks",
+    "note": "Ph = /f/; first syllable FEE."
+  },
+  "tsunami": {
+    "mistake": "tuh-SOO-nah-mee with a hard separate t.",
+    "preferred": "soo-NAH-mee (often) / tsoo-NAH-mee",
+    "note": "Initial /ts/ is often simplified in English."
+  },
+  "gif": {
+    "mistake": "Only one correct form exists.",
+    "preferred": "Both /ɡɪf/ and /dʒɪf/ are widely used",
+    "note": "Speakur labels both; creator preference varies."
+  },
+  "niche": {
+    "mistake": "Assuming only one accent is valid.",
+    "preferred": "neesh (common) or nitch (also established)",
+    "note": "US/UK preference differs; both appear in references."
+  },
+  "schedule": {
+    "mistake": "Using one form worldwide without label.",
+    "preferred": "SKED-jool (US) / SHED-yool (UK)",
+    "note": "Accent label matters for this word."
+  },
+  "herb": {
+    "mistake": "Assuming silent h everywhere.",
+    "preferred": "erb (US) / herb (UK, sounded h)",
+    "note": "US often drops /h/; UK usually keeps it."
+  },
+  "aluminium": {
+    "mistake": "Ignoring regional syllable count.",
+    "preferred": "uh-LOO-mi-num (US aluminum) / al-yuh-MIN-ee-um (UK)",
+    "note": "Spelling and syllable count differ by variety."
+  },
+  "vitamin": {
+    "mistake": "One vowel pattern for all accents.",
+    "preferred": "VY-tuh-min (US) / VIT-uh-min (UK)",
+    "note": "First vowel differs by accent."
+  }
+}

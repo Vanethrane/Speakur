@@ -96,3 +96,4 @@ body.fonts-ready h1 {
   contain: layout;
   width: 100%;
 }
+#speakur-global-search,#speakur-global-search-trigger,.gs-trigger{display:none!important}

@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-08-26T20:22:05.416Z",
+  "paths": [
+    "/brands/cars/",
+    "/brands/fashion/",
+    "/brands/food/",
+    "/brands/technology/",
+    "/food/dishes/",
+    "/food/ingredients/",
+    "/food/topic/cheese/",
+    "/food/topic/cuisine/",
+    "/food/topic/wine/",
+    "/medical/anatomy/",
+    "/medical/diseases/",
+    "/medical/drugs/",
+    "/medical/procedures/",
+    "/names/first-names/",
+    "/names/irish/",
+    "/names/japanese/",
+    "/names/last-names/",
+    "/names/public-figures/",
+    "/places/cities/",
+    "/places/countries/",
+    "/places/regions/",
+    "/places/states/",
+    "/research/",
+    "/tools.html",
+    "/tools/",
+    "/tools/audio/",
+    "/tools/generator/",
+    "/tools/ipa/",
+    "/tools/practice/",
+    "/words/",
+    "/words/academic/",
+    "/words/commonly-mispronounced/",
+    "/words/difficult/",
+    "/words/technical/"
+  ],
+  "collisions": [
+    {
+      "parent": "food",
+      "title": "Cheese",
+      "href": "./topic/cheese/",
+      "count": 14,
+      "description": "Cheese names from brie to gorgonzola—say them with confidence at the counter.",
+      "pathLabel": "/food/topic/cheese/"
+    },
+    {
+      "parent": "food",
+      "title": "Wine",
+      "href": "./topic/wine/",
+      "count": 48,
+      "description": "Grape varieties and wine styles you’ll hear on menus and tasting notes.",
+      "pathLabel": "/food/topic/wine/"
+    },
+    {
+      "parent": "food",
+      "title": "Cuisine",
+      "href": "./topic/cuisine/",
+      "count": 52,
+      "description": "Cuisine and cooking-style words for travel, menus, and cultural conversations.",
+      "pathLabel": "/food/topic/cuisine/"
+    }
+  ]
+}

@@ -12,6 +12,10 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0d6e66" />
   <title>Guides · Speakur</title>
   <meta name="description" content="Long-form Speakur guides on pronunciation, speech synthesis, accents, and localization." />
     <style>/* Critical above-the-fold styles — inlined on programmatic pages for fast first paint */
@@ -120,12 +124,26 @@ body.fonts-ready h1 {
       <div class="header-row">
         <a class="brand" href="./index.html">Speakur</a>
         <nav aria-label="Primary">
-        <a class="nav-home" href="./index.html">Home</a>
-        <a href="./words/">Words</a>
-        <a href="./guides.html">Guides</a>
-        <a href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
-      </nav>
+          <a class="nav-home" href="./index.html">Home</a>
+          <a href="./words/">Words</a>
+          <a href="./guides.html">Guides</a>
+          <details class="nav-dropdown">
+            <summary class="nav-pill">Tools</summary>
+            <ul class="nav-dropdown-menu" role="list">
+              <li><a href="./tools/"><strong>All tools</strong></a></li>
+              <li><a href="./tools/ipa/">IPA cheat sheet</a></li>
+              <li><a href="./tools/minimal-pairs/">Minimal-pair trainer</a></li>
+              <li><a href="./tools/homophones/">Homophone check</a></li>
+              <li><a href="./tools/danger-list/">Danger-list deck</a></li>
+              <li><a href="./tools/us-uk/">US ↔ UK switcher</a></li>
+              <li><a href="./tools/syllable-stress/">Syllable &amp; stress highlighter</a></li>
+              <li><a href="./tools/name-coach/">Name coach</a></li>
+              <li><a href="./tools/warm-up/">Speaking warm-up</a></li>
+            </ul>
+          </details>
+          <a href="./about.html">About</a>
+          <a href="./contact.html">Contact</a>
+        </nav>
       </div>
       <form id="speakur-header-form" class="header-search" role="search" autocomplete="off">
         <label class="sr-only" for="speakur-header-q">Search guides, tools, and words</label>
@@ -140,6 +158,40 @@ body.fonts-ready h1 {
       <h1>Guides</h1>
       <p class="lede">Long-form articles on speech, accents, localization, teaching, and cost-efficient audio — written for learners and builders.</p>
       <div id="list" class="stable-slot related-grid-slot" style="min-height:24rem;contain:layout"></div>
+    <section class="explore-more" data-crosslinks="1">
+        <h2>Explore more on Speakur</h2>
+        <div class="explore-grid">
+          <div>
+            <h3>Start here</h3>
+            <ul>
+              <li><a href="./index.html">Pronunciation search</a></li>
+              <li><a href="./words/">Word directories</a></li>
+              <li><a href="./guides.html">Editorial guides</a></li>
+              <li><a href="./donate.html">Donate</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Popular guides</h3>
+            <ul>
+              <li><a href="./guide.html?slug=how-to-read-ipa-phonetic-symbols">How to read IPA</a></li>
+              <li><a href="./guide.html?slug=us-vs-uk-pronunciation-differences">US vs UK</a></li>
+              <li><a href="./guide.html?slug=commonly-mispronounced-english-words">Tricky words</a></li>
+              <li><a href="./guide.html?slug=building-a-pronunciation-practice-routine">Practice routine</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Directories</h3>
+            <ul>
+              <li><a href="./food/">Food</a></li>
+              <li><a href="./medical/">Medical</a></li>
+              <li><a href="./places/">Places</a></li>
+              <li><a href="./everyday/">Everyday</a></li>
+              <li><a href="./names/">Names</a></li>
+              <li><a href="./tech/">Tech</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
     <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" aria-label="Advertisement" style="min-height:90px"></div>
     <footer>

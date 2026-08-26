@@ -75,6 +75,10 @@
 
   function wordHit(query) {
     const q = normalize(query);
+    if (!q) return null;
+    if (window.SpeakurWordLookup && window.SpeakurWordLookup._rowsLoaded) {
+      return SpeakurWordLookup.findPrefix(q);
+    }
     const rows = window.SPEAKUR_WORD_INDEX || [];
     if (!rows.length) return null;
     const exact = rows.find(function (r) {
@@ -88,7 +92,7 @@
     );
   }
 
-  function resolve(query, picked) {
+  async function resolveAsync(query, picked) {
     if (picked) return picked.staticHref || picked.href;
     const q = normalize(query);
     if (!q) return "/index.html";
@@ -109,9 +113,22 @@
     if (results.length) return results[0].staticHref || results[0].href;
 
     if (/^[a-z][a-z0-9'-]*$/i.test(q)) {
-      const hit = wordHit(q);
-      if (hit && hit.path) {
-        return hit.path.startsWith("/") ? hit.path : "/" + hit.path.replace(/^\.?\//, "");
+      if (window.SpeakurWordLookup) {
+        try {
+          await SpeakurWordLookup.ensureLoaded();
+          SpeakurWordLookup._rowsLoaded = true;
+          const hit = SpeakurWordLookup.findPrefix(q);
+          if (hit && hit.path) {
+            return hit.path.startsWith("/") ? hit.path : "/" + hit.path.replace(/^\.?\//, "");
+          }
+        } catch (_) {
+          /* fall through */
+        }
+      } else {
+        const hit = wordHit(q);
+        if (hit && hit.path) {
+          return hit.path.startsWith("/") ? hit.path : "/" + hit.path.replace(/^\.?\//, "");
+        }
       }
       const cat = guessCategory(q);
       return "/" + cat + "/" + encodeURIComponent(q) + "/";
@@ -121,6 +138,10 @@
       return e.type === "category";
     });
     return catFallback ? catFallback.staticHref || catFallback.href : "/guides.html";
+  }
+
+  function resolve(query, picked) {
+    return resolveAsync(query, picked);
   }
 
   function mount() {
@@ -166,9 +187,9 @@
       });
     }
 
-    function go(indexOrVisible) {
+    async function go(indexOrVisible) {
       const pick = typeof indexOrVisible === "number" ? visible[indexOrVisible] : null;
-      const href = resolve(input.value, pick);
+      const href = await resolveAsync(input.value, pick);
       list.hidden = true;
       if (/^https?:\/\//i.test(href)) window.location.href = href;
       else window.location.href = href;

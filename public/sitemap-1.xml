@@ -2,12 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.speakur.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://www.speakur.com/words/</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.speakur.com/tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.speakur.com/tools.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.speakur.com/tools/generator/</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.speakur.com/tools/ipa/</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.speakur.com/tools/audio/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/tools/practice/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/research/</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://www.speakur.com/guides.html</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.speakur.com/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.speakur.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.speakur.com/donate.html</loc><changefreq>monthly</changefreq><priority>0.65</priority></url>
   <url><loc>https://www.speakur.com/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.speakur.com/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.speakur.com/build/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.speakur.com/editorial-policy.html</loc><changefreq>monthly</changefreq><priority>0.55</priority></url>
+  <url><loc>https://www.speakur.com/methodology.html</loc><changefreq>monthly</changefreq><priority>0.55</priority></url>
+  <url><loc>https://www.speakur.com/correction-policy.html</loc><changefreq>monthly</changefreq><priority>0.55</priority></url>
+  <url><loc>https://www.speakur.com/tools/danger-list/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/tools/homophones/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/tools/minimal-pairs/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/tools/name-coach/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/tools/syllable-stress/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/tools/us-uk/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/tools/warm-up/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/brands/cars/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/brands/fashion/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/brands/food/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/brands/technology/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/food/dishes/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/food/ingredients/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/food/topic/cheese/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/food/topic/cuisine/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/food/topic/wine/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/medical/anatomy/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/medical/diseases/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/medical/drugs/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/medical/procedures/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/names/first-names/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/names/irish/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/names/japanese/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/names/last-names/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/names/public-figures/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/places/cities/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/places/countries/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/places/regions/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/places/states/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/words/academic/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/words/commonly-mispronounced/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/words/difficult/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.speakur.com/words/technical/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.speakur.com/food/</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.speakur.com/food/abdominovaginal/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.speakur.com/food/abjudging/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -9956,48 +10000,4 @@
   <url><loc>https://www.speakur.com/places/nakhon/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.speakur.com/places/nakuru/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.speakur.com/places/namaland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/namaqualand/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/namur/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nantes/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/naperville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/napier/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/naples/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/napoleonville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/narcomania/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nashua/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nashville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nastan/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/natatoria/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nationalpark/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/natland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nattoria/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/naumburg/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/navajoland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/naville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nayland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/naypyidaw/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neapolis/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nebraska/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/necropolis/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nederland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neerland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/negombo/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/negroland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nelsonville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nemesia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nesia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/netanya/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/netherland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/netland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/netterville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/netville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neuburg/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neuenburg/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neuerburg/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neufville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neuland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neuseeland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neuville/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/nevada/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.speakur.com/places/neverland/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

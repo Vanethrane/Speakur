@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "updated": "2026-08-26",
+  "northStar": "Speakur’s moat is the pronunciation graph (structured linguistic data), not a blog farm.",
+  "shipped": {
+    "phase1_trust": [
+      "/editorial-policy.html",
+      "/methodology.html",
+      "/correction-policy.html",
+      "/authors/speakur-editorial.html"
+    ],
+    "phase2_word_reference": [
+      "scripts/lib/word-html.mjs canonical reference template",
+      "scripts/lib/word-linguistics.mjs",
+      "scripts/patch-word-reference.mjs",
+      "data/common-mistakes.json"
+    ]
+  },
+  "backlog": {
+    "phase3_seo_surface": {
+      "status": "deferred",
+      "items": [
+        "Hub copy upgrades for Names, Places, Brands, Food, Medical, Science, Technology, Sports, Academic",
+        "Curated list/landing pages (difficult words, commonly mispronounced) from real catalog only",
+        "No mass thin pages; no duplicate /how-to-pronounce/ URL farm"
+      ]
+    },
+    "phase4_moat": {
+      "status": "deferred",
+      "items": [
+        "Original pronunciation DB beyond upstream APIs",
+        "Multi-accent native TTS everywhere",
+        "Side-by-side accent comparison UI",
+        "Guided practice routines",
+        "Record-yourself with optional scoring (AI trainer)",
+        "Stub: link practice CTAs to /tools/ only until built"
+      ]
+    },
+    "phase5_distribution": {
+      "status": "deferred",
+      "items": [
+        "YouTube / short-form clips",
+        "Editorial backlink partnerships",
+        "Teacher resource packs",
+        "Downloadable word lists",
+        "Public API",
+        "Browser extension"
+      ]
+    }
+  }
+}

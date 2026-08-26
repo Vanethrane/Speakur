@@ -139,8 +139,19 @@
     const key = word.toLowerCase();
     const aliases = { apendectomy: "appendectomy" };
     const resolved = aliases[key] || key;
+    if (global.SpeakurWordLookup) {
+      return global.SpeakurWordLookup.find(resolved);
+    }
     const hit = (global.SPEAKUR_WORD_INDEX || []).find((row) => row.word === resolved);
     return hit || null;
+  }
+
+  async function pathInIndexAsync(word) {
+    if (global.SpeakurWordLookup) {
+      await global.SpeakurWordLookup.ensureLoaded();
+      return global.SpeakurWordLookup.find(word) || null;
+    }
+    return pathInIndex(word);
   }
 
   function assetPrefixFromDepth(depth) {
@@ -280,12 +291,17 @@
       return { ok: false, reason: "empty" };
     }
 
-    const indexed = pathInIndex(word);
+    const indexed = await pathInIndexAsync(word);
     if (indexed) {
-      setStatus(`Opening /${indexed.category}/${indexed.word}/…`);
       const prefix = assetPrefixFromDepth(depth);
-      location.href = `${prefix}${indexed.category}/${indexed.word}/`;
-      return { ok: true, redirected: true, path: indexed.path };
+      const href = indexed.path
+        ? indexed.path.startsWith("/")
+          ? indexed.path
+          : `${prefix}${indexed.path.replace(/^\.\//, "")}`
+        : `${prefix}${indexed.category}/${indexed.word}/`;
+      setStatus(`Opening ${href.replace(prefix, "/")}…`);
+      location.href = href;
+      return { ok: true, redirected: true, path: indexed.path || href };
     }
 
     const category = preferredCategory || guessCategory(word);

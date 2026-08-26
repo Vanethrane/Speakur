@@ -29,16 +29,16 @@ export default function ContactPage() {
             <div>
               <dt className="text-ink-muted">Email</dt>
               <dd>
-                <a className="text-voice-dark underline underline-offset-4" href="mailto:hello@speakur.com">
-                  hello@speakur.com
+                <a className="text-voice-dark underline underline-offset-4" href="mailto:vanethrane@gmail.com">
+                  vanethrane@gmail.com
                 </a>
               </dd>
             </div>
             <div>
               <dt className="text-ink-muted">Privacy</dt>
               <dd>
-                <a className="text-voice-dark underline underline-offset-4" href="mailto:privacy@speakur.com">
-                  privacy@speakur.com
+                <a className="text-voice-dark underline underline-offset-4" href="mailto:vanethrane@gmail.com">
+                  vanethrane@gmail.com
                 </a>
               </dd>
             </div>
@@ -60,7 +60,7 @@ export default function ContactPage() {
         <div className="mt-8">
           <h2 className="font-display text-xl text-ink">Contact form</h2>
           <p className="mt-2 text-sm text-ink-muted">
-            Submitting opens your email client with a prefilled message to hello@speakur.com.
+            Submitting opens your email client with a prefilled message to vanethrane@gmail.com.
           </p>
           <div className="mt-4">
             <ContactForm />

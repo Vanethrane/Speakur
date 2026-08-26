@@ -17,6 +17,9 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   function pathForWord(word) {
+    if (window.SpeakurWordLookup) {
+      return SpeakurWordLookup.pathFor(word);
+    }
     const q = word.toLowerCase().trim();
     const aliases = { apendectomy: "appendectomy" };
     const key = aliases[q] || q;
@@ -168,7 +171,16 @@
     suggestionsEl.style.display = "none";
     resultEl.classList.remove("visible");
 
-    const dedicated = pathForWord(word);
+    let dedicated = pathForWord(word);
+    if (!dedicated && window.SpeakurWordLookup) {
+      try {
+        await SpeakurWordLookup.ensureLoaded();
+        const hit = SpeakurWordLookup.find(word);
+        if (hit && hit.path) dedicated = hit.path.startsWith("/") ? `.${hit.path}` : hit.path;
+      } catch (_) {
+        /* fall through to category guess */
+      }
+    }
     if (dedicated) {
       location.href = dedicated;
       return;
@@ -190,6 +202,7 @@
     if (q.length < 2) {
       suggestionsEl.style.display = "none";
       state.suggestions = [];
+      if (!q.length) setStatus("Type a word to hear US/UK audio, IPA, and syllables.");
       return;
     }
     suggestTimer = setTimeout(async () => {
@@ -203,6 +216,7 @@
         state.active = 0;
         if (!state.suggestions.length) {
           suggestionsEl.style.display = "none";
+          setStatus(`No suggestions for “${q}”. Press Hear it to open or build a pronunciation page.`);
           return;
         }
         suggestionsEl.innerHTML = state.suggestions
@@ -257,17 +271,29 @@
   if (initial) lookup(initial);
 
   const homeGuides = document.getElementById("home-guides");
-  if (homeGuides && window.SPEAKUR_GUIDES) {
-    const latest = window.SPEAKUR_GUIDES.slice()
-      .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
-      .slice(0, 3);
-    homeGuides.innerHTML = latest
-      .map(
-        (g) =>
-          `<a class="chip" style="border-radius:0.85rem;display:block;width:100%;margin-bottom:0.5rem;text-align:left;" href="./guide.html?slug=${encodeURIComponent(
-            g.slug,
-          )}"><strong>${g.title}</strong><br/><span style="color:var(--ink-muted);font-size:0.85rem;">${g.description}</span></a>`,
-      )
-      .join("");
+  if (homeGuides) {
+    function renderHomeGuides() {
+      if (!window.SPEAKUR_GUIDES) return;
+      const latest = window.SPEAKUR_GUIDES.slice()
+        .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+        .slice(0, 3);
+      homeGuides.innerHTML = latest
+        .map(
+          (g) =>
+            `<a class="chip" style="border-radius:0.85rem;display:block;width:100%;margin-bottom:0.5rem;text-align:left;" href="./guide.html?slug=${encodeURIComponent(
+              g.slug,
+            )}"><strong>${g.title}</strong><br/><span style="color:var(--ink-muted);font-size:0.85rem;">${g.description}</span></a>`,
+        )
+        .join("");
+    }
+    if (window.SPEAKUR_GUIDES) {
+      renderHomeGuides();
+    } else {
+      const s = document.createElement("script");
+      s.src = "./assets/guides-data.js";
+      s.defer = true;
+      s.onload = renderHomeGuides;
+      document.body.appendChild(s);
+    }
   }
 })();

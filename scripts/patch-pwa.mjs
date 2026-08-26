@@ -20,6 +20,8 @@ const SKIP_DIRS = new Set([
 
 const PWA_HEAD = `  <link rel="manifest" href="/manifest.json" />
   <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="theme-color" content="#0d6e66" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +53,30 @@ function assetPrefix(filePath) {
 }
 
 function injectHead(html) {
-  if (html.includes('rel="manifest"')) return html;
-  return html.replace(/<meta name="viewport"[^>]*>\s*/i, (m) => `${m}${PWA_HEAD}`);
+  let out = html;
+  if (!out.includes('rel="manifest"')) {
+    out = out.replace(/<meta name="viewport"[^>]*>\s*/i, (m) => `${m}${PWA_HEAD}`);
+  } else {
+    if (!out.includes('rel="icon"')) {
+      out = out.replace(
+        /<link rel="manifest"[^>]*>/,
+        (m) =>
+          `${m}\n  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />\n  <link rel="icon" href="/favicon.ico" sizes="any" />\n  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />`,
+      );
+    } else if (!out.includes("favicon.ico")) {
+      out = out.replace(
+        /<link rel="icon" href="\/assets\/icon\.svg"[^>]*>/,
+        (m) =>
+          `${m}\n  <link rel="icon" href="/favicon.ico" sizes="any" />\n  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />`,
+      );
+    } else if (!out.includes("apple-touch-icon")) {
+      out = out.replace(
+        /<link rel="icon" href="\/favicon\.ico"[^>]*>/,
+        (m) => `${m}\n  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />`,
+      );
+    }
+  }
+  return out;
 }
 
 function injectScript(html, prefix) {

@@ -4,6 +4,7 @@
  */
 import { readFileSync, writeFileSync, renameSync, unlinkSync, existsSync } from "fs";
 import { join } from "path";
+import { execFileSync } from "child_process";
 
 const ROOT = process.cwd();
 const catalog = JSON.parse(readFileSync(join(ROOT, "data/catalog.json"), "utf8"));
@@ -61,3 +62,11 @@ try {
 }
 
 console.log(`Wrote word-index (${flat.length}) and generated-paths (${allPaths.length})`);
+
+try {
+  execFileSync(process.execPath, [join(ROOT, "scripts/build-word-lookup.mjs")], {
+    stdio: "inherit",
+  });
+} catch {
+  console.warn("Warning: build-word-lookup.mjs failed — run npm run word-lookup");
+}

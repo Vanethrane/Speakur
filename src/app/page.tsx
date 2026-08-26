@@ -20,6 +20,14 @@ export default function HomePage() {
           audio, see IPA phonetic spelling and syllables, and read plain definitions—so you can speak
           confidently in meetings, classrooms, videos, and everyday conversations.
         </p>
+        <p className="mt-5">
+          <Link
+            href="/donate"
+            className="inline-flex items-center rounded-full bg-voice px-4 py-2 text-sm font-medium text-paper-raised hover:bg-voice-dark"
+          >
+            Donate
+          </Link>
+        </p>
         <div className="mt-10">
           <SearchBox />
         </div>
