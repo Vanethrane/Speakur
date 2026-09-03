@@ -19,3 +19,5 @@ adingo.jp, 24483, RESELLER
 improvedigital.com, 2254, RESELLER
 video.unrulymedia.com, 1346664749, DIRECT
 sonobi.com, 52355162e8, RESELLER, d1a215d9eb5aee9e
+
+google.com, pub-3384678338472686, DIRECT, f08c47fec0942fa0
