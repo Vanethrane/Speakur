@@ -1,0 +1,157 @@
+{
+  "scannedAt": "2026-09-03T18:26:40.683Z",
+  "total": 69969,
+  "missingFile": 10000,
+  "missingIpa": 59694,
+  "missingDef": 59277,
+  "missingEither": 59694,
+  "missingBoth": 59277,
+  "ok": 275,
+  "byCat": {
+    "food": {
+      "total": 6798,
+      "missingFile": 324,
+      "missingIpa": 6210,
+      "missingDef": 5802,
+      "missingEither": 6210,
+      "missingBoth": 5802,
+      "ok": 264
+    },
+    "places": {
+      "total": 5172,
+      "missingFile": 356,
+      "missingIpa": 4816,
+      "missingDef": 4816,
+      "missingEither": 4816,
+      "missingBoth": 4816,
+      "ok": 0
+    },
+    "names": {
+      "total": 329,
+      "missingFile": 0,
+      "missingIpa": 329,
+      "missingDef": 329,
+      "missingEither": 329,
+      "missingBoth": 329,
+      "ok": 0
+    },
+    "brands": {
+      "total": 261,
+      "missingFile": 0,
+      "missingIpa": 261,
+      "missingDef": 261,
+      "missingEither": 261,
+      "missingBoth": 261,
+      "ok": 0
+    },
+    "medical": {
+      "total": 7700,
+      "missingFile": 1100,
+      "missingIpa": 6600,
+      "missingDef": 6600,
+      "missingEither": 6600,
+      "missingBoth": 6600,
+      "ok": 0
+    },
+    "animals": {
+      "total": 4200,
+      "missingFile": 600,
+      "missingIpa": 3600,
+      "missingDef": 3600,
+      "missingEither": 3600,
+      "missingBoth": 3600,
+      "ok": 0
+    },
+    "science": {
+      "total": 5059,
+      "missingFile": 259,
+      "missingIpa": 4800,
+      "missingDef": 4800,
+      "missingEither": 4800,
+      "missingBoth": 4800,
+      "ok": 0
+    },
+    "business": {
+      "total": 1726,
+      "missingFile": 104,
+      "missingIpa": 1622,
+      "missingDef": 1622,
+      "missingEither": 1622,
+      "missingBoth": 1622,
+      "ok": 0
+    },
+    "everyday": {
+      "total": 24626,
+      "missingFile": 5835,
+      "missingIpa": 18780,
+      "missingDef": 18771,
+      "missingEither": 18780,
+      "missingBoth": 18771,
+      "ok": 11
+    },
+    "arts": {
+      "total": 2573,
+      "missingFile": 133,
+      "missingIpa": 2440,
+      "missingDef": 2440,
+      "missingEither": 2440,
+      "missingBoth": 2440,
+      "ok": 0
+    },
+    "sports": {
+      "total": 2800,
+      "missingFile": 400,
+      "missingIpa": 2400,
+      "missingDef": 2400,
+      "missingEither": 2400,
+      "missingBoth": 2400,
+      "ok": 0
+    },
+    "tech": {
+      "total": 2492,
+      "missingFile": 173,
+      "missingIpa": 2319,
+      "missingDef": 2319,
+      "missingEither": 2319,
+      "missingBoth": 2319,
+      "ok": 0
+    },
+    "nature": {
+      "total": 2800,
+      "missingFile": 400,
+      "missingIpa": 2400,
+      "missingDef": 2400,
+      "missingEither": 2400,
+      "missingBoth": 2400,
+      "ok": 0
+    },
+    "law": {
+      "total": 1683,
+      "missingFile": 66,
+      "missingIpa": 1617,
+      "missingDef": 1617,
+      "missingEither": 1617,
+      "missingBoth": 1617,
+      "ok": 0
+    },
+    "mythology": {
+      "total": 1750,
+      "missingFile": 250,
+      "missingIpa": 1500,
+      "missingDef": 1500,
+      "missingEither": 1500,
+      "missingBoth": 1500,
+      "ok": 0
+    }
+  },
+  "samples": {
+    "missingIpa": [
+      "food/abdominovaginal",
+      "food/abjudging",
+      "food/aboil",
+      "food/aboriginally",
+      "food/aboriginals",
+      "food/aboriginary",
+      "food/aborigines",
+      "food/absterging",
+  

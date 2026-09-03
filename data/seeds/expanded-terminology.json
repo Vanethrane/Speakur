@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "note": "Seed lists for expanded Speakur terminology categories. One page per term via catalog + generate-word-pages. Do not mass-merge until Phase 1 gap fill is solidly underway.",
+  "categories": [
+    {
+      "slug": "slang",
+      "title": "Slang & texting",
+      "description": "Everyday slang, SMS/chat abbreviations, and internet shorthand with clear pronunciation.",
+      "hubs": ["slang-text", "texting", "gen-z-slang", "gen-alpha-slang", "tiktok"],
+      "words": ["lol", "brb", "imo", "tbh", "smh", "fomo", "goat", "cap", "no-cap", "rizz", "sus", "bussin", "slay", "mid", "ghosting", "stan", "ship", "simp", "based", "ratio", "iykyk", "idk", "idc", "ttyl", "nvm", "afaik", "btw", "fyi", "omg", "ikr", "lowkey", "highkey", "bet", "say-less", "understood-the-assignment", "main-character", "touch-grass", "delulu", "skibidi", "ohio", "sigma", "gyatt", "fanum-tax", "brainrot", "aura", "npc", "glaze", "ate", "let-him-cook"]
+    },
+    {
+      "slug": "gaming",
+      "title": "Gaming terminology",
+      "description": "Esports and game slang people hear on stream—callouts, roles, and meta terms.",
+      "hubs": ["gaming-terms", "gaming-terminology"],
+      "words": ["gg", "wp", "glhf", "nerf", "buff", "meta", "op", "noob", "camp", "clutch", "aggro", "dps", "tank", "healer", "cooldown", "respawn", "lag", "ping", "smurf", "carry", "feed", "tilt", "elo", "rank", "skin", "loot", "rng", "pve", "pvp", "moba", "fps", "rpg", "speedrun", "hitbox", "hitreg", "peek", "strafe", "bunnyhop", "wallbang", "ace", "eco-round"]
+    },
+    {
+      "slug": "medical-abbrev",
+      "title": "Medical abbreviations",
+      "description": "Common clinical abbreviations patients and students hear spoken aloud.",
+      "hubs": ["medical-abbreviations"],
+      "words": ["bp", "hr", "rr", "spo2", "cbc", "bmp", "cmp", "mri", "ct", "ekg", "ecg", "iv", "im", "po", "prn", "bid", "tid", "qid", "npo", "stat", "icu", "er", "or", "dx", "hx", "sx", "tx", "rx", "otc", "nih", "who", "covid", "ppe", "cpr", "aed", "bmi", "a1c", "ldl", "hdl"]
+    },
+    {
+      "slug": "business-abbrev",
+      "title": "Business abbreviations",
+      "description": "Corporate and startup abbreviations used in meetings and earnings calls.",
+      "hubs": ["business-abbreviations"],
+      "words": ["kpi", "okr", "roi", "ebitda", "saas", "b2b", "b2c", "arr", "mrr", "cac", "ltv", "nps", "crm", "erp", "hr", "pr", "ipo", "nda", "sla", "sow", "rfp", "qbr", "yoy", "mom", "asp", "gmv", "cogs", "opex", "capex", "p-and-l"]
+    },
+    {
+      "slug": "legal",
+      "title": "Legal terms",
+      "description": "Courtroom and contract vocabulary with pronunciation help.",
+      "hubs": ["legal-terms"],
+      "words": ["tort", "plaintiff", "defendant", "subpoena", "voir-dire", "amicus", "habeas-corpus", "stare-decisis", "mens-rea", "actus-reus", "prima-facie", "pro-bono", "pro-se", "injunction", "deposition", "affidavit", "indictment", "arraignment", "bail", "parole", "probation", "jurisdiction", "venue", "discovery", "hearsay", "estoppel", "lien", "easement", "fiduciary", "notary"]
+    },
+    {
+      "slug": "it",
+      "title": "IT terms",
+      "description": "Information-technology terms and acronyms said in standups and docs.",
+      "hubs": ["it-terms"],
+      "words": ["api", "sdk", "cli", "cdn", "dns", "http", "https", "ssl", "tls", "oauth", "jwt", "sql", "nosql", "json", "yaml", "xml", "ci", "cd", "devops", "sre", "k8s", "kubernetes", "docker", "vm", "vpc", "iam", "sso", "mfa", "xss", "csrf", "ddos", "latency", "throughput", "idempotent", "schema", "migration", "monolith", "microservice", "serverless", "observability"]
+    },
+    {
+      "slug": "military",
+      "title": "Military acronyms",
+      "description": "Common military acronyms and how people pronounce them.",
+      "hubs": ["military-acronyms"],
+      "words": ["awol", "pts", "ptsd", "mre", "ied", "rpg", "humvee", "uav", "drone", "nato", "centcom", "sop", "roe", "lz", "ao", "fob", "cas", "sar", "csar", "kia", "wia", "mia", "pow", "nco", "co", "xo", "gtfo", "asap", "eta", "rtb"]
+    },
+    {
+      "slug": "automotive",
+      "title": "Automotive terms",
+      "description": "Car parts and shop terms that trip up pronunciation.",
+      "hubs": ["automotive-terms"],
+      "words": ["chassis", "camshaft", "crankshaft", "turbocharger", "supercharger", "differential", "transmission", "clutch", "caliper", "rotor", "abs", "esc", "awd", "rwd", "fwd", "ice", "ev", "hev", "phev", "obd", "ecu", "pcm", "catalytic-converter", "muffler", "manifold", "injector", "spark-plug", "timing-belt", "serpentine-belt", "cv-joint"]
+    },
+    {
+      "slug": "construction",
+      "title": "Construction terminology",
+      "description": "Jobsite and building terms for clear spoken communication.",
+      "hubs": ["construction-terminology"],
+      "words": ["rebar", "formwork", "joist", "rafter", "truss", "lintel", "sill", "header", "footer", "footing", "drywall", "sheetrock", "plumb", "square", "level", "shim", "caulk", "mortar", "grout", "veneer", "fascia", "soffit", "eave", "flashing", "vapor-barrier", "load-bearing", "cantilever", "scaffold", "backhoe", "excavator"]
+    },
+    {
+      "slug": "cannabis",
+      "title": "Cannabis terminology",
+      "description": "Common cannabis product and culture terms with pronunciation guidance.",
+      "hubs": ["cannabis-terminology"],
+      "words": ["cannabis", "marijuana", "thc", "cbd", "cbg", "cbn", "terpene", "myrcene", "limonene", "pinene", "indica", "sativa", "hybrid", "edible", "tincture", "vaporizer", "dab", "rosin", "live-resin", "kief", "hash", "trichome", "entourage-effect", "decarboxylate", "microdose"]
+    },
+    {
+      "slug": "cooking",
+      "title": "Cooking terminology",
+      "description": "Kitchen technique terms cooks hear on recipes and shows.",
+      "hubs": ["cooking-terminology"],
+      "words": ["saute", "braise", "poach", "blanch", "julienne", "brunoise", "mirepoix", "roux", "emulsify", "temper", "proof", "knead", "fold", "whip", "clarified-butter", "demi-glace", "consomme", "gazpacho", "gnocchi", "quenelle", "chiffonade", "deglaze", "flambe", "sous-vide", "confit", "en-croute", "au-jus", "al-dente", "mise-en-place"]
+    },
+    {
+      "slug": "scientific",
+      "title": "Scientific terminology",
+      "description": "Cross-discipline science terms learners need to say correctly.",
+      "hubs": ["scientific-terminology"],
+      "words": ["photosynthesis", "mitochondria", "chromosome", "allele", "phenotype", "genotype", "entropy", "enthalpy", "isotope", "ion", "molecule", "catalyst", "enzyme", "hypothesis", "theorem", "algorithm", "neuron", "synapse", "quasar", "nebula", "parallax", "diffusion", "osmosis", "stoichiometry", "polymer", "nanometer", "wavelength", "amplitude", "frequency", "vector"]
+    }
+  ]
+}

@@ -1,8 +1,9 @@
 import { readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { EZOIC_HEAD_SCRIPTS } from "./ezoic-head.mjs";
 import { renderWordSeoHeadTags } from "./word-seo.mjs";
+import { fetchJson } from "./fetch-json.mjs";
+import { lookupWordMulti } from "./word-lookup.mjs";
 import {
   extractOrigin,
   getCommonMistake,
@@ -98,11 +99,61 @@ export const CATEGORY_GUIDE_LINKS = {
     ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
     ["how-to-read-ipa-phonetic-symbols", "How to read IPA"],
   ],
+  slang: [
+    ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
+    ["why-pronunciation-matters-for-learners", "Why pronunciation matters"],
+  ],
+  gaming: [
+    ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
+    ["building-a-pronunciation-practice-routine", "Practice routine"],
+  ],
+  "medical-abbrev": [
+    ["science-of-syllables-and-stress", "Syllables and stress"],
+    ["how-to-read-ipa-phonetic-symbols", "How to read IPA"],
+  ],
+  "business-abbrev": [
+    ["linguistic-accents-in-global-marketing", "Accents in marketing"],
+    ["why-pronunciation-matters-for-learners", "Why pronunciation matters"],
+  ],
+  legal: [
+    ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
+    ["how-to-read-ipa-phonetic-symbols", "How to read IPA"],
+  ],
+  it: [
+    ["how-ai-speech-synthesis-works", "How AI speech synthesis works"],
+    ["on-demand-tts-and-click-gating", "On-demand TTS"],
+  ],
+  military: [
+    ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
+    ["how-to-read-ipa-phonetic-symbols", "How to read IPA"],
+  ],
+  automotive: [
+    ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
+    ["how-to-read-ipa-phonetic-symbols", "How to read IPA"],
+  ],
+  construction: [
+    ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
+    ["science-of-syllables-and-stress", "Syllables and stress"],
+  ],
+  cannabis: [
+    ["how-to-read-ipa-phonetic-symbols", "How to read IPA"],
+    ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
+  ],
+  cooking: [
+    ["commonly-mispronounced-english-words", "Commonly mispronounced words"],
+    ["how-to-read-ipa-phonetic-symbols", "How to read IPA"],
+  ],
+  scientific: [
+    ["science-of-syllables-and-stress", "Syllables and stress"],
+    ["how-to-read-ipa-phonetic-symbols", "How to read IPA"],
+  ],
 };
 
 const HUB_SLUGS = [
   "food", "places", "names", "brands", "medical", "animals", "science",
   "business", "everyday", "arts", "sports", "tech", "nature", "law", "mythology",
+  "slang", "gaming", "medical-abbrev", "business-abbrev", "legal", "it",
+  "military", "automotive", "construction", "cannabis", "cooking", "scientific",
 ];
 
 export function renderExploreMoreHtml({ depth = 2, categorySlug = "", includeGuides = true } = {}) {
@@ -168,7 +219,7 @@ export function chrome({ title, description, depth, active, seoExtra = "" }) {
     head: `<!DOCTYPE html>
 <html lang="en">
 <head>
-${EZOIC_HEAD_SCRIPTS}  <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(title)}</title>
 ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" />
@@ -182,6 +233,7 @@ ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" /
   <link rel="stylesheet" href="${asset}site.css" />
   <link rel="stylesheet" href="${asset}word-page.css" />
   <link rel="manifest" href="/manifest.json" />
+  <link rel="search" type="application/opensearchdescription+xml" title="Speakur" href="/opensearch.xml" />
   <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -219,10 +271,14 @@ ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" /
           </details>
         </nav>
       </div>
-    </header>
-    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>`,
+      <form id="speakur-header-form" class="header-search" role="search" autocomplete="off">
+        <label class="sr-only" for="speakur-header-q">Search guides, tools, and words</label>
+        <input id="speakur-header-q" type="search" placeholder="Search guides, tools, words…" spellcheck="false" />
+        <button type="submit" aria-label="Search">Go</button>
+        <ul id="speakur-header-results" class="header-search-results" role="listbox" hidden></ul>
+      </form>
+    </header>`,
     foot: `
-    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>
     <footer>
       <div class="footer-grid">
         <div>
@@ -257,6 +313,8 @@ ${seoExtra || `  <meta name="description" content="${escapeHtml(description)}" /
       <p class="legal">© <span data-year></span> Speakur. <a href="${home}index.html">Home</a> · <a href="${home}tools/">Tools</a> · <a href="${home}words/">Words</a> · <a href="${home}guides.html">Guides</a></p>
     </footer>
   </div>
+  <script defer src="${asset}search-index.js"></script>
+  <script defer src="${asset}header-search.js"></script>
   <script defer src="${asset}site.js"></script>
   <script defer src="${asset}pwa-install.js"></script>
 </body>
@@ -625,8 +683,6 @@ export function renderWordPage({
         ${sourcesHtml}
       </article>
 
-      <div id="speakur-ad-mid" class="ad-slot ad-slot-mid stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>
-
       <section class="related related-grid-slot stable-slot" style="min-height:4rem">
         <h2>More in ${escapeHtml(category.title)}</h2>
         <div class="chip-row">${siblings
@@ -858,120 +914,4 @@ export function renderSimpleLanding({
       ${crumbHtml}
       <p class="eyebrow">${escapeHtml(eyebrow || title)}</p>
       <h1>${escapeHtml(title)}</h1>
-      <p class="lede">${escapeHtml(lede || description)}</p>
-      ${bodyHtml || ""}
-      ${renderExploreMoreHtml({ depth, categorySlug: "", includeGuides: true })}
-    </main>
-${foot}`;
-}
-
-async function fetchJson(url, { timeoutMs = 12000, retries = 2 } = {}) {
-  let lastErr = null;
-  for (let attempt = 0; attempt <= retries; attempt++) {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-    try {
-      const res = await fetch(url, { signal: ctrl.signal });
-      clearTimeout(timer);
-      if (res.status === 404) return { ok: false, status: 404 };
-      if (!res.ok) {
-        lastErr = new Error(`HTTP ${res.status}`);
-        await new Promise((r) => setTimeout(r, 400 * (attempt + 1)));
-        continue;
-      }
-      return { ok: true, data: await res.json() };
-    } catch (err) {
-      clearTimeout(timer);
-      lastErr = err;
-      await new Promise((r) => setTimeout(r, 500 * (attempt + 1)));
-    }
-  }
-  return { ok: false, error: lastErr };
-}
-
-export async function lookupWord(word) {
-  const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`;
-  const primary = await fetchJson(url);
-  if (primary.ok && Array.isArray(primary.data) && primary.data[0]) {
-    return { ok: true, entry: primary.data[0] };
-  }
-  if (primary.status === 404) {
-    // Fall through to Datamuse — some spellings 404 on dictionaryapi
-  }
-
-  // Datamuse fallback (definitions + phonetic-ish metadata)
-  const dm = await fetchJson(
-    `https://api.datamuse.com/words?sp=${encodeURIComponent(word)}&qe=sp&md=dpsr&max=1`,
-  );
-  if (!dm.ok || !Array.isArray(dm.data) || !dm.data[0]) {
-    return { ok: false, reason: primary.status === 404 ? "not_found" : "upstream" };
-  }
-  const row = dm.data[0];
-  if (String(row.word || "").toLowerCase() !== String(word).toLowerCase()) {
-    return { ok: false, reason: "not_found" };
-  }
-  const defs = row.defs || [];
-  if (!defs.length) return { ok: false, reason: "not_found" };
-
-  const byPos = new Map();
-  for (const line of defs.slice(0, 8)) {
-    const tab = line.indexOf("\t");
-    const pos = tab === -1 ? "unknown" : line.slice(0, tab);
-    const definition = tab === -1 ? line : line.slice(tab + 1);
-    if (!definition) continue;
-    if (!byPos.has(pos)) byPos.set(pos, []);
-    byPos.get(pos).push({ definition });
-  }
-  const meanings = [...byPos.entries()].map(([partOfSpeech, definitions]) => ({
-    partOfSpeech,
-    definitions,
-  }));
-  return {
-    ok: true,
-    entry: {
-      word,
-      phonetic: "",
-      phonetics: [],
-      meanings,
-      source: "datamuse",
-    },
-  };
-}
-
-export async function syllableCount(word) {
-  try {
-    const dm = await fetchJson(
-      `https://api.datamuse.com/words?sp=${encodeURIComponent(word)}&qe=sp&md=s&max=1`,
-    );
-    if (dm.ok && Array.isArray(dm.data) && dm.data[0]?.numSyllables) {
-      return dm.data[0].numSyllables;
-    }
-  } catch {
-    /* fall through */
-  }
-  return null;
-}
-
-/** Simple category guess for new words. */
-export function guessCategory(word, catalog) {
-  const w = word.toLowerCase();
-  const rules = [
-    ["medical", /osis$|itis$|ectomy$|ology$|emia$|pathy$|phobia$|therapy$|clinic|patient|surgery|vaccine|symptom/],
-    ["food", /berry$|latte|espresso|sauce|cheese|bread|wine|spice|fruit|meat|soup|cake|tea$|coffee/],
-    ["science", /ology$|metry$|scopy$|particle|atom|cell|gene|quantum|species|planet|chemical/],
-    ["business", /market|finance|equity|revenue|vendor|client|strategy|portfolio|synergy|analytic/],
-    ["tech", /algorithm|software|browser|server|database|encrypt|cyber|javascript|python|docker|cloud/],
-    ["sports", /ball|sport|olympi|athlet|gym|swim|ski|marathon|boxing|tennis|golf|hockey|soccer/],
-    ["arts", /ballet|opera|symphony|orchestra|poem|theatre|cinema|sculpt|genre|metaphor|sonnet/],
-    ["nature", /mountain|river|ocean|forest|desert|glacier|volcano|hurricane|climate|weather/],
-    ["law", /court|judge|jury|lawyer|attorney|statute|felony|subpoena|verdict|contract/],
-    ["mythology", /zeus|odin|thor|apollo|athena|dragon|phoenix|unicorn|mythology|legend/],
-    ["animals", /dog|cat|bird|fish|horse|lion|tiger|elephant|whale|snake|butterfly|eagle/],
-  ];
-  for (const [slug, re] of rules) {
-    if (re.test(w)) return slug;
-  }
-  const slugs = (catalog?.categories || []).map((c) => c.slug);
-  if (slugs.includes("everyday")) return "everyday";
-  return slugs[0] || "everyday";
-}
+      <p c

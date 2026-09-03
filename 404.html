@@ -10,34 +10,7 @@
 
   gtag('config', 'G-8NN3RH1L4S');
 </script>
-  <script>
-    window.SPEAKUR_AD_CONFIG = window.SPEAKUR_AD_CONFIG || { enabled: false, provider: "ezoic" };
-  </script>
-  <script>
-    (function () {
-      var cfg = window.SPEAKUR_AD_CONFIG || {};
-      if (!cfg.enabled) return;
-      function inject(src, attrs) {
-        var s = document.createElement("script");
-        s.src = src;
-        if (attrs) Object.keys(attrs).forEach(function (k) { s.setAttribute(k, attrs[k]); });
-        document.head.appendChild(s);
-      }
-      inject("https://cmp.gatekeeperconsent.com/min.js", { "data-cfasync": "false" });
-      inject("https://the.gatekeeperconsent.com/cmp.min.js", { "data-cfasync": "false" });
-      inject("https://www.ezojs.com/ezoic/sa.min.js", { async: "" });
-      window.ezstandalone = window.ezstandalone || {};
-      ezstandalone.cmd = ezstandalone.cmd || [];
-      function loadAnalytics() {
-        if (document.querySelector('script[src*="ezoicanalytics.com/analytics.js"]')) return;
-        inject("https://ezoicanalytics.com/analytics.js", { async: "" });
-      }
-      if ("requestIdleCallback" in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
-      else window.addEventListener("load", function () { setTimeout(loadAnalytics, 1200); });
-    })();
-  </script>
-
-  <meta charset="UTF-8" />
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="manifest" href="/manifest.json" />
   <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
@@ -50,18 +23,15 @@
   <meta name="apple-mobile-web-app-title" content="Speakur" />
 <title>Page not found · Speakur</title>
   <style>
-:root{--ink:#1c1712;--ink-muted:#5c5348;--paper:#f6f1e8;--paper-raised:#fffaf3;--paper-line:#e4d9c8;--voice:#0d6e66;--ad-banner-h:60px;--ad-inline-h:90px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper)}
+:root{--ink:#1c1712;--ink-muted:#5c5348;--paper:#f6f1e8;--paper-raised:#fffaf3;--paper-line:#e4d9c8;--voice:#0d6e66;
+      min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper)}
 .shell{width:min(720px,calc(100% - 2rem));margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:2rem 0 3rem}
 header{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;min-height:2.5rem}
 .brand{font-family:Georgia,serif;font-size:1.65rem}
 nav{display:flex;gap:1rem;flex-wrap:wrap}nav a{color:var(--ink-muted);font-size:.95rem;text-decoration:none}
 main{flex:1;padding:2.5rem 0 2rem;min-height:12rem}
 h1{margin:1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.2rem,6vw,3.2rem);line-height:1.08}
-.ad-slot{display:flex;justify-content:center;align-items:center;width:100%;overflow:hidden;contain:layout style}
-.ad-slot-top{min-height:var(--ad-banner-h)}.ad-slot-bottom{min-height:var(--ad-inline-h)}
-.stable-slot{contain:layout;width:100%}
+    .stable-slot{contain:layout;width:100%}
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -71,6 +41,7 @@ h1{margin:1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.2rem,6vw,3.2rem);
 <noscript></noscript>
   <link rel="stylesheet" href="/assets/site.css" />
   <link rel="stylesheet" href="/assets/word-page.css" />
+  <link rel="search" type="application/opensearchdescription+xml" title="Speakur" href="/opensearch.xml" />
 </head>
 <body>
 
@@ -116,10 +87,7 @@ h1{margin:1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.2rem,6vw,3.2rem);
         <ul id="speakur-header-results" class="header-search-results" role="listbox" hidden></ul>
       </form>
     </header>
-<script src="https://motionless-bus.com/bZ3/VR0.Pw3/pWvTbzmyV/JLZjDL0e3/MKz/crypMiTKEs3YL_T/cPzTNhzbImxqMxj/Ec"></script>
-
-    <div id="speakur-ad-top" class="ad-slot ad-slot-top stable-slot" role="region" aria-label="Advertisement" style="min-height:60px"></div>
-    <main id="main" class="stable-slot" style="min-height:12rem">
+<main id="main" class="stable-slot" style="min-height:12rem">
       <p class="eyebrow">404</p>
       <h1>We couldn’t find that page</h1>
       <p class="lede" id="status">Try search, browse guides, or return home.</p>
@@ -128,8 +96,7 @@ h1{margin:1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.2rem,6vw,3.2rem);
       </p>
       <div id="mount" class="stable-slot" hidden style="min-height:12rem"></div>
     </main>
-    <div id="speakur-ad-bottom" class="ad-slot ad-slot-bottom stable-slot" role="region" aria-label="Advertisement" style="min-height:90px"></div>
-    <footer>
+<footer>
       <p class="legal">© <span data-year></span> Speakur. <a href="/index.html">Home</a></p>
     </footer>
   </div>
@@ -138,7 +105,4 @@ h1{margin:1rem 0 0;font-family:Georgia,serif;font-size:clamp(2.2rem,6vw,3.2rem);
   <script defer src="/assets/header-search.js"></script>
   <script defer src="/assets/site.js"></script>
   <script defer src="/assets/on-demand-word.js"></script>
-  <script defer src="/assets/404-resolve.js"></script>
-  <script defer src="/assets/pwa-install.js"></script>
-</body>
-</html>
+  <script defer src="/
